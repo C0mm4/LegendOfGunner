@@ -2,14 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoSingleton<GameManager>
 {
-    private static GameManager _instance;
-    public static GameManager Instance
-    {
-        get { return _instance; }
-    }
-
     // To Do List
     // object change to playercontroller
     public static object PlayerInstance;
@@ -22,17 +16,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private bool DebugMode = false;
 
-    private void Awake()
+    protected override void Awake()
     {
-        if (_instance == null)
-        {
-            _instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        base.Awake();
 
         if (DebugMode)
         {
@@ -62,6 +48,7 @@ public class GameManager : MonoBehaviour
         // 해상도 FHD
         Screen.SetResolution(1920, 1080, true);
     }
+
 
     /// <summary>
     /// 최초 실행시 게임 데이터 초기화
