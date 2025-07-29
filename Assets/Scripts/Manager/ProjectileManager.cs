@@ -3,27 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectileManager : MonoBehaviour
+public class ProjectileManager : MonoSingleton<ProjectileManager>
 {
-    private static ProjectileManager _instance;
-    public static ProjectileManager Instance
+
+    protected override void Awake()
     {
-        get { return _instance; }
+        base.Awake();
+
+        
     }
 
-
-    private void Awake()
-    {
-        if (_instance == null)
-        {
-            _instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
 
     [SerializeField]
     private ParticleSystem impactParticleSystem;

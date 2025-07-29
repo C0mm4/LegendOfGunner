@@ -1,11 +1,8 @@
 fileFormatVersion: 2
-<<<<<<<< Updated upstream:Assets/Scripts/Controller/Dummy.txt.meta
 guid: 8ca8a6a62268a3d43997135d9a1e9a70
 TextScriptImporter:
-========
 guid: a063ab2f2ebb447409437840ed8170cb
 PrefabImporter:
->>>>>>>> Stashed changes:Assets/Resources/Prefabs/TestPlayer.prefab.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
