@@ -58,12 +58,8 @@ public class RangeWeaponHandler : BaseWeaponHandler
             float randomSpread = Random.Range(-spread, spread);
             angle += randomSpread;
 
-            // Test Code
-            // To Do
-            // Angle Change by Angle
-            CreateProjectile(Vector2.right, angle);
 
-            //            CreateProjectile(Controller.LookDirection, angle);
+            CreateProjectile(Controller.LookDirection, angle);
         }
     }
 

@@ -27,16 +27,14 @@ public class BaseWeaponHandler : MonoBehaviour
     private static readonly int IsAttack = Animator.StringToHash("IsAttack");
     private static readonly int IsReload = Animator.StringToHash("IsReload");
 
-    // To Do List
-    // Fix object to Entity Controller
-    public object Controller {  get; private set; }
+    public BaseController Controller {  get; private set; }
 
     private Animator animator;
     private SpriteRenderer spriteRenderer;
 
     protected virtual void Awake()
     {
-
+        Controller = GetComponentInParent<BaseController>();
     }
 
 

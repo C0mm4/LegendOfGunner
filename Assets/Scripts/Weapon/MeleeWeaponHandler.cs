@@ -22,12 +22,8 @@ public class MeleeWeaponHandler : BaseWeaponHandler
         TrailRenderer.gameObject.SetActive(true);
         Invoke("AttackTrailEnd", 1 / Speed);
 
-        // Test
-        RaycastHit2D hit = Physics2D.BoxCast(transform.position + Vector3.right * collideBoxSize.x,
-            collideBoxSize, 0, Vector2.zero, target);
-/*
         RaycastHit2D hit = Physics2D.BoxCast(transform.position + (Vector3)Controller.LookDirection * collideBoxSize.x,
-            collideBoxSize, 0, Vector2.zero, target);*/
+            collideBoxSize, 0, Vector2.zero, target);
 
         if (hit.collider != null)
         {
