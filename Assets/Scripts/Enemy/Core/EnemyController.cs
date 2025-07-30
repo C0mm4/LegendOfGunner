@@ -52,7 +52,7 @@ public class EnemyController : BaseController
     }
 
     //죽었을때 호출하는 함수 EX). 죽어서 이펙트를 뒤지게 많이뽑는다던지 등 
-    protected virtual void DieAtcion() // base에서 처리
+    protected virtual void OnDisable() // base에서 처리
     {
         EnemyManager.Instance.RemoveObject(this.gameObject);
         Destroy(this.gameObject);
