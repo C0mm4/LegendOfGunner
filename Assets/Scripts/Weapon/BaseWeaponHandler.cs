@@ -42,6 +42,11 @@ public class BaseWeaponHandler : MonoBehaviour
     [SerializeField]
     private SpriteRenderer spriteRenderer;
 
+    [SerializeField]
+    protected float coolTime = 0f;
+    public bool isCooltime = false;
+    protected float leftCooltime = 0f;
+
     protected virtual void Awake()
     {
         Controller = GetComponentInParent<BaseController>();
@@ -58,11 +63,6 @@ public class BaseWeaponHandler : MonoBehaviour
         if(MaxAmmo != -1)
         {
             currentAmmo--;
-            if (currentAmmo <= 0)
-            {
-                // 기본 무기로 돌리는 코드 추가
-                
-            }
         }
     }
 
@@ -76,4 +76,18 @@ public class BaseWeaponHandler : MonoBehaviour
         spriteRenderer.flipY = isLeft;
     }
 
+    public void SetCooltime()
+    {
+        isCooltime = true;
+        leftCooltime = coolTime;
+    }
+
+    public void UpdateCooltime(float deltaT)
+    {
+        leftCooltime -= deltaT;
+        if(leftCooltime <= 0f)
+        {
+            isCooltime = false;
+        }
+    }
 }

@@ -74,6 +74,7 @@ public class BaseController : MonoBehaviour
         HandleAction();
         Rotate(lookDirection);
         AttackHandler();
+        UpdateCooltime();
     }
 
     protected virtual void FixedUpdate()
@@ -88,6 +89,17 @@ public class BaseController : MonoBehaviour
     protected virtual void HandleAction()
     {
 
+    }
+
+    protected virtual void UpdateCooltime()
+    {
+        for (int i = 0; i < weapons.Count; i++)
+        {
+            if (weapons[i].isCooltime)
+            {
+                weapons[i].UpdateCooltime(Time.deltaTime);
+            }
+        }
     }
 
     private void Movement(Vector2 direction)
@@ -132,8 +144,11 @@ public class BaseController : MonoBehaviour
         {
             currentWeapon?.Attack();
             lastAttackTime = 0;
+            // 현재 무기 탄환 다 쓰면 기본 무기 장착
+            // 기본무기는 MaxAmmo -1로 두어 예외처리
             if(currentWeapon?.MaxAmmo != -1 && currentWeapon?.CurrentAmmo <= 0)
             {
+                currentWeapon.SetCooltime();
                 EquipBaseWeapon();
             }
         }
@@ -154,12 +169,14 @@ public class BaseController : MonoBehaviour
     {
         if(weapon != this.currentWeapon)
         {
+            if (weapon.isCooltime) return;
+
             if(this.currentWeapon != null)
                 this.currentWeapon.gameObject.SetActive(false);
             this.currentWeapon = weapon;
             this.currentWeapon.gameObject.SetActive(true);
             this.currentWeapon.EquipWeapon();
-            // ���� ����� ���� ������ �ʱ�ȭ
+            // Reset Attack Delay Time
             lastAttackTime = 99f;
         }
     }

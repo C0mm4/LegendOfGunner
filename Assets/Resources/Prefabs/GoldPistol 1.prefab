@@ -55,6 +55,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   spriteRenderer: {fileID: 0}
+  coolTime: 2
+  isCooltime: 0
   projectileSpawn: {fileID: 7147522745714645110}
   bullet: {fileID: 8353363161459075883, guid: e90c6083f841d9944996e35759edd723, type: 3}
   bulletSize: 1
