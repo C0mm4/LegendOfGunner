@@ -6,6 +6,8 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
     public GameObject pauseUI;
+    public GameObject pauseMenu;
+    public GameObject StatusUI;
 
     public void Awake()
     {
@@ -15,6 +17,8 @@ public class UIManager : MonoBehaviour
         }
         Instance = this;
         pauseUI.SetActive(false);
+        pauseMenu.SetActive(false);
+        StatusUI.SetActive(false);
     }
 
     void Update()

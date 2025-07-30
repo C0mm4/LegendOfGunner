@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class PauseBtn : MonoBehaviour
 {
-    public bool isPauseOn = false;
     GameObject pauseUI;
+    GameObject pauseMenu;
     private void Start()
     {
-        pauseUI = UIManager.Instance.pauseUI; 
+        pauseUI = UIManager.Instance.pauseUI;
+        pauseMenu = UIManager.Instance.pauseMenu;
+        
     }
     public void PasueBtnClick()
     {
         pauseUI.SetActive(true);
-        isPauseOn = true;
+        pauseMenu.SetActive(true);
     }
 }
