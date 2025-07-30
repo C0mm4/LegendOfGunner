@@ -36,5 +36,11 @@ public class PlayerController : BaseController
         {
             isAttackInput = true;
         }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            ResourceController resourceController = GetComponent<ResourceController>();
+            resourceController.ChangeHealth(-5);
+
+        }
     }
 }
