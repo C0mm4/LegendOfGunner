@@ -13,7 +13,6 @@ public class EnemyController : MonoBehaviour
     protected EnemyModel enemyModel;
     public void Update()
     {
-        Debug.Log("2");
 
         if (enemyModel.status.currentHp <= 0)
         {

@@ -130,10 +130,6 @@ public class BaseController : MonoBehaviour
                 new Vector3(Mathf.Cos(radianRotZ), Mathf.Sin(radianRotZ)) * weaponPivotPos.magnitude;
 
 
-            /*weaponPivot.localPosition = isLeft ? 
-                new Vector3(-weaponPivotPos.x + Mathf.Cos(radianRotZ), weaponPivotPos.y + Mathf.Sin(radianRotZ), 0) * weaponPivotPos.magnitude 
-                : (weaponPivotPos + new Vector3(Mathf.Cos(radianRotZ), Mathf.Sin(radianRotZ))) * weaponPivotPos.magnitude;
-            */
             currentWeapon.Rotate(isLeft);
         }
     }
@@ -149,6 +145,10 @@ public class BaseController : MonoBehaviour
             if(currentWeapon?.MaxAmmo != -1 && currentWeapon?.CurrentAmmo <= 0)
             {
                 currentWeapon.SetCooltime();
+                GameObject go = Instantiate(currentWeapon.gameObject, currentWeapon.transform.position, currentWeapon.transform.rotation);
+                Destroy(go.GetComponent<BaseWeaponHandler>());
+                go.AddComponent<WeaponDust>();
+
                 EquipBaseWeapon();
             }
         }

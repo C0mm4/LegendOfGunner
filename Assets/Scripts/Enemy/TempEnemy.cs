@@ -13,7 +13,6 @@ public class TempEnemy : EnemyController
     void Update()
     {
         base.Update();
-        Debug.Log("1");
         if (Input.GetKeyDown(KeyCode.Space))
         {
             enemyModel.HitEnemy(100);

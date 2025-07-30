@@ -45,8 +45,6 @@ public class RangeWeaponHandler : BaseWeaponHandler
     {
         base.Attack();
 
-        Debug.Log("B");
-
         float projectileAngleSpace = multiProjectileAngle;
         int numberOfProjectilePerShot = numProjectilePerShot;
 
