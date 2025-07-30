@@ -13,7 +13,7 @@ public class HPUI : MonoBehaviour
     void Update()
     {
         int nowHPWidth = nowHP * 18;                        // maxHP, nowHP는 캐릭터꺼 가져오기
-        int maxHPWidth = maxHP * 18;                            // 체력 1당 넓이 18. 최대 36
+        int maxHPWidth = nowHP > 0 ? maxHP * 18 : 0;                            // 체력 1당 넓이 18. 최대 36
         hpBar.sizeDelta = new Vector2(maxHPWidth, 25);
         hpGauge.sizeDelta = new Vector2(nowHPWidth, 25);
     }

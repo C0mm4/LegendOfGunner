@@ -7,6 +7,6 @@ public class ExitBtn : MonoBehaviour
 {
     public void ClickExitBtn()
     {
-        SceneManager.LoadScene("MainScene");
+        //SceneManager.LoadScene("MainScene");
     }
 }
