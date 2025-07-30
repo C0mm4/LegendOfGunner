@@ -10,7 +10,7 @@ public class BaseController : MonoBehaviour
     [SerializeField] private Transform weaponPivot;
 
     protected Vector2 movementDirection = Vector2.zero;
-    public Vector2 MovementDirection {get { return movementDirection; } }
+    public Vector2 MovementDirection { get { return movementDirection; } }
 
     protected Vector2 lookDirection = Vector2.zero;
     public Vector2 LookDirection { get { return lookDirection; } }
@@ -33,7 +33,7 @@ public class BaseController : MonoBehaviour
 
     protected virtual void Start()
     {
-        
+
     }
 
     protected virtual void Update()
@@ -46,7 +46,7 @@ public class BaseController : MonoBehaviour
     protected virtual void FixedUpdate()
     {
         Movement(movementDirection);
-        if(knockbackDuration > 0.0f)
+        if (knockbackDuration > 0.0f)
         {
             knockbackDuration -= Time.deltaTime;
         }
@@ -60,7 +60,7 @@ public class BaseController : MonoBehaviour
     private void Movement(Vector2 direction)
     {
         direction = direction * statHandler.Speed;
-        if(knockbackDuration > 0.0f)
+        if (knockbackDuration > 0.0f)
         {
             direction *= 0.2f;
             direction += knockback;
@@ -76,7 +76,7 @@ public class BaseController : MonoBehaviour
 
         characterRenderer.flipX = isLeft;
 
-        if(weaponPivot != null)
+        if (weaponPivot != null)
         {
             weaponPivot.rotation = Quaternion.Euler(0, 0, rotZ);
         }
@@ -96,5 +96,27 @@ public class BaseController : MonoBehaviour
     {
         knockbackDuration = duration;
         knockback = -(other.position - transform.position).normalized * power;
+    }
+
+
+    public virtual void Death()
+    {
+        _rigidbody.velocity = Vector3.zero;
+        foreach(SpriteRenderer renderer in transform.GetComponentsInChildren<SpriteRenderer>())
+        {
+            Color color = renderer.color;
+            color.a = 0.3f;
+            renderer.color = color;
+        }
+
+        foreach(Behaviour component in transform.GetComponentsInChildren<Behaviour>())
+        {
+            if (!(component is Animator))
+            {
+                component.enabled = false;
+            }
+        }
+
+        Destroy(gameObject, 0.835f);
     }
 }
