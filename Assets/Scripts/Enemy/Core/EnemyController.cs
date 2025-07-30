@@ -55,7 +55,7 @@ public class EnemyController : BaseController
     protected virtual void OnDisable() // base에서 처리
     {
         EnemyManager.Instance.RemoveObject(this.gameObject);
-        Destroy(this.gameObject);
+//        Destroy(this.gameObject);
     }
 
     //몬스터 마다 움직임이 다르다 판단함
