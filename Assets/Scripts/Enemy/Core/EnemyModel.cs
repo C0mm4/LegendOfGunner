@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class EnemyModel : MonoBehaviour
 {
-    public struct EnemyStatus
+    public class EnemyStatus : StatHandler
     {
         public int maxHp;
-        public int currentHp;
-        public float speed;
         public int atkDmg;
     }
     public bool isDie = false;
@@ -19,14 +17,20 @@ public class EnemyModel : MonoBehaviour
     {
         status = new EnemyStatus();
         status.maxHp = _maxHp;
-        status.currentHp = _maxHp;
-        status.speed = _speed;
+        status.Health = _maxHp;
+        status.Speed = _speed;
         status.atkDmg = _atkDmg;
+        Debug.Log(gameObject.name);
     }
     public void HitEnemy(int dmg)
     {
-        status.currentHp -= dmg;
-        if (status.currentHp <= 0)
+        status.Health -= dmg;
+        if (status.Health <= 0)
             isDie = true;
+    }
+
+    public EnemyStatus GetStatus()
+    {
+        return status;
     }
 }

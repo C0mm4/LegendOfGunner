@@ -19,7 +19,6 @@ public class GameManager : MonoSingleton<GameManager>
     protected override void Awake()
     {
         base.Awake();
-
         if (DebugMode)
         {
             // 최초 실행 시 동작
