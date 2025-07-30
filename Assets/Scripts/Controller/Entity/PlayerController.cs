@@ -6,10 +6,18 @@ public class PlayerController : BaseController
 {
     private Camera camera;
 
+    [SerializeField]
+    List<BaseWeaponHandler> weapons;
+
     protected override void Start()
     {
         base.Start();
         camera = Camera.main;
+
+        for (int i = 0; i < weapons.Count; i++)
+        {
+            weapons[i].gameObject.SetActive(false);
+        }
     }
 
     protected override void HandleAction()
@@ -32,9 +40,10 @@ public class PlayerController : BaseController
             lookDirection = lookDirection.normalized;
         }
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            isAttackInput = true;
-        }
+    }
+
+    private void EquipWeapon(int index)
+    {
+        EquipWeapon(weapons[index]);
     }
 }

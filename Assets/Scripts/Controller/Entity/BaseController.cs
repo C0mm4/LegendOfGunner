@@ -20,11 +20,15 @@ public class BaseController : MonoBehaviour
 
     [SerializeField]
     private BaseWeaponHandler weapon;
-    protected bool isAttackInput = true;
+
+    private float lastAttackTime = 0f;
+
+    private Vector3 weaponPivotPos;
 
     protected virtual void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+        weaponPivotPos = weaponPivot.localPosition;
     }
 
     protected virtual void Start()
@@ -67,7 +71,8 @@ public class BaseController : MonoBehaviour
 
     private void Rotate(Vector2 direction)
     {
-        float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        float radianRotZ = Mathf.Atan2(direction.y, direction.x);
+        float rotZ = radianRotZ * Mathf.Rad2Deg;
         bool isLeft = Mathf.Abs(rotZ) > 90f;
 
         characterRenderer.flipX = isLeft;
@@ -75,15 +80,29 @@ public class BaseController : MonoBehaviour
         if(weaponPivot != null)
         {
             weaponPivot.rotation = Quaternion.Euler(0, 0, rotZ);
+            weaponPivot.localPosition = isLeft ?
+                new Vector3(Mathf.Cos(-radianRotZ), Mathf.Sin(radianRotZ)) * weaponPivotPos.magnitude :
+                new Vector3(Mathf.Cos(radianRotZ), Mathf.Sin(radianRotZ)) * weaponPivotPos.magnitude;
+
+            
+            /*weaponPivot.localPosition = isLeft ? 
+                new Vector3(-weaponPivotPos.x + Mathf.Cos(radianRotZ), weaponPivotPos.y + Mathf.Sin(radianRotZ), 0) * weaponPivotPos.magnitude 
+                : (weaponPivotPos + new Vector3(Mathf.Cos(radianRotZ), Mathf.Sin(radianRotZ))) * weaponPivotPos.magnitude;
+            */
+            weapon.Rotate(isLeft);
         }
     }
 
     private void AttackHandler()
     {
-        if (isAttackInput)
+        if(lastAttackTime >= weapon.Delay)
         {
             weapon?.Attack();
-            isAttackInput = false;
+            lastAttackTime = 0;
+        }
+        else
+        {
+            lastAttackTime += Time.deltaTime;   
         }
     }
 
@@ -92,5 +111,10 @@ public class BaseController : MonoBehaviour
     {
         knockbackDuration = duration;
         knockback = -(other.position - transform.position).normalized * power;
+    }
+
+    protected void EquipWeapon(BaseWeaponHandler weapon)
+    {
+        this.weapon = weapon;
     }
 }

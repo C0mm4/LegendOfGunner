@@ -21,6 +21,14 @@ public class BaseWeaponHandler : MonoBehaviour
     [SerializeField]
     public float AttackRange {  get { return attackRange; } set { attackRange = value; } }
 
+    private int currentAmmo;
+    public int CurrentAmmo { get { return currentAmmo; } }
+
+    [SerializeField]
+    private int maxAmmo;
+    [SerializeField]
+    public int MaxAmmo { get { return maxAmmo; } }
+
 
     public LayerMask target;
 
@@ -35,16 +43,35 @@ public class BaseWeaponHandler : MonoBehaviour
     protected virtual void Awake()
     {
         Controller = GetComponentInParent<BaseController>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
+    private void Start()
+    {
+        currentAmmo = maxAmmo;
+    }
 
     public virtual void Attack()
     {
-
+        currentAmmo--;
+        if(currentAmmo <= 0)
+        {
+            UnequipWeapon();
+        }
     }
 
     public virtual void Rotate(bool isLeft)
     {
         spriteRenderer.flipY = isLeft;
+    }
+
+    public void EquipWeapon()
+    {
+
+    }
+
+    public void UnequipWeapon()
+    {
+
     }
 }
