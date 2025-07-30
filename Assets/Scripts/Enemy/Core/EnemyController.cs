@@ -21,22 +21,22 @@ public class EnemyController : BaseController
     }
     protected override void Start()
     {
-        playerObject = GameObject.FindGameObjectWithTag("Player");
+        playerObject = GameObject.FindObjectOfType<PlayerController>().gameObject;
         _rigidbody = GetComponent<Rigidbody2D>();
         statHandler = enemyModel.GetStatus();
     }
 
     protected override void Update() // base에서 처리
     {
-        //if (enemyModel.status.Health <= 0)
-        //{
-        //    DieAtcion();
-        //}
-        //else
-        //{
-        //    Attack();
-        Movement();
-        //}
+        if (enemyModel.status.Health <= 0)
+        {
+            DieAtcion();
+        }
+        else
+        {
+            Movement();
+            Attack();
+        }
     }
     protected override void FixedUpdate()
     {
@@ -47,17 +47,16 @@ public class EnemyController : BaseController
     }
 
     //죽었을때 호출하는 함수 EX). 죽어서 이펙트를 뒤지게 많이뽑는다던지 등 
-    virtual protected void DieAtcion() // base에서 처리
+    protected virtual void DieAtcion() // base에서 처리
     {
         EnemyManager.Instance.RemoveObject(this.gameObject);
         Destroy(this.gameObject);
     }
 
     //몬스터 마다 움직임이 다르다 판단함
-    protected void Movement()
+    protected virtual void Movement()
     {
         Vector3 enemyToPlayerDirection = (playerObject.transform.position - transform.position).normalized;
-        Debug.Log(statHandler.Speed);
         base.Movement(enemyToPlayerDirection);
     }
 

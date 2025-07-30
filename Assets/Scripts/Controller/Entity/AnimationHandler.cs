@@ -27,5 +27,6 @@ public class AnimationHandler : MonoBehaviour
     public void Die()
     {
         animator.SetBool(IsDie, true);
+        
     }
 }

@@ -53,8 +53,10 @@ MonoBehaviour:
   maxAmmo: -1
   target:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   spriteRenderer: {fileID: 0}
+  coolTime: 0
+  isCooltime: 0
   projectileSpawn: {fileID: 7147522745714645110}
   bullet: {fileID: 8353363161459075883, guid: e90c6083f841d9944996e35759edd723, type: 3}
   bulletSize: 1
@@ -62,7 +64,7 @@ MonoBehaviour:
   spread: 0
   numProjectilePerShot: 1
   multiProjectileAngle: 0
-  projectileColor: {r: 1, g: 1, b: 1, a: 1}
+  projectileColor: {r: 0.4009434, g: 1, b: 0.45342433, a: 1}
 --- !u!1 &6877012807575721420
 GameObject:
   m_ObjectHideFlags: 0
