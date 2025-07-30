@@ -58,7 +58,7 @@ MonoBehaviour:
   coolTime: 2
   isCooltime: 0
   projectileSpawn: {fileID: 7147522745714645110}
-  bullet: {fileID: 8353363161459075883, guid: e90c6083f841d9944996e35759edd723, type: 3}
+  bullet: {fileID: 8353363161459075883, guid: 46535a9d039318949b0d5b88fdd3c1a8, type: 3}
   bulletSize: 1
   duration: 5
   spread: 0
