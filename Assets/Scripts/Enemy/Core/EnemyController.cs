@@ -17,15 +17,18 @@ public class EnemyController : BaseController
 
     protected override void Awake()
     {
-
+        base.Awake();
+        playerObject = GameObject.FindObjectOfType<PlayerController>().gameObject;
     }
+/*
     protected override void Start()
     {
         playerObject = GameObject.FindObjectOfType<PlayerController>().gameObject;
         _rigidbody = GetComponent<Rigidbody2D>();
         statHandler = enemyModel.GetStatus();
     }
-
+*/
+/*
     protected override void Update() // base에서 처리
     {
         if (enemyModel.status.Health <= 0)
@@ -38,9 +41,11 @@ public class EnemyController : BaseController
             Attack();
         }
     }
+*/
     protected override void FixedUpdate()
     {
-
+        base.FixedUpdate(); 
+        Movement();
     }
     virtual protected void Attack()
     {
@@ -56,12 +61,15 @@ public class EnemyController : BaseController
     //몬스터 마다 움직임이 다르다 판단함
     protected virtual void Movement()
     {
+        movementDirection = (playerObject.transform.position - transform.position).normalized;
+/*
         Vector3 enemyToPlayerDirection = (playerObject.transform.position - transform.position).normalized;
         base.Movement(enemyToPlayerDirection);
+*/
     }
-
+/*
     public void HitEnemy(int dmg)
     {
         enemyModel.HitEnemy(dmg);
-    }
+    }*/
 }

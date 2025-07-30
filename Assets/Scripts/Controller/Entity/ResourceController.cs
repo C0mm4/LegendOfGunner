@@ -58,12 +58,14 @@ public class ResourceController : MonoBehaviour
         statHandler.Health = CurrentHealth;
         if(change < 0)
         {
-            animationHandler.Damage();
+            if(animationHandler != null)
+                animationHandler.Damage();
         }
 
         if(CurrentHealth <= 0)
         {
-            animationHandler.Die();
+            if(animationHandler != null)
+                animationHandler?.Die();
             Death();
         }
 

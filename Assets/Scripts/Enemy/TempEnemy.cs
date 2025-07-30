@@ -15,7 +15,8 @@ public class TempEnemy : EnemyController
         base.Update();
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            enemyModel.HitEnemy(100);
+            GetComponent<ResourceController>().ChangeHealth(-100);
+//            enemyModel.HitEnemy(100);
         }
     }
 }

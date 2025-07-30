@@ -9,6 +9,7 @@ public class BaseController : MonoBehaviour
     [SerializeField] private SpriteRenderer characterRenderer;
     [SerializeField] protected Transform weaponPivot;
 
+    [SerializeField]
     protected Vector2 movementDirection = Vector2.zero;
     public Vector2 MovementDirection { get { return movementDirection; } }
 
@@ -60,8 +61,12 @@ public class BaseController : MonoBehaviour
 
             }
         }
-        SetBaseWeapon(weapons[0]);
-        EquipWeapon(weapons[0]);
+
+        if (weaponPref.Count > 0)
+        {
+            SetBaseWeapon(weapons[0]);
+            EquipWeapon(weapons[0]);
+        }
     }
 
     protected virtual void Start()
@@ -129,13 +134,15 @@ public class BaseController : MonoBehaviour
                 new Vector3(Mathf.Cos(-radianRotZ), Mathf.Sin(radianRotZ)) * weaponPivotPos.magnitude :
                 new Vector3(Mathf.Cos(radianRotZ), Mathf.Sin(radianRotZ)) * weaponPivotPos.magnitude;
 
-
-            currentWeapon.Rotate(isLeft);
+            if(currentWeapon != null)
+                currentWeapon.Rotate(isLeft);
         }
     }
 
     private void AttackHandler()
     {
+        if (currentWeapon == null) return;
+
         if(lastAttackTime >= currentWeapon.Delay)
         {
             currentWeapon?.Attack();

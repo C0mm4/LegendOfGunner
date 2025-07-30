@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyModel : MonoBehaviour
-{
+public class EnemyModel : StatHandler
+{/*
     public class EnemyStatus : StatHandler
     {
         public int maxHp;
@@ -12,16 +12,17 @@ public class EnemyModel : MonoBehaviour
     public bool isDie = false;
     public EnemyStatus status;
     public EnemyStatus Status { get { return status; } }
-
+*/
     public void SettingStatus(int _maxHp, float _speed, int _atkDmg)
     {
-        status = new EnemyStatus();
-        status.maxHp = _maxHp;
-        status.Health = _maxHp;
-        status.Speed = _speed;
-        status.atkDmg = _atkDmg;
+//        status = new EnemyStatus();
+        Health = _maxHp;
+        //status.Health = _maxHp;
+        Speed = _speed;
+        //status.atkDmg = _atkDmg;
         Debug.Log(gameObject.name);
     }
+/*
     public void HitEnemy(int dmg)
     {
         status.Health -= dmg;
@@ -32,5 +33,5 @@ public class EnemyModel : MonoBehaviour
     public EnemyStatus GetStatus()
     {
         return status;
-    }
+    }*/
 }
