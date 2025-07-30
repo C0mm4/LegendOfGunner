@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ProjectileController : MonoBehaviour
 {
+    [SerializeField]
     private LayerMask levelLayer;
 
     private RangeWeaponHandler weaponHandler;

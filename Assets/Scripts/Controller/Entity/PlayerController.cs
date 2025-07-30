@@ -1,16 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class PlayerController : BaseController
 {
     private Camera camera;
 
+
     protected override void Start()
     {
         base.Start();
         camera = Camera.main;
+
     }
+
 
     protected override void HandleAction()
     {
@@ -32,9 +36,14 @@ public class PlayerController : BaseController
             lookDirection = lookDirection.normalized;
         }
 
-        if (Input.GetMouseButtonDown(0))
+        // For Test Weapon Equip
+        if (Input.GetKeyDown(KeyCode.Q))
         {
-            isAttackInput = true;
+            EquipWeapon(0);
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            EquipWeapon(1);
         }
         if (Input.GetKeyDown(KeyCode.C))
         {
@@ -42,5 +51,10 @@ public class PlayerController : BaseController
             resourceController.ChangeHealth(-5);
 
         }
+    }
+
+    private void EquipWeapon(int index)
+    {
+        EquipWeapon(weapons[index]);
     }
 }
