@@ -45,6 +45,12 @@ public class PlayerController : BaseController
         {
             EquipWeapon(1);
         }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            ResourceController resourceController = GetComponent<ResourceController>();
+            resourceController.ChangeHealth(-5);
+
+        }
     }
 
     private void EquipWeapon(int index)

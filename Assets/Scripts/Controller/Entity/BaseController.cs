@@ -33,12 +33,19 @@ public class BaseController : MonoBehaviour
     private float lastAttackTime = 0f;
 
     private Vector3 weaponPivotPos;
+    protected AnimationHandler animationHandler;
+    protected StatHandler statHandler;
+
+    [SerializeField] private BaseWeaponHandler weapon;
+    protected bool isAttackInput = true;
 
     protected virtual void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         weaponPivotPos = weaponPivot.localPosition;
         CreateWeapon();
+        animationHandler = GetComponent<AnimationHandler>();
+        statHandler = GetComponent<StatHandler>();
     }
 
     protected virtual void CreateWeapon()
@@ -85,7 +92,7 @@ public class BaseController : MonoBehaviour
 
     private void Movement(Vector2 direction)
     {
-        direction = direction * 5;
+        direction = direction * statHandler.Speed;
         if(knockbackDuration > 0.0f)
         {
             direction *= 0.2f;
@@ -152,7 +159,7 @@ public class BaseController : MonoBehaviour
             this.currentWeapon = weapon;
             this.currentWeapon.gameObject.SetActive(true);
             this.currentWeapon.EquipWeapon();
-            // ¹«±â º¯°æ½Ã °ø°Ý µô·¹ÀÌ ÃÊ±âÈ­
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
             lastAttackTime = 99f;
         }
     }
