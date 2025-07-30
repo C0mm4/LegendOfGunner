@@ -5,7 +5,7 @@ using UnityEngine;
 public class DungeonManager : MonoBehaviour
 {
     public int wave;
-
+    bool isClear;
     [SerializeField]
     private int maxWave;
     private int ememySpawnCount = 5;
@@ -18,7 +18,8 @@ public class DungeonManager : MonoBehaviour
     void Start()
     {
         wave++;
-        maxWave = Random.Range(0, 5) + 1;
+        isClear = false;
+        maxWave = Random.Range(3, 6);
         if (dungeonFieldObjects != null)
         {
             int selectRandomDungeon = Random.Range(0, dungeonFieldObjects.Length);
@@ -33,7 +34,8 @@ public class DungeonManager : MonoBehaviour
 
     void Update()
     {
-        WaveLogic();
+        if (isClear == false)
+            WaveLogic();
     }
 
     private void WaveLogic()
@@ -42,6 +44,7 @@ public class DungeonManager : MonoBehaviour
         {
             if (wave == maxWave)
             {
+                isClear = true;
                 portalObject.SetActive(true);
             }
             else

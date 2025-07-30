@@ -102,7 +102,7 @@ public class BaseController : MonoBehaviour
         }
     }
 
-    private void Movement(Vector2 direction)
+    protected virtual void Movement(Vector2 direction)
     {
         direction = direction * statHandler.Speed;
         if(knockbackDuration > 0.0f)

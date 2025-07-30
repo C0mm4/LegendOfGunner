@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 841444410892637774}
   - component: {fileID: 1806510559689243699}
   - component: {fileID: 90254037868830673}
+  - component: {fileID: 8174009994416850598}
   m_Layer: 0
   m_Name: tempEnemy
   m_TagString: Untagged
@@ -60,6 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDie: 0
+  status: {fileID: 0}
 --- !u!114 &1806510559689243699
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,6 +74,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4a871279c9951840b70c259fae83c5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterRenderer: {fileID: 0}
+  weaponPivot: {fileID: 0}
+  weaponPref: []
+  weapons: []
+  currentWeapon: {fileID: 0}
+  baseWeapon: {fileID: 0}
+  weapon: {fileID: 0}
   view: {fileID: 2413428407577512459}
   enemyModel: {fileID: 841444410892637774}
 --- !u!212 &90254037868830673
@@ -126,3 +135,30 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!50 &8174009994416850598
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 743498950123072358}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
