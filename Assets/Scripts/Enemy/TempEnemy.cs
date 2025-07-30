@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class TempEnemy : EnemyController
 {
-    
-
     void Start()
     {
 
@@ -14,5 +12,11 @@ public class TempEnemy : EnemyController
     // Update is called once per frame
     void Update()
     {
+        base.Update();
+        Debug.Log("1");
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            enemyModel.HitEnemy(100);
+        }
     }
 }

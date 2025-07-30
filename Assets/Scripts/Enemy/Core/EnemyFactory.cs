@@ -5,16 +5,16 @@ using static EnemyManager;
 
 public class EnemyFactory : MonoBehaviour
 {
+    private EnemyManager enemyManager;
     [SerializeField]
     private GameObject tempObject;
+    private void Start()
+    {
+        enemyManager = GameObject.FindObjectOfType<EnemyManager>();
+    }
     public GameObject AddEnemy(EnemyManager.eEnemyType enemyType, Vector3 spawnPos)
     {
         GameObject obj = null;
-        if (tempObject.TryGetComponent(out EnemyController component))
-        {
-            Debug.Log("Is not Enemy!" + tempObject);
-            return null;
-        }
 
         switch (enemyType)
         {

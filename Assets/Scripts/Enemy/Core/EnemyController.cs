@@ -11,10 +11,14 @@ public class EnemyController : MonoBehaviour
     protected EnemyView view;
     [SerializeField]
     protected EnemyModel enemyModel;
-    private void Update()
+    public void Update()
     {
+        Debug.Log("2");
+
         if (enemyModel.status.currentHp <= 0)
         {
+            Debug.Log("3");
+
             DieAtcion();
         }
         else
@@ -31,7 +35,8 @@ public class EnemyController : MonoBehaviour
     //죽었을때 호출하는 함수 EX). 죽어서 이펙트를 뒤지게 많이뽑는다던지 등 
     virtual protected void DieAtcion()
     {
-        Destroy(this);
+        EnemyManager.Instance.RemoveObject(this.gameObject);
+        Destroy(this.gameObject);
     }
 
     //몬스터 마다 움직임이 다르다 판단함
@@ -43,4 +48,5 @@ public class EnemyController : MonoBehaviour
     {
         enemyModel.HitEnemy(dmg);
     }
+
 }
