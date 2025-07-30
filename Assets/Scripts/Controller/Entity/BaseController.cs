@@ -119,4 +119,6 @@ public class BaseController : MonoBehaviour
         this.weapon = weapon;
         this.weapon.gameObject.SetActive(true);
     }
+
+    
 }

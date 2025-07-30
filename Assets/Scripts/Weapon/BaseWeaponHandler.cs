@@ -53,10 +53,14 @@ public class BaseWeaponHandler : MonoBehaviour
 
     public virtual void Attack()
     {
-        currentAmmo--;
-        if(currentAmmo <= 0)
+        if(MaxAmmo != -1)
         {
-
+            currentAmmo--;
+            if (currentAmmo <= 0)
+            {
+                // 기본 무기로 돌리는 코드 추가
+                
+            }
         }
     }
 
