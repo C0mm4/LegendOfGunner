@@ -21,6 +21,7 @@ public class BaseWeaponHandler : MonoBehaviour
     [SerializeField]
     public float AttackRange {  get { return attackRange; } set { attackRange = value; } }
 
+    [SerializeField]
     private int currentAmmo;
     public int CurrentAmmo { get { return currentAmmo; } }
 
@@ -38,6 +39,7 @@ public class BaseWeaponHandler : MonoBehaviour
     public BaseController Controller {  get; private set; }
 
     private Animator animator;
+    [SerializeField]
     private SpriteRenderer spriteRenderer;
 
     protected virtual void Awake()
@@ -62,6 +64,11 @@ public class BaseWeaponHandler : MonoBehaviour
                 
             }
         }
+    }
+
+    public void EquipWeapon()
+    {
+        currentAmmo = maxAmmo;
     }
 
     public virtual void Rotate(bool isLeft)

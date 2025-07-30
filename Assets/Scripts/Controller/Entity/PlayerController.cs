@@ -7,21 +7,14 @@ public class PlayerController : BaseController
 {
     private Camera camera;
 
-    [SerializeField]
-    List<BaseWeaponHandler> weapons;
 
     protected override void Start()
     {
         base.Start();
         camera = Camera.main;
 
-        for (int i = 0; i < weapons.Count; i++)
-        {
-            weapons[i].gameObject.SetActive(false);
-        }
-
-        EquipWeapon(0);
     }
+
 
     protected override void HandleAction()
     {
@@ -43,6 +36,7 @@ public class PlayerController : BaseController
             lookDirection = lookDirection.normalized;
         }
 
+        // For Test Weapon Equip
         if (Input.GetKeyDown(KeyCode.Q))
         {
             EquipWeapon(0);
@@ -55,7 +49,6 @@ public class PlayerController : BaseController
 
     private void EquipWeapon(int index)
     {
-        
         EquipWeapon(weapons[index]);
     }
 }

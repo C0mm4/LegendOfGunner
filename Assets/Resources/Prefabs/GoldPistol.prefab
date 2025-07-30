@@ -45,14 +45,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5a97c0bea099aa439bd07ac3e05b106, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 0.2
+  delay: 1
   power: 1
   speed: 5
   attackRange: 10
-  maxAmmo: 50
+  currentAmmo: -1
+  maxAmmo: -1
   target:
     serializedVersion: 2
     m_Bits: 0
+  spriteRenderer: {fileID: 0}
   projectileSpawn: {fileID: 7147522745714645110}
   bullet: {fileID: 8353363161459075883, guid: e90c6083f841d9944996e35759edd723, type: 3}
   bulletSize: 1

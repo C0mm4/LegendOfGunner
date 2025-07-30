@@ -7,7 +7,7 @@ public class BaseController : MonoBehaviour
     protected Rigidbody2D _rigidbody;
 
     [SerializeField] private SpriteRenderer characterRenderer;
-    [SerializeField] private Transform weaponPivot;
+    [SerializeField] protected Transform weaponPivot;
 
     protected Vector2 movementDirection = Vector2.zero;
     public Vector2 MovementDirection {get { return movementDirection; } }
@@ -19,7 +19,16 @@ public class BaseController : MonoBehaviour
     private float knockbackDuration = 0.0f;
 
     [SerializeField]
-    private BaseWeaponHandler weapon;
+    private List<BaseWeaponHandler> weaponPref;
+
+    [SerializeField]
+    protected List<BaseWeaponHandler> weapons;
+
+    [SerializeField]
+    private BaseWeaponHandler currentWeapon;
+
+    [SerializeField]
+    private BaseWeaponHandler baseWeapon;
 
     private float lastAttackTime = 0f;
 
@@ -29,6 +38,23 @@ public class BaseController : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         weaponPivotPos = weaponPivot.localPosition;
+        CreateWeapon();
+    }
+
+    protected virtual void CreateWeapon()
+    {
+        for (int i = 0; i < weaponPref.Count; i++)
+        {
+            if (weaponPref[i] != null)
+            {
+                BaseWeaponHandler weapon = Instantiate(weaponPref[i], weaponPivot, false).GetComponent<BaseWeaponHandler>();
+                weapon.gameObject.SetActive(false);
+                weapons.Add(weapon);
+
+            }
+        }
+        SetBaseWeapon(weapons[0]);
+        EquipWeapon(weapons[0]);
     }
 
     protected virtual void Start()
@@ -84,21 +110,25 @@ public class BaseController : MonoBehaviour
                 new Vector3(Mathf.Cos(-radianRotZ), Mathf.Sin(radianRotZ)) * weaponPivotPos.magnitude :
                 new Vector3(Mathf.Cos(radianRotZ), Mathf.Sin(radianRotZ)) * weaponPivotPos.magnitude;
 
-            
+
             /*weaponPivot.localPosition = isLeft ? 
                 new Vector3(-weaponPivotPos.x + Mathf.Cos(radianRotZ), weaponPivotPos.y + Mathf.Sin(radianRotZ), 0) * weaponPivotPos.magnitude 
                 : (weaponPivotPos + new Vector3(Mathf.Cos(radianRotZ), Mathf.Sin(radianRotZ))) * weaponPivotPos.magnitude;
             */
-            weapon.Rotate(isLeft);
+            currentWeapon.Rotate(isLeft);
         }
     }
 
     private void AttackHandler()
     {
-        if(lastAttackTime >= weapon.Delay)
+        if(lastAttackTime >= currentWeapon.Delay)
         {
-            weapon?.Attack();
+            currentWeapon?.Attack();
             lastAttackTime = 0;
+            if(currentWeapon?.MaxAmmo != -1 && currentWeapon?.CurrentAmmo <= 0)
+            {
+                EquipBaseWeapon();
+            }
         }
         else
         {
@@ -115,10 +145,25 @@ public class BaseController : MonoBehaviour
 
     protected void EquipWeapon(BaseWeaponHandler weapon)
     {
-        this.weapon.gameObject.SetActive(false);
-        this.weapon = weapon;
-        this.weapon.gameObject.SetActive(true);
+        if(weapon != this.currentWeapon)
+        {
+            if(this.currentWeapon != null)
+                this.currentWeapon.gameObject.SetActive(false);
+            this.currentWeapon = weapon;
+            this.currentWeapon.gameObject.SetActive(true);
+            this.currentWeapon.EquipWeapon();
+            // 무기 변경시 공격 딜레이 초기화
+            lastAttackTime = 99f;
+        }
     }
 
-    
+    protected void SetBaseWeapon(BaseWeaponHandler weapon)
+    {
+        baseWeapon = weapon;
+    }
+
+    private void EquipBaseWeapon()
+    {
+        EquipWeapon(baseWeapon);
+    }
 }
