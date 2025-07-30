@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class PlayerController : BaseController
@@ -18,6 +19,8 @@ public class PlayerController : BaseController
         {
             weapons[i].gameObject.SetActive(false);
         }
+
+        EquipWeapon(0);
     }
 
     protected override void HandleAction()
@@ -40,10 +43,19 @@ public class PlayerController : BaseController
             lookDirection = lookDirection.normalized;
         }
 
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            EquipWeapon(0);
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            EquipWeapon(1);
+        }
     }
 
     private void EquipWeapon(int index)
     {
+        
         EquipWeapon(weapons[index]);
     }
 }

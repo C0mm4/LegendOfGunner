@@ -56,7 +56,7 @@ public class BaseWeaponHandler : MonoBehaviour
         currentAmmo--;
         if(currentAmmo <= 0)
         {
-            UnequipWeapon();
+
         }
     }
 
@@ -65,13 +65,4 @@ public class BaseWeaponHandler : MonoBehaviour
         spriteRenderer.flipY = isLeft;
     }
 
-    public void EquipWeapon()
-    {
-
-    }
-
-    public void UnequipWeapon()
-    {
-
-    }
 }

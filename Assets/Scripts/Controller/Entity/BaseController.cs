@@ -115,6 +115,8 @@ public class BaseController : MonoBehaviour
 
     protected void EquipWeapon(BaseWeaponHandler weapon)
     {
+        this.weapon.gameObject.SetActive(false);
         this.weapon = weapon;
+        this.weapon.gameObject.SetActive(true);
     }
 }
