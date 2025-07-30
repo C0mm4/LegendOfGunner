@@ -26,4 +26,25 @@ public class BaseWeaponHandler : MonoBehaviour
 
     private static readonly int IsAttack = Animator.StringToHash("IsAttack");
     private static readonly int IsReload = Animator.StringToHash("IsReload");
+
+    public BaseController Controller {  get; private set; }
+
+    private Animator animator;
+    private SpriteRenderer spriteRenderer;
+
+    protected virtual void Awake()
+    {
+        Controller = GetComponentInParent<BaseController>();
+    }
+
+
+    public virtual void Attack()
+    {
+
+    }
+
+    public virtual void Rotate(bool isLeft)
+    {
+        spriteRenderer.flipY = isLeft;
+    }
 }
