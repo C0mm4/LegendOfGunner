@@ -720,8 +720,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hpBar: {fileID: 956641409}
   hpGauge: {fileID: 850494883}
-  maxHP: 10
-  nowHP: 5
 --- !u!1 &367070078
 GameObject:
   m_ObjectHideFlags: 0
@@ -2648,7 +2646,7 @@ Canvas:
   m_GameObject: {fileID: 972341721}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 413903329}
   m_PlaneDistance: 10
   m_PixelPerfect: 1
