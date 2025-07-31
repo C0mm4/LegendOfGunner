@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   delay: 1
   power: 1
-  speed: 5
+  speed: 10
   attackRange: 10
   currentAmmo: -1
   maxAmmo: -1

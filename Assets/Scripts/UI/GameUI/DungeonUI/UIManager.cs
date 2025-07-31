@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIManager : MonoBehaviour
+public class UIManager : MonoSingleton<UIManager>
 {
     public static UIManager Instance;
     public GameObject pauseUI;
@@ -10,13 +10,9 @@ public class UIManager : MonoBehaviour
     public GameObject StatusUI;
     public bool pause;
 
-    public void Awake()
+    protected override void Awake()
     {
-        if (Instance == null && Instance != this)
-        {
-            Destroy(gameObject);
-        }
-        Instance = this;
+        base.Awake();
 
         pauseUI.SetActive(false);
         pauseMenu.SetActive(false);
