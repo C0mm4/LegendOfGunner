@@ -15,6 +15,10 @@ public class ResourceController : MonoBehaviour
     public float CurrentHealth { get; private set; }
     public float MaxHealth => statHandler.Health;
 
+    public float Exp { get; private set; }
+    public int Level => statHandler.Level;
+
+
     private void Awake()
     {
         statHandler = GetComponent<StatHandler>();
@@ -53,7 +57,7 @@ public class ResourceController : MonoBehaviour
         CurrentHealth += change;
         CurrentHealth = CurrentHealth > MaxHealth ? MaxHealth : CurrentHealth;
         CurrentHealth = CurrentHealth < 0 ? 0 : CurrentHealth;
-        statHandler.Health = CurrentHealth;
+        
         if(change < 0)
         {
             if(animationHandler != null)

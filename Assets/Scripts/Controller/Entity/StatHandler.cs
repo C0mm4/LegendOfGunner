@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StatHandler : MonoBehaviour
 {
-    [Range(0, 100)][SerializeField] private float health = 10;
+    private float health = 10;
     public float Health
     {
         get => health;
@@ -18,11 +18,19 @@ public class StatHandler : MonoBehaviour
         set => maxHealth = Mathf.Clamp(value, 0, 100);
     }
 
-    [Range(1f, 20f)][SerializeField] private float speed = 3;
+    private float speed = 3;
     public float Speed
     {
         get => speed;
         set => speed = Mathf.Clamp(value, 0, 20);
     }
+
+    private int level = 1;
+    public int Level
+    {
+        get => level;
+        set => level = Mathf.Clamp(value, 0, 20);
+    }
+
         
 }
