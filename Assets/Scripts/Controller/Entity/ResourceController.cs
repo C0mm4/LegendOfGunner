@@ -15,7 +15,6 @@ public class ResourceController : MonoBehaviour
     public float CurrentHealth { get; private set; }
     public float MaxHealth => statHandler.Health;
 
-    public float Exp { get; private set; }
     public int Exp { get; private set; }
     public int Level => statHandler.Level;
 

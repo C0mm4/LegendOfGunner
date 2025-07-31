@@ -29,7 +29,6 @@ public class StatHandler : MonoBehaviour
     public int Level
     {
         get => level;
-        set => level = Mathf.Clamp(value, 0, 20);
         set => level = Mathf.Clamp(value, 1, 20);
     }
 
