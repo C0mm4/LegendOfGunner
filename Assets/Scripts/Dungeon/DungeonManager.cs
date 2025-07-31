@@ -16,8 +16,17 @@ public class DungeonManager : MonoBehaviour
     [SerializeField]
     private GameObject[] dungeonFields;
 
+    [SerializeField]
+    private GameObject spawnCirclePref;
+
+    private bool isSpawnning = false;
+    private float lastSpawnT = 0;
+
     private GameObject prevDungeonFieldObj;
     private GameObject prevDungoneWallObj;
+
+    [SerializeField]
+    private List<Rect> spawnRects;
 
     void Start()
     {
@@ -26,9 +35,20 @@ public class DungeonManager : MonoBehaviour
 
     void Update()
     {
-        if (isClear == false)
+        if (isSpawnning)
         {
-            CheckClear();
+            lastSpawnT += Time.deltaTime;
+            // 3초 뒤 소환 판정 종료
+            if (lastSpawnT >= 3f)
+                isSpawnning = false;
+        }
+        else
+        {
+            // 소환 판정 종료시 던전 클리어 체크
+            if (isClear == false)
+            {
+                CheckClear();
+            }
         }
     }
 
@@ -90,11 +110,13 @@ public class DungeonManager : MonoBehaviour
 
     private void CreateWave()
     {
-        for(int i = 0; i < ememySpawnCount; i++)
+        isSpawnning = true;
+        lastSpawnT = 0;
+        for (int i = 0; i < ememySpawnCount; i++)
         {
-            StartCoroutine(SpawnEnemy(new Vector2(0, 0)));
-            EnemyManager.eEnemyType randomEnemyType = (EnemyManager.eEnemyType)Random.Range((int)EnemyManager.eEnemyType.eTemp, (int)EnemyManager.eEnemyType.eEnd);
-            EnemyManager.Instance.AddEnemy(randomEnemyType, Vector3.zero);
+            
+            StartCoroutine(SpawnEnemy(GetRandomPos()));
+
         }
         Debug.Log(EnemyManager.Instance.GetEnemyListSize());
     }
@@ -114,11 +136,31 @@ public class DungeonManager : MonoBehaviour
 
     private IEnumerator SpawnEnemy(Vector2 pos)
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.2f);
 
         EnemyManager.eEnemyType randomEnemyType = (EnemyManager.eEnemyType)Random.Range((int)EnemyManager.eEnemyType.eTemp, (int)EnemyManager.eEnemyType.eEnd);
-        EnemyManager.Instance.AddEnemy(randomEnemyType, Vector3.zero);
+        GameObject go = Instantiate(spawnCirclePref, pos, Quaternion.identity);
+        go.GetComponent<SpawnCircle>().SetEnemyData(randomEnemyType);
     }
 
+    private Vector2 GetRandomPos()
+    {
+        int randIndex = Random.Range(0, spawnRects.Count);
 
+        float randX = Random.Range(spawnRects[randIndex].xMin, spawnRects[randIndex].xMax);
+        float randY = Random.Range(spawnRects[randIndex].yMin, spawnRects[randIndex].yMax);
+        return new Vector2(randX, randY);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        foreach(Rect rect in spawnRects)
+        {
+            float centerX, centerY;
+            centerX = (rect.xMin + rect.xMax) / 2;
+            centerY = (rect.yMin + rect.yMax) / 2;
+
+            Gizmos.DrawCube(new Vector3(centerX, centerY), new Vector3(rect.width, rect.height));
+        }
+    }
 }

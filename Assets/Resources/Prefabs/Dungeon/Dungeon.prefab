@@ -52,6 +52,7 @@ MonoBehaviour:
   - {fileID: 106422919752321256, guid: 7ed98f7002ee3f54597d179b6828dbba, type: 3}
   dungeonFields:
   - {fileID: 9170153687439971775, guid: 880e85d98a1861041ade84b88ad8b444, type: 3}
+  spawnCirclePref: {fileID: 5192481374132709821, guid: 0762bf247fa65c343b8793d40fbbcfcc, type: 3}
 --- !u!1 &5633449937957893009
 GameObject:
   m_ObjectHideFlags: 0
