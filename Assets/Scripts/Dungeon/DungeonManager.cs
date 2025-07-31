@@ -11,7 +11,7 @@ public class DungeonManager : MonoBehaviour
     public int wave;
     bool isClear;
     [SerializeField]
-    private int maxWave;
+    private int leftToBossWave;
     private int ememySpawnCount = 5;
     [SerializeField]
     private GameObject portalObject;
@@ -19,6 +19,7 @@ public class DungeonManager : MonoBehaviour
     private GameObject[] dungeonFieldObjects;
     [SerializeField]
     private GameObject[] dungeonFields;
+    [SerializeField]
     private TextMeshProUGUI waveUIText;
     bool isStartGame = false;
     [SerializeField]
@@ -35,6 +36,7 @@ public class DungeonManager : MonoBehaviour
 
     void Start()
     {
+        leftToBossWave = Random.Range(3, 6);
         StartDungeon();
     }
 
@@ -43,13 +45,12 @@ public class DungeonManager : MonoBehaviour
         if (isSpawnning)
         {
             lastSpawnT += Time.deltaTime;
-            // 3�� �� ��ȯ ���� ����
+            // Clear check After 3 sec
             if (lastSpawnT >= 3f)
                 isSpawnning = false;
         }
         else
         {
-            // ��ȯ ���� ����� ���� Ŭ���� üũ
             if (isClear == false)
             {
                 CheckClear();
@@ -60,8 +61,8 @@ public class DungeonManager : MonoBehaviour
     public void StartDungeon()
     {
         wave++;
+        leftToBossWave--;
         isClear = false;
-        maxWave = Random.Range(3, 6);
         if (dungeonFieldObjects != null)
         {
             if (prevDungeonFieldObj != null)
@@ -70,10 +71,10 @@ public class DungeonManager : MonoBehaviour
                 Destroy(prevDungoneWallObj);
             }
 
-            if(maxWave == wave)
+            if(leftToBossWave <= 0)
             {
-                // ���� ���̺� �� ���� �濡�� ����
-
+                // Add Boss Map Load
+                leftToBossWave = Random.Range(3, 6);
             }
             else
             {
@@ -89,20 +90,19 @@ public class DungeonManager : MonoBehaviour
         {
             Debug.Log("�����ʵ尡 �����ϴ�");
         }
+
         fadeSprite.DOFade(0, 3.5f).OnComplete(() =>
         {
             isClear = false;
-            maxWave = Random.Range(3, 6);
             isStartGame = true;
 
         });
-        wave++;
         waveUIText.SetText(wave.ToString());
 
         //EnemyManager.Instance.AddBoss(1, Vector3.zero); ���� �׽�Ʈ �ڵ�
 
     }
-
+/*
     private void WaveLogic()
     {
         if (EnemyManager.Instance.GetEnemyListSize() <= 0)
@@ -125,7 +125,7 @@ public class DungeonManager : MonoBehaviour
             }
         }
     }
-
+*/
     private void CreateWave()
     {
         isSpawnning = true;
