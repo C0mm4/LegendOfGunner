@@ -31,6 +31,10 @@ public class EnemyManager : MonoSingleton<EnemyManager>
             enemyList.Add(obj);
         }
     }
+    public void AddBoss(int bossNum, Vector3 spawnPos)
+    {
+        var obj = enemyFactory.AddBoss(bossNum, spawnPos);
+    }
     public void RemoveObject(GameObject obj)
     {
         enemyList.Remove(obj);

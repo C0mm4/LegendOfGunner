@@ -1,9 +1,13 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class DungeonManager : MonoBehaviour
 {
+    [SerializeField]
+    SpriteRenderer fadeSprite;
     public int wave;
     bool isClear;
     [SerializeField]
@@ -15,7 +19,8 @@ public class DungeonManager : MonoBehaviour
     private GameObject[] dungeonFieldObjects;
     [SerializeField]
     private GameObject[] dungeonFields;
-
+    private TextMeshProUGUI waveUIText;
+    bool isStartGame = false;
     [SerializeField]
     private GameObject spawnCirclePref;
 
@@ -38,13 +43,13 @@ public class DungeonManager : MonoBehaviour
         if (isSpawnning)
         {
             lastSpawnT += Time.deltaTime;
-            // 3ÃÊ µÚ ¼ÒÈ¯ ÆÇÁ¤ Á¾·á
+            // 3ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½È¯ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             if (lastSpawnT >= 3f)
                 isSpawnning = false;
         }
         else
         {
-            // ¼ÒÈ¯ ÆÇÁ¤ Á¾·á½Ã ´øÀü Å¬¸®¾î Ã¼Å©
+            // ï¿½ï¿½È¯ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ Ã¼Å©
             if (isClear == false)
             {
                 CheckClear();
@@ -67,7 +72,7 @@ public class DungeonManager : MonoBehaviour
 
             if(maxWave == wave)
             {
-                // º¸½º ¿þÀÌºê ½Ã º¸½º ¹æ¿¡¼­ ¼±ÅÃ
+                // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½æ¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
             }
             else
@@ -82,8 +87,20 @@ public class DungeonManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("´øÀüÇÊµå°¡ ¾ø½À´Ï´Ù");
+            Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½Êµå°¡ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½");
         }
+        fadeSprite.DOFade(0, 3.5f).OnComplete(() =>
+        {
+            isClear = false;
+            maxWave = Random.Range(3, 6);
+            isStartGame = true;
+
+        });
+        wave++;
+        waveUIText.SetText(wave.ToString());
+
+        //EnemyManager.Instance.AddBoss(1, Vector3.zero); ï¿½ï¿½ï¿½ï¿½ ï¿½×½ï¿½Æ® ï¿½Úµï¿½
+
     }
 
     private void WaveLogic()
@@ -104,6 +121,7 @@ public class DungeonManager : MonoBehaviour
                     EnemyManager.Instance.AddEnemy(randomEnemyType, Vector3.zero);
                 }
                 wave++;
+                waveUIText.SetText(wave.ToString());
             }
         }
     }
