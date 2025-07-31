@@ -10,7 +10,6 @@ public class PauseBtn : MonoBehaviour
     {
         pauseUI = UIManager.Instance.pauseUI;
         pauseMenu = UIManager.Instance.pauseMenu;
-        
     }
     public void PasueBtnClick()
     {

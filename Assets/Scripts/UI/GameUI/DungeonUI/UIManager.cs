@@ -8,14 +8,16 @@ public class UIManager : MonoBehaviour
     public GameObject pauseUI;
     public GameObject pauseMenu;
     public GameObject StatusUI;
+    public bool pause;
 
     public void Awake()
     {
-        if (Instance == null & Instance != this)
+        if (Instance == null && Instance != this)
         {
             Destroy(gameObject);
         }
         Instance = this;
+
         pauseUI.SetActive(false);
         pauseMenu.SetActive(false);
         StatusUI.SetActive(false);
@@ -23,7 +25,10 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
-        if (pauseUI.activeSelf) Time.timeScale = 0f;
+        if (pauseUI.activeSelf)
+        {
+            Time.timeScale = 0f;
+        }
         else Time.timeScale = 1f;
     }
 }
