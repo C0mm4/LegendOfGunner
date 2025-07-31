@@ -1,12 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
+
+public enum GameState
+{
+    Title, Load, Menu, InPlay
+}
 
 public class GameManager : MonoSingleton<GameManager>
 {
     // To Do List
     // object change to playercontroller
     public static object PlayerInstance;
+
+    public static GameState gameState = GameState.Title;
 
     public bool isFirstRun = false;
     public readonly string firstRunKey = "isFirstRun";
@@ -46,6 +54,8 @@ public class GameManager : MonoSingleton<GameManager>
 
         // ÇØ»óµµ FHD
         Screen.SetResolution(1920, 1080, true);
+
+        gameState = GameState.Title;
     }
 
 

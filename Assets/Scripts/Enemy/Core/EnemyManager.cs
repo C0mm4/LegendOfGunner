@@ -13,11 +13,10 @@ public class EnemyManager : MonoSingleton<EnemyManager>
     private EnemyFactory enemyFactory;
 
     [SerializeField]
-    private List<GameObject> enemyList;
+    private List<GameObject> enemyList = new();
 
     public void Start()
     {
-        enemyList = new List<GameObject>();
     }
     public void AddEnemy(eEnemyType idx, Vector3 spawnPos)
     {

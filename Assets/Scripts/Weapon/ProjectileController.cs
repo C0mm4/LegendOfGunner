@@ -74,7 +74,6 @@ public class ProjectileController : MonoBehaviour
                     }
                 }*/
             }
-            Debug.Log("Collision!");
             DestroyProjectile(collision.ClosestPoint(transform.position), fxOnDestroy);
         }
     }

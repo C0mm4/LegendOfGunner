@@ -20,7 +20,6 @@ public class EnemyModel : StatHandler
         //status.Health = _maxHp;
         Speed = _speed;
         //status.atkDmg = _atkDmg;
-        Debug.Log(gameObject.name);
     }
 /*
     public void HitEnemy(int dmg)

@@ -15,27 +15,55 @@ public class DungeonManager : MonoBehaviour
     private GameObject[] dungeonFieldObjects;
     [SerializeField]
     private GameObject[] dungeonFields;
+
+    private GameObject prevDungeonFieldObj;
+    private GameObject prevDungoneWallObj;
+
     void Start()
+    {
+        StartDungeon();
+    }
+
+    void Update()
+    {
+        if (isClear == false)
+        {
+            CheckClear();
+        }
+    }
+
+    public void StartDungeon()
     {
         wave++;
         isClear = false;
         maxWave = Random.Range(3, 6);
         if (dungeonFieldObjects != null)
         {
-            int selectRandomDungeon = Random.Range(0, dungeonFieldObjects.Length);
-            Instantiate(dungeonFields[selectRandomDungeon], Vector3.zero, Quaternion.identity, transform);
-            Instantiate(dungeonFieldObjects[selectRandomDungeon], Vector3.zero, Quaternion.identity, transform);
+            if (prevDungeonFieldObj != null)
+            {
+                Destroy(prevDungeonFieldObj);
+                Destroy(prevDungoneWallObj);
+            }
+
+            if(maxWave == wave)
+            {
+                // 보스 웨이브 시 보스 방에서 선택
+
+            }
+            else
+            {
+                int selectRandomDungeon = Random.Range(0, dungeonFieldObjects.Length);
+                prevDungeonFieldObj = Instantiate(dungeonFields[selectRandomDungeon], Vector3.zero, Quaternion.identity, transform);
+                prevDungoneWallObj = Instantiate(dungeonFieldObjects[selectRandomDungeon], Vector3.zero, Quaternion.identity, transform);
+            }
+            portalObject.SetActive(false);
+
+            CreateWave();
         }
         else
         {
             Debug.Log("던전필드가 없습니다");
         }
-    }
-
-    void Update()
-    {
-        if (isClear == false)
-            WaveLogic();
     }
 
     private void WaveLogic()
@@ -51,6 +79,7 @@ public class DungeonManager : MonoBehaviour
             {
                 for (int i = 0; i < ememySpawnCount; i++)
                 {
+                    StartCoroutine(SpawnEnemy(new Vector2(0, 0)));
                     EnemyManager.eEnemyType randomEnemyType = (EnemyManager.eEnemyType)Random.Range((int)EnemyManager.eEnemyType.eTemp, (int)EnemyManager.eEnemyType.eEnd);
                     EnemyManager.Instance.AddEnemy(randomEnemyType, Vector3.zero);
                 }
@@ -58,4 +87,38 @@ public class DungeonManager : MonoBehaviour
             }
         }
     }
+
+    private void CreateWave()
+    {
+        for(int i = 0; i < ememySpawnCount; i++)
+        {
+            StartCoroutine(SpawnEnemy(new Vector2(0, 0)));
+            EnemyManager.eEnemyType randomEnemyType = (EnemyManager.eEnemyType)Random.Range((int)EnemyManager.eEnemyType.eTemp, (int)EnemyManager.eEnemyType.eEnd);
+            EnemyManager.Instance.AddEnemy(randomEnemyType, Vector3.zero);
+        }
+        Debug.Log(EnemyManager.Instance.GetEnemyListSize());
+    }
+
+    private void CheckClear()
+    {
+        if(EnemyManager.Instance.GetEnemyListSize() <= 0)
+        {
+            if (!isClear)
+            {
+                Debug.Log($"{EnemyManager.Instance.GetEnemyListSize()} DungeonClear");
+                isClear = true;
+                portalObject.SetActive(true);
+            }
+        }
+    }
+
+    private IEnumerator SpawnEnemy(Vector2 pos)
+    {
+        yield return new WaitForSeconds(1);
+
+        EnemyManager.eEnemyType randomEnemyType = (EnemyManager.eEnemyType)Random.Range((int)EnemyManager.eEnemyType.eTemp, (int)EnemyManager.eEnemyType.eEnd);
+        EnemyManager.Instance.AddEnemy(randomEnemyType, Vector3.zero);
+    }
+
+
 }

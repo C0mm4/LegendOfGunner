@@ -154,7 +154,7 @@ GameObject:
   - component: {fileID: -1605746817342339694}
   m_Layer: 0
   m_Name: TestPlayer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -252,6 +252,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterRenderer: {fileID: 1903458004812957977}
   weaponPivot: {fileID: 7917305783173955530}
+  movementDirection: {x: 0, y: 0}
   weaponPref:
   - {fileID: 6723112918198343287, guid: 3e852ae8ad3cd7f4ebc95a97cdd6569a, type: 3}
   - {fileID: 6723112918198343287, guid: 436044ac0ece1a44ca87c99d278f3e54, type: 3}
