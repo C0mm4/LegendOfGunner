@@ -23,8 +23,15 @@ public class EnemyView : MonoBehaviour
 
     virtual public void SetHpBar(int maxHp, int hp)
     {
+        if (hpBar == null) return;
         Vector2 size = hpBar.localScale;
         size.x -= 3.5f / maxHp;
         hpBar.localScale = size;
+    }
+
+    virtual public void DeActiveUI()
+    {
+        hpBar?.gameObject.SetActive(false);
+        nameText?.gameObject.SetActive(false);
     }
 }

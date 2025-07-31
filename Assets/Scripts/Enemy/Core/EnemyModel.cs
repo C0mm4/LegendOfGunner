@@ -18,7 +18,7 @@ public class EnemyModel : StatHandler
     {
         //        status = new EnemyStatus();
         name = _name;
-        Health = _maxHp;
+        Health = MaxHealth = _maxHp;
         //status.Health = _maxHp;
         Speed = _speed;
     }
