@@ -68,7 +68,8 @@ public class DungeonManager : MonoBehaviour
         fadeSprite.gameObject.SetActive(true);
         fadeSprite.DOFade(1, 1f).OnComplete(() =>
         {
-            waveUIText.SetText(wave.ToString());
+            if(waveUIText != null)
+                waveUIText.SetText(wave.ToString());
             leftToBossWave--;
             isClear = false;
             if (dungeonFieldObjects != null)
