@@ -16,6 +16,13 @@ public class Boss1Controller : EnemyController
         Debug.Log("tq");
     }
 
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        CancelInvoke("spawnEnemy");
+        view.DeActiveUI();
+    }
+
     // Update is called once per frame
     protected override void Update()
     {
@@ -24,7 +31,7 @@ public class Boss1Controller : EnemyController
 
     public override void Damaged()
     {
-        view.SetHpBar(10, (int)enemyModel.Health);
+        base.Damaged();
     }
 
     void spawnEnemy()

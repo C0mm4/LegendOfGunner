@@ -45,8 +45,8 @@ public class DungeonManager : MonoBehaviour
         if (isSpawnning)
         {
             lastSpawnT += Time.deltaTime;
-            // Clear check After 3 sec
-            if (lastSpawnT >= 3f)
+            // Clear check After 5 sec
+            if (lastSpawnT >= 5f)
                 isSpawnning = false;
         }
         else
@@ -60,44 +60,52 @@ public class DungeonManager : MonoBehaviour
 
     public void StartDungeon()
     {
+        isSpawnning = true;
+        portalObject.SetActive(false);
+        lastSpawnT = 0;
         wave++;
-        leftToBossWave--;
-        isClear = false;
-        if (dungeonFieldObjects != null)
-        {
-            if (prevDungeonFieldObj != null)
-            {
-                Destroy(prevDungeonFieldObj);
-                Destroy(prevDungoneWallObj);
-            }
 
-            if(leftToBossWave <= 0)
+        fadeSprite.gameObject.SetActive(true);
+        fadeSprite.DOFade(1, 1f).OnComplete(() =>
+        {
+            waveUIText.SetText(wave.ToString());
+            leftToBossWave--;
+            isClear = false;
+            if (dungeonFieldObjects != null)
             {
-                // Add Boss Map Load
-                leftToBossWave = Random.Range(3, 6);
+                if (prevDungeonFieldObj != null)
+                {
+                    Destroy(prevDungeonFieldObj);
+                    Destroy(prevDungoneWallObj);
+                }
+
+                if (leftToBossWave <= 0)
+                {
+                    // Add Boss Map Load
+                    leftToBossWave = Random.Range(3, 6);
+                }
+                else
+                {
+                    int selectRandomDungeon = Random.Range(0, dungeonFieldObjects.Length);
+                    prevDungeonFieldObj = Instantiate(dungeonFields[selectRandomDungeon], Vector3.zero, Quaternion.identity, transform);
+                    prevDungoneWallObj = Instantiate(dungeonFieldObjects[selectRandomDungeon], Vector3.zero, Quaternion.identity, transform);
+                }
+
             }
             else
             {
-                int selectRandomDungeon = Random.Range(0, dungeonFieldObjects.Length);
-                prevDungeonFieldObj = Instantiate(dungeonFields[selectRandomDungeon], Vector3.zero, Quaternion.identity, transform);
-                prevDungoneWallObj = Instantiate(dungeonFieldObjects[selectRandomDungeon], Vector3.zero, Quaternion.identity, transform);
+                Debug.Log("�����ʵ尡 �����ϴ�");
             }
-            portalObject.SetActive(false);
 
-            CreateWave();
-        }
-        else
-        {
-            Debug.Log("�����ʵ尡 �����ϴ�");
-        }
-
-        fadeSprite.DOFade(0, 3.5f).OnComplete(() =>
-        {
-            isClear = false;
-            isStartGame = true;
+            fadeSprite.DOFade(0, 1f).OnComplete(() =>
+            {
+                isClear = false;
+                isStartGame = true;
+                fadeSprite.gameObject.SetActive(false);
+                CreateWave();
+            });
 
         });
-        waveUIText.SetText(wave.ToString());
 
         //EnemyManager.Instance.AddBoss(1, Vector3.zero); ���� �׽�Ʈ �ڵ�
 
@@ -128,8 +136,6 @@ public class DungeonManager : MonoBehaviour
 */
     private void CreateWave()
     {
-        isSpawnning = true;
-        lastSpawnT = 0;
         for (int i = 0; i < ememySpawnCount; i++)
         {
             

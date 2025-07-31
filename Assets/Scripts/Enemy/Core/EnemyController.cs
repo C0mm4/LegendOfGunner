@@ -62,5 +62,10 @@ public class EnemyController : BaseController
 
     public virtual void Damaged()
     {
+        if(view != null)
+        {
+
+            view.SetHpBar((int)enemyModel.Health, (int)enemyModel.Health);
+        }
     }
 }

@@ -8,7 +8,14 @@ public class StatHandler : MonoBehaviour
     public float Health
     {
         get => health;
-        set => health = Mathf.Clamp(value, 0, 100);
+        set => health = Mathf.Clamp(value, 0, MaxHealth);
+    }
+
+    private float maxHealth;
+    public float MaxHealth
+    {
+        get => health;
+        set => maxHealth = Mathf.Clamp(value, 0, 100);
     }
 
     [Range(1f, 20f)][SerializeField] private float speed = 3;
