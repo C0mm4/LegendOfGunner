@@ -45,7 +45,7 @@ public class DungeonManager : MonoBehaviour
         wave++;
         waveUIText.SetText(wave.ToString());
 
-        EnemyManager.Instance.AddBoss(1, Vector3.zero);
+        //EnemyManager.Instance.AddBoss(1, Vector3.zero); 보스 테스트 코드
 
     }
 
@@ -68,8 +68,8 @@ public class DungeonManager : MonoBehaviour
             {
                 for (int i = 0; i < ememySpawnCount; i++)
                 {
-                    // EnemyManager.eEnemyType randomEnemyType = (EnemyManager.eEnemyType)Random.Range((int)EnemyManager.eEnemyType.eTemp, (int)EnemyManager.eEnemyType.eEnd);
-                    // EnemyManager.Instance.AddEnemy(randomEnemyType, Vector3.zero);
+                    EnemyManager.eEnemyType randomEnemyType = (EnemyManager.eEnemyType)Random.Range((int)EnemyManager.eEnemyType.eTemp, (int)EnemyManager.eEnemyType.eEnd);
+                    EnemyManager.Instance.AddEnemy(randomEnemyType, Vector3.zero);
                 }
                 wave++;
                 waveUIText.SetText(wave.ToString());
