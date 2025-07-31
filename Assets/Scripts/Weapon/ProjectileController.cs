@@ -57,8 +57,6 @@ public class ProjectileController : MonoBehaviour
         else if (weaponHandler.target.value == (weaponHandler.target.value | (1 << collision.gameObject.layer)))
         {
             // Add Target Collision Event
-
-            
             ResourceController resource = collision.GetComponent<ResourceController>();
             if (resource != null)
             {
@@ -74,6 +72,8 @@ public class ProjectileController : MonoBehaviour
                     }
                 }*/
             }
+            collision.GetComponent<EnemyController>()?.Damaged();
+
             Debug.Log("Collision!");
             DestroyProjectile(collision.ClosestPoint(transform.position), fxOnDestroy);
         }

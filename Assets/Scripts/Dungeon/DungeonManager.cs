@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class DungeonManager : MonoBehaviour
@@ -18,7 +19,10 @@ public class DungeonManager : MonoBehaviour
     private GameObject[] dungeonFieldObjects;
     [SerializeField]
     private GameObject[] dungeonFields;
+    [SerializeField]
+    private TextMeshProUGUI waveUIText;
     bool isStartGame = false;
+
     void Start()
     {
         if (dungeonFieldObjects != null)
@@ -33,11 +37,15 @@ public class DungeonManager : MonoBehaviour
         }
         fadeSprite.DOFade(0, 3.5f).OnComplete(() =>
         {
-            wave++;
             isClear = false;
             maxWave = Random.Range(3, 6);
             isStartGame = true;
+
         });
+        wave++;
+        waveUIText.SetText(wave.ToString());
+
+        EnemyManager.Instance.AddBoss(1, Vector3.zero);
 
     }
 
@@ -60,10 +68,11 @@ public class DungeonManager : MonoBehaviour
             {
                 for (int i = 0; i < ememySpawnCount; i++)
                 {
-                    EnemyManager.eEnemyType randomEnemyType = (EnemyManager.eEnemyType)Random.Range((int)EnemyManager.eEnemyType.eTemp, (int)EnemyManager.eEnemyType.eEnd);
-                    EnemyManager.Instance.AddEnemy(randomEnemyType, Vector3.zero);
+                    // EnemyManager.eEnemyType randomEnemyType = (EnemyManager.eEnemyType)Random.Range((int)EnemyManager.eEnemyType.eTemp, (int)EnemyManager.eEnemyType.eEnd);
+                    // EnemyManager.Instance.AddEnemy(randomEnemyType, Vector3.zero);
                 }
                 wave++;
+                waveUIText.SetText(wave.ToString());
             }
         }
     }
