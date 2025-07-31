@@ -11,6 +11,8 @@ public class EnemyManager : MonoSingleton<EnemyManager>
     }
     [SerializeField]
     private EnemyFactory enemyFactory;
+
+    [SerializeField]
     private List<GameObject> enemyList;
 
     public void Start()

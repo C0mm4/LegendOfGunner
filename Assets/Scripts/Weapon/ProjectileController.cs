@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ProjectileController : MonoBehaviour
 {
+    [SerializeField]
     private LayerMask levelLayer;
 
     private RangeWeaponHandler weaponHandler;
@@ -57,12 +58,13 @@ public class ProjectileController : MonoBehaviour
         {
             // Add Target Collision Event
 
-            /*
+            
             ResourceController resource = collision.GetComponent<ResourceController>();
             if (resource != null)
             {
                 resource.ChangeHealth(-weaponHandler.Power);
-                if (weaponHandler.IsOnKnockBack)
+                // ³Ë¹é?
+/*                if (weaponHandler.IsOnKnockBack)
                 {
                     BaseController baseCon = collision.GetComponent<BaseController>();
 
@@ -70,9 +72,9 @@ public class ProjectileController : MonoBehaviour
                     {
                         baseCon.ApplyKnockback(transform, weaponHandler.KnockBackPower, weaponHandler.KnockBackTime);
                     }
-                }
-            }*/
-
+                }*/
+            }
+            Debug.Log("Collision!");
             DestroyProjectile(collision.ClosestPoint(transform.position), fxOnDestroy);
         }
     }

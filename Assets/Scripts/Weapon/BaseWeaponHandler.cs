@@ -21,6 +21,15 @@ public class BaseWeaponHandler : MonoBehaviour
     [SerializeField]
     public float AttackRange {  get { return attackRange; } set { attackRange = value; } }
 
+    [SerializeField]
+    private int currentAmmo;
+    public int CurrentAmmo { get { return currentAmmo; } }
+
+    [SerializeField]
+    private int maxAmmo;
+    [SerializeField]
+    public int MaxAmmo { get { return maxAmmo; } }
+
 
     public LayerMask target;
 
@@ -30,21 +39,55 @@ public class BaseWeaponHandler : MonoBehaviour
     public BaseController Controller {  get; private set; }
 
     private Animator animator;
+    [SerializeField]
     private SpriteRenderer spriteRenderer;
+
+    [SerializeField]
+    protected float coolTime = 0f;
+    public bool isCooltime = false;
+    protected float leftCooltime = 0f;
 
     protected virtual void Awake()
     {
         Controller = GetComponentInParent<BaseController>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
+    private void Start()
+    {
+        currentAmmo = maxAmmo;
+    }
 
     public virtual void Attack()
     {
+        if(MaxAmmo != -1)
+        {
+            currentAmmo--;
+        }
+    }
 
+    public void EquipWeapon()
+    {
+        currentAmmo = maxAmmo;
     }
 
     public virtual void Rotate(bool isLeft)
     {
         spriteRenderer.flipY = isLeft;
+    }
+
+    public void SetCooltime()
+    {
+        isCooltime = true;
+        leftCooltime = coolTime;
+    }
+
+    public void UpdateCooltime(float deltaT)
+    {
+        leftCooltime -= deltaT;
+        if(leftCooltime <= 0f)
+        {
+            isCooltime = false;
+        }
     }
 }

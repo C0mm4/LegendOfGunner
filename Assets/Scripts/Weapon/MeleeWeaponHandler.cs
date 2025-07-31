@@ -12,7 +12,6 @@ public class MeleeWeaponHandler : BaseWeaponHandler
     TrailRenderer TrailRenderer;
     protected void Start()
     {
-        collideBoxSize = collideBoxSize;
         TrailRenderer.gameObject.SetActive(false);
     }
 
