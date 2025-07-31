@@ -37,11 +37,9 @@ public class ResourceController : MonoBehaviour
             timeSinceLastChange += Time.deltaTime;
             if (timeSinceLastChange >= healthChangeDelay)
             {
-                animationHandler.InvicibillityEnd();
+                animationHandler?.InvicibillityEnd();
             }
-
         }
-        
     }
 
     public bool ChangeHealth(float change)

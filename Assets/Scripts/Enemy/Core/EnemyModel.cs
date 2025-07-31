@@ -13,25 +13,25 @@ public class EnemyModel : StatHandler
     public EnemyStatus status;
     public EnemyStatus Status { get { return status; } }
 */
-    public void SettingStatus(int _maxHp, float _speed, int _atkDmg)
+    public string name = "none";
+    public void SettingStatus(int _maxHp, float _speed, int _atkDmg, string _name = "none")
     {
-//        status = new EnemyStatus();
+        //        status = new EnemyStatus();
+        name = _name;
         Health = _maxHp;
         //status.Health = _maxHp;
         Speed = _speed;
-        //status.atkDmg = _atkDmg;
-        Debug.Log(gameObject.name);
     }
-/*
-    public void HitEnemy(int dmg)
-    {
-        status.Health -= dmg;
-        if (status.Health <= 0)
-            isDie = true;
-    }
+    /*
+        public void HitEnemy(int dmg)
+        {
+            status.Health -= dmg;
+            if (status.Health <= 0)
+                isDie = true;
+        }
 
-    public EnemyStatus GetStatus()
-    {
-        return status;
-    }*/
+        public EnemyStatus GetStatus()
+        {
+            return status;
+        }*/
 }
