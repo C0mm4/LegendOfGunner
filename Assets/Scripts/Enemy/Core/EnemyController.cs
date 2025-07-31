@@ -20,31 +20,24 @@ public class EnemyController : BaseController
         base.Awake();
         playerObject = GameObject.FindObjectOfType<PlayerController>().gameObject;
     }
-/*
+
+    public virtual void Init()
+    {
+
+    }
+
     protected override void Start()
     {
-        playerObject = GameObject.FindObjectOfType<PlayerController>().gameObject;
-        _rigidbody = GetComponent<Rigidbody2D>();
-        statHandler = enemyModel.GetStatus();
+        base.Start();
     }
-*/
-/*
+
     protected override void Update() // base에서 처리
     {
-        if (enemyModel.status.Health <= 0)
-        {
-            DieAtcion();
-        }
-        else
-        {
-            Movement();
-            Attack();
-        }
+        base.Update();
     }
-*/
     protected override void FixedUpdate()
     {
-        base.FixedUpdate(); 
+        base.FixedUpdate();
         Movement();
     }
     virtual protected void Attack()
@@ -55,21 +48,19 @@ public class EnemyController : BaseController
     protected virtual void OnDisable() // base에서 처리
     {
         EnemyManager.Instance.RemoveObject(this.gameObject);
-//        Destroy(this.gameObject);
     }
 
     //몬스터 마다 움직임이 다르다 판단함
     protected virtual void Movement()
     {
         movementDirection = (playerObject.transform.position - transform.position).normalized;
-/*
-        Vector3 enemyToPlayerDirection = (playerObject.transform.position - transform.position).normalized;
-        base.Movement(enemyToPlayerDirection);
-*/
+        /*
+                Vector3 enemyToPlayerDirection = (playerObject.transform.position - transform.position).normalized;
+                base.Movement(enemyToPlayerDirection);
+        */
     }
-/*
-    public void HitEnemy(int dmg)
+
+    public virtual void Damaged()
     {
-        enemyModel.HitEnemy(dmg);
-    }*/
+    }
 }
