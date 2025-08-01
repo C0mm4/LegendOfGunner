@@ -23,7 +23,14 @@ public class EnemyManager : MonoSingleton<EnemyManager>
         if (enemyFactory == null)
         {
             Debug.Log("Null EnemyFactory");
-            return;
+            enemyFactory = GameObject.FindObjectOfType<EnemyFactory>();
+            if (enemyFactory == null)
+            {
+                Debug.Log("Still Null EnemyFactory");
+
+                return;
+
+            }
         }
         var obj = enemyFactory.AddEnemy(idx, spawnPos);
         if (obj != null)
