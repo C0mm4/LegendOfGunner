@@ -14,7 +14,7 @@ public class GameStartBtn : MonoBehaviour
         try
         {
             SceneManager.LoadScene("InGameScene2");
-
+            GameManager.Instance.StartGame();
         }
         catch (Exception e)
         {

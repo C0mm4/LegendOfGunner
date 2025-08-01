@@ -46,6 +46,10 @@ public class BaseWeaponHandler : MonoBehaviour
     {
         if (animator != null)
             animator.SetTrigger(IsAttack);
+        if(data.attackSFX != null)
+        {
+            SoundManager.Instance.PlaySFX(data.attackSFX);
+        }
         if(MaxAmmo != -1)
         {
             CurrentAmmo--;

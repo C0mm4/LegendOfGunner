@@ -28,10 +28,15 @@ public class GameManager : MonoSingleton<GameManager>
     [SerializeField]
     string text;
 
+    [SerializeField]
+    private AudioClip TitleBGM;
+    [SerializeField]
+    private AudioClip InGameBGM;
+
     protected override void Awake()
     {
         base.Awake();
-        if (DebugMode)
+        if (!DebugMode)
         {
             // 최초 실행 시 동작
             if (PlayerPrefs.HasKey(firstRunKey))
@@ -59,7 +64,13 @@ public class GameManager : MonoSingleton<GameManager>
         // 해상도 FHD
         Screen.SetResolution(1920, 1080, true);
 
+
         gameState = GameState.Title;
+    }
+
+    private void Start()
+    {
+        SoundManager.Instance.PlayBGM(TitleBGM);
     }
 
     private void Update()
@@ -89,7 +100,7 @@ public class GameManager : MonoSingleton<GameManager>
     /// </summary>
     public void StartGame()
     {
-        SceneManager.LoadScene("InGameScene");
+        SoundManager.Instance.PlayBGM(InGameBGM);
     }
 
     /// <summary>

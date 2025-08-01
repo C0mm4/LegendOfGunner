@@ -18,3 +18,4 @@ MonoBehaviour:
   level: 1
   exp: 5
   name: HGEnemy
+  id: 2

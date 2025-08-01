@@ -23,6 +23,9 @@ public class EnemyModel : StatHandler
         //status.Health = _maxHp;
         Speed = _speed;
     }
+    [SerializeField]
+    private int id;
+    public int ID {  get { return id; } }
     /*
         public void HitEnemy(int dmg)
         {

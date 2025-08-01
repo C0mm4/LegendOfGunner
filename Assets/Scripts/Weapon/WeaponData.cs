@@ -39,5 +39,8 @@ public class WeaponData : ScriptableObject
 
     private bool isCooltime = false;
     public bool IsCooltime { get { return isCooltime; } set { isCooltime = value; } }
+
+    [SerializeField]
+    public AudioClip attackSFX;
     
 }

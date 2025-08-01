@@ -18,3 +18,4 @@ MonoBehaviour:
   level: 1
   exp: 10
   name: SG_Enemy
+  id: 4

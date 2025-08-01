@@ -4984,6 +4984,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impactParticleSystem: {fileID: 3466485729060530228}
+--- !u!1 &4939112881151744515
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2412066358207666442}
+  - component: {fileID: 3004318464204617614}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2412066358207666442
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4939112881151744515}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.1728352, y: 0.023774631, z: 21.590797}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6994675061928847358}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3004318464204617614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4939112881151744515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff914441c8ba05b4283dc6864f60b634, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5869842986404509595
 GameObject:
   m_ObjectHideFlags: 0
@@ -5017,6 +5061,7 @@ Transform:
   - {fileID: 6866537315733535182}
   - {fileID: 9174913307917432494}
   - {fileID: 2800954619762240223}
+  - {fileID: 2412066358207666442}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2428499327040398493
@@ -5035,6 +5080,8 @@ MonoBehaviour:
   isPause: 0
   DebugMode: 0
   text: 
+  TitleBGM: {fileID: 8300000, guid: e4c0e35960639794b97e0a058d76b8e2, type: 3}
+  InGameBGM: {fileID: 8300000, guid: f0acdf2da46c31443a59abdfaeb620c5, type: 3}
 --- !u!1 &6203057363590902750
 GameObject:
   m_ObjectHideFlags: 0
