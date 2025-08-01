@@ -21,7 +21,7 @@ public class AchivementManager : MonoSingleton<AchivementManager>
         killConditions.Add(killCountCondition);
         stageConditions.Add(stageCondition);
 
-        achievements.Add(new Achievement("Boss Slayer", "Defeat Boss", killCountCondition));
+        achievements.Add(new Achievement("Kill Enemy", "Defeat Boss", killCountCondition));
         achievements.Add(new Achievement("Clear Stage 3", "Complete Stage 3", stageCondition));
     }
 
