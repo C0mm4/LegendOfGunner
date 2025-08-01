@@ -35,7 +35,7 @@ public class DungeonManager : MonoBehaviour
 
     [SerializeField]
     public int stage;
-
+    bool isClearGame = false;
     [SerializeField]
     public int currentWaveInStage;
 
@@ -49,6 +49,7 @@ public class DungeonManager : MonoBehaviour
         stage = 1;
         StartDungeon();
         isBossStage = false;
+        isClearGame = false;
     }
 
     void Update()
@@ -93,10 +94,8 @@ public class DungeonManager : MonoBehaviour
                     Destroy(prevDungoneWallObj);
                 }
                 // 현재 웨이브가 보스까지의 웨이브일 시 보스방 생성 및 초기화
-                if (currentWaveInStage == targetToBossWave)
+                if (currentWaveInStage == targetToBossWave - 1)
                 {
-                    currentWaveInStage = 0;
-                    stage++;
                     isBossStage = true;
                 }
                 else
@@ -111,7 +110,6 @@ public class DungeonManager : MonoBehaviour
             {
                 Debug.Log("�����ʵ尡 �����ϴ�");
             }
-
             fadeSprite.DOFade(0, 1f).OnComplete(() =>
             {
                 isClear = false;
@@ -150,7 +148,7 @@ public class DungeonManager : MonoBehaviour
     private void CreateWave()
     {
         currentWaveInStage++;
-        if (isBossStage == false)
+        if (isBossStage == true)
         {
             StartCoroutine(SpawnBoss(GetRandomPos()));
         }
@@ -172,8 +170,24 @@ public class DungeonManager : MonoBehaviour
             if (!isClear)
             {
                 Debug.Log($"{EnemyManager.Instance.GetEnemyListSize()} DungeonClear");
-                isClear = true;
-                portalObject.SetActive(true);
+                if (stage == 3 && currentWaveInStage == targetToBossWave)
+                {
+                    isClearGame = true;
+                }
+                else
+                {
+                    isClear = true;
+                    portalObject.SetActive(true);
+                    if (isBossStage == true)
+                    {
+                        currentWaveInStage = 0;
+                        stage++;
+                    }
+                }
+                if (isClearGame)
+                {
+                    UIManager.Instance.ActiveGameEndUI(true);
+                }
             }
         }
     }

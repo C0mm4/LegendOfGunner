@@ -19,11 +19,11 @@ public class ProjectileManager : MonoSingleton<ProjectileManager>
 
     public void ShootBullet(RangeWeaponHandler weapon, Vector2 startPos, Vector2 dir)
     {
-        //GameObject origin = weapon.Bullet;
-        //GameObject projectile = Instantiate(origin, startPos, Quaternion.identity);
-        //
-        //ProjectileController controller = projectile.GetComponent<ProjectileController>();
-        //controller.Init(dir, weapon, this);
+        GameObject origin = weapon.Bullet;
+        GameObject projectile = Instantiate(origin, startPos, Quaternion.identity);
+
+        ProjectileController controller = projectile.GetComponent<ProjectileController>();
+        controller.Init(dir, weapon, this);
     }
 
     public void CreateImpactParticle(Vector3 pos, RangeWeaponHandler weapon)
