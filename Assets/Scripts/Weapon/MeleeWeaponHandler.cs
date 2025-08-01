@@ -18,21 +18,19 @@ public class MeleeWeaponHandler : BaseWeaponHandler
         if (hit.collider != null)
         {
             Debug.Log("Melee Attack");
-            // Add Hit Action
-            /*
             ResourceController resource = hit.collider.GetComponent<ResourceController>();
             if (resource != null)
             {
                 resource.ChangeHealth(-Power);
-                if (IsOnKnockBack)
+/*                if (IsOnKnockBack)
                 {
                     BaseController baseController = hit.collider.GetComponent<BaseController>();
                     if (baseController != null)
                     {
                         baseController.ApplyKnockback(transform, KnockBackPower, KnockBackTime);
                     }
-                }
-            }*/
+                }*/
+            }
         }
     }
 

@@ -79,18 +79,28 @@ public class BaseController : MonoBehaviour
 
     protected virtual void Update()
     {
-        HandleAction();
-        Rotate(lookDirection);
-        AttackHandler();
-        UpdateCooltime();
+        if(targetTrans == null)
+        {
+            movementDirection = Vector2.zero;
+        }
+        if(GameManager.gameState == GameState.InPlay)
+        {
+            HandleAction();
+            Rotate(lookDirection);
+            AttackHandler();
+            UpdateCooltime();
+        }
     }
 
     protected virtual void FixedUpdate()
     {
-        Movement(movementDirection);
-        if (knockbackDuration > 0.0f)
+        if (GameManager.gameState == GameState.InPlay)
         {
-            knockbackDuration -= Time.deltaTime;
+            Movement(movementDirection);
+            if (knockbackDuration > 0.0f)
+            {
+                knockbackDuration -= Time.deltaTime;
+            }
         }
     }
 
@@ -145,7 +155,7 @@ public class BaseController : MonoBehaviour
     private void AttackHandler()
     {
         if (currentWeapon == null) return;
-
+        if (targetTrans == null) return;
         if(lastAttackTime >= currentWeapon.Delay && Vector2.Distance(transform.position, targetTrans.position) <= currentWeapon.AttackRange)
         {
             currentWeapon?.Attack();

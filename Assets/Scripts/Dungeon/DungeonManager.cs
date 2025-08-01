@@ -21,7 +21,7 @@ public class DungeonManager : MonoBehaviour
     private GameObject[] dungeonFields;
     [SerializeField]
     private TextMeshProUGUI waveUIText;
-    bool isStartGame = false;
+
     [SerializeField]
     private GameObject spawnCirclePref;
 
@@ -64,7 +64,7 @@ public class DungeonManager : MonoBehaviour
         portalObject.SetActive(false);
         lastSpawnT = 0;
         wave++;
-
+        GameManager.gameState = GameState.Load;
         fadeSprite.gameObject.SetActive(true);
         fadeSprite.DOFade(1, 1f).OnComplete(() =>
         {
@@ -101,8 +101,8 @@ public class DungeonManager : MonoBehaviour
             fadeSprite.DOFade(0, 1f).OnComplete(() =>
             {
                 isClear = false;
-                isStartGame = true;
                 fadeSprite.gameObject.SetActive(false);
+                GameManager.gameState = GameState.InPlay;
                 CreateWave();
             });
 
