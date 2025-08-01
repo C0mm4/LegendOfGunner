@@ -10,8 +10,6 @@ public class DungeonManager : MonoBehaviour
     SpriteRenderer fadeSprite;
     public int wave;
     bool isClear;
-    [SerializeField]
-    private int leftToBossWave;
     private int ememySpawnCount = 5;
     [SerializeField]
     private GameObject portalObject;
@@ -21,7 +19,7 @@ public class DungeonManager : MonoBehaviour
     private GameObject[] dungeonFields;
     [SerializeField]
     private TextMeshProUGUI waveUIText;
-    bool isStartGame = false;
+
     [SerializeField]
     private GameObject spawnCirclePref;
 
@@ -34,10 +32,23 @@ public class DungeonManager : MonoBehaviour
     [SerializeField]
     private List<Rect> spawnRects;
 
+
+    [SerializeField]
+    public int stage;
+
+    [SerializeField]
+    public int currentWaveInStage;
+
+    [SerializeField]
+    public int targetToBossWave;
+    private bool isBossStage = false;
+
     void Start()
     {
-        leftToBossWave = Random.Range(3, 6);
+        targetToBossWave = Random.Range(3, 6);
+        stage = 1;
         StartDungeon();
+        isBossStage = false;
     }
 
     void Update()
@@ -61,17 +72,19 @@ public class DungeonManager : MonoBehaviour
     public void StartDungeon()
     {
         isSpawnning = true;
+        isClear = false;
         portalObject.SetActive(false);
         lastSpawnT = 0;
         wave++;
-
+        GameManager.gameState = GameState.Load;
         fadeSprite.gameObject.SetActive(true);
         fadeSprite.DOFade(1, 1f).OnComplete(() =>
         {
+            // 여기서 UI 갱신
             if (waveUIText != null)
                 waveUIText.SetText(wave.ToString());
-            leftToBossWave--;
-            isClear = false;
+
+
             if (dungeonFieldObjects != null)
             {
                 if (prevDungeonFieldObj != null)
@@ -79,19 +92,20 @@ public class DungeonManager : MonoBehaviour
                     Destroy(prevDungeonFieldObj);
                     Destroy(prevDungoneWallObj);
                 }
-
-                if (leftToBossWave <= 0)
+                // 현재 웨이브가 보스까지의 웨이브일 시 보스방 생성 및 초기화
+                if (currentWaveInStage == targetToBossWave)
                 {
-                    // Add Boss Map Load
-                    leftToBossWave = Random.Range(3, 6);
+                    currentWaveInStage = 0;
+                    stage++;
+                    isBossStage = true;
                 }
                 else
                 {
                     int selectRandomDungeon = Random.Range(0, dungeonFieldObjects.Length);
                     prevDungeonFieldObj = Instantiate(dungeonFields[selectRandomDungeon], Vector3.zero, Quaternion.identity, transform);
                     prevDungoneWallObj = Instantiate(dungeonFieldObjects[selectRandomDungeon], Vector3.zero, Quaternion.identity, transform);
+                    isBossStage = false;
                 }
-                portalObject.SetActive(false);
             }
             else
             {
@@ -101,8 +115,8 @@ public class DungeonManager : MonoBehaviour
             fadeSprite.DOFade(0, 1f).OnComplete(() =>
             {
                 isClear = false;
-                isStartGame = true;
                 fadeSprite.gameObject.SetActive(false);
+                GameManager.gameState = GameState.InPlay;
                 CreateWave();
             });
 
@@ -135,13 +149,20 @@ public class DungeonManager : MonoBehaviour
     */
     private void CreateWave()
     {
-        //for (int i = 0; i < ememySpawnCount; i++)
-        //{
-        //    StartCoroutine(SpawnEnemy(GetRandomPos()));
-        //}
-
+        currentWaveInStage++;
+        if (isBossStage == false)
+        {
+            StartCoroutine(SpawnBoss(GetRandomPos()));
+        }
+        else
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                StartCoroutine(SpawnEnemy(GetRandomPos()));
+            }
+        }
         //Debug.Log(EnemyManager.Instance.GetEnemyListSize());
-        StartCoroutine(SpawnBoss(GetRandomPos()));
+        //
     }
 
     private void CheckClear()
@@ -150,7 +171,7 @@ public class DungeonManager : MonoBehaviour
         {
             if (!isClear)
             {
-                //Debug.Log($"{EnemyManager.Instance.GetEnemyListSize()} DungeonClear");
+                Debug.Log($"{EnemyManager.Instance.GetEnemyListSize()} DungeonClear");
                 isClear = true;
                 portalObject.SetActive(true);
             }

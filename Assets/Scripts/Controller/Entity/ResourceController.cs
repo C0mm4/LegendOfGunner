@@ -18,6 +18,8 @@ public class ResourceController : MonoBehaviour
     public float Exp { get; private set; }
     public int Level => statHandler.Level;
 
+    public float RequireExp { get; private set; }
+    
 
     private void Awake()
     {
@@ -30,6 +32,7 @@ public class ResourceController : MonoBehaviour
     void Start()
     {
         CurrentHealth = statHandler.Health;
+        RequireExp = 10;
         
     }
 
@@ -73,6 +76,75 @@ public class ResourceController : MonoBehaviour
 
         return true;
     }
+
+    public void AddExp(int GetExp)
+    {
+        if (Level == 20) return;
+        else
+        {
+            Exp += GetExp;
+            while (Exp >= RequireExp)
+            {
+                if (Level == 20) break;
+                else LevelUP();
+
+            }
+        }
+    }
+
+    public void LevelUP()
+    {
+        
+        Exp -= RequireExp;
+        statHandler.Level++;
+
+        if (statHandler.Level >= 2 && statHandler.Level <= 4)
+        {
+            RequireExp = 10 + 5 * (statHandler.Level - 1);
+            statHandler.Health = (float)(statHandler.Health + statHandler.Health * 0.1);
+            statHandler.Speed = (float)(statHandler.Speed + statHandler.Speed * 0.1);
+        }
+        else if (statHandler.Level == 5)
+        {
+            RequireExp = 40;
+            statHandler.Health = (float)(statHandler.Health + statHandler.Health * 0.1);
+            statHandler.Speed = (float)(statHandler.Speed + statHandler.Speed * 0.1);
+        }
+        else if (statHandler.Level >= 6 && statHandler.Level <= 8)
+        {
+            RequireExp = 40 + 10 * (statHandler.Level - 5);
+            statHandler.Health = (float)(statHandler.Health + statHandler.Health * 0.1);
+            statHandler.Speed = (float)(statHandler.Speed + statHandler.Speed * 0.1);
+        }
+        else if (statHandler.Level == 9)
+        {
+            RequireExp = 100;
+            statHandler.Health = (float)(statHandler.Health + statHandler.Health * 0.05);
+            statHandler.Speed = (float)(statHandler.Speed + statHandler.Speed * 0.05);
+        }
+        else if (statHandler.Level >= 10 && statHandler.Level <= 14)
+        {
+            RequireExp = 100 + 20 * (statHandler.Level - 9);
+            statHandler.Health = (float)(statHandler.Health + statHandler.Health * 0.05);
+            statHandler.Speed = (float)(statHandler.Speed + statHandler.Speed * 0.05);
+        }
+        else if (statHandler.Level >= 15 && statHandler.Level <= 19)
+        {
+            RequireExp = 200 + 40 * (statHandler.Level - 14);
+            statHandler.Health = (float)(statHandler.Health + statHandler.Health * 0.05);
+            statHandler.Speed = (float)(statHandler.Speed + statHandler.Speed * 0.05);
+        }
+        else if (Level == 20)
+        {
+            Exp = 0;
+            RequireExp = 1;
+            statHandler.Health = (float)(statHandler.Health + statHandler.Health * 0.05);
+            statHandler.Speed = (float)(statHandler.Speed + statHandler.Speed * 0.05);
+        }
+
+    }
+
+    
 
     private void Death()
     {

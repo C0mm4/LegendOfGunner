@@ -5,15 +5,23 @@ using UnityEngine.UI;
 
 public class HPUI : MonoBehaviour
 {
+    ResourceController resourceController;
     public RectTransform hpBar;
     public RectTransform hpGauge;
-    public int maxHP = 20;
-    public int nowHP = 20;
+    private float MaxHealth;
+    private float CurrentHealth;
+
+    private void Start()
+    {
+        resourceController = FindObjectOfType<ResourceController>();
+    }
 
     void Update()
     {
-        int nowHPWidth = nowHP * 18;                        // maxHP, nowHP´Â Ä³¸¯ÅÍ²¨ °¡Á®¿À±â
-        int maxHPWidth = nowHP > 0 ? maxHP * 18 : 0;                            // Ã¼·Â 1´ç ³ÐÀÌ 18. ÃÖ´ë 36
+        MaxHealth = resourceController.MaxHealth;
+        CurrentHealth = resourceController.CurrentHealth;
+        float nowHPWidth = CurrentHealth * 16;                        // maxHP, nowHPï¿½ï¿½ Ä³ï¿½ï¿½ï¿½Í²ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        float maxHPWidth = CurrentHealth > 0 ? MaxHealth * 16 : 0;                            // Ã¼ï¿½ï¿½ 1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 18. ï¿½Ö´ï¿½ 36
         hpBar.sizeDelta = new Vector2(maxHPWidth, 25);
         hpGauge.sizeDelta = new Vector2(nowHPWidth, 25);
     }

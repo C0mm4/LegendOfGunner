@@ -12,5 +12,6 @@ public class ResumeBtn : MonoBehaviour
     public void ClickResumeBtn()
     {
         pauseUI.SetActive(false);
+        GameManager.Instance.PauseGame();
     }
 }

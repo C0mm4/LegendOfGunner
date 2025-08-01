@@ -13,7 +13,9 @@ public class PauseBtn : MonoBehaviour
     }
     public void PasueBtnClick()
     {
+        if (pauseUI.activeSelf) return;
         pauseUI.SetActive(true);
         pauseMenu.SetActive(true);
+        GameManager.Instance.PauseGame();
     }
 }

@@ -2,33 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIManager : MonoBehaviour
+public class UIManager : MonoSingleton<UIManager>
 {
-    public static UIManager Instance;
     public GameObject pauseUI;
     public GameObject pauseMenu;
     public GameObject StatusUI;
+    public GameObject gameEndUI = null;
     public bool pause;
-
-    public void Awake()
+    protected override void Awake()
     {
-        //if (Instance == null && Instance != this)
-        //{
-        //    Destroy(gameObject);
-        //}
-        Instance = this;
-
+        base.Awake();
+        
         pauseUI.SetActive(false);
         pauseMenu.SetActive(false);
         StatusUI.SetActive(false);
     }
 
-    void Update()
+    public void ActiveGameEndUI(bool isDie)
     {
-        if (pauseUI.activeSelf)
+        if (gameEndUI != null)
         {
-            Time.timeScale = 0f;
+            gameEndUI.SetActive(true);
         }
-        else Time.timeScale = 1f;
     }
 }
