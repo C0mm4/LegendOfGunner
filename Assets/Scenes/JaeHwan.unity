@@ -1291,6 +1291,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hpBar: {fileID: 956641409}
   hpGauge: {fileID: 850494883}
+  MaxHealth: 0
+  CurrentHealth: 0
 --- !u!1 &367070078
 GameObject:
   m_ObjectHideFlags: 0
@@ -7010,6 +7012,7 @@ MonoBehaviour:
   pauseUI: {fileID: 1038511956}
   pauseMenu: {fileID: 1128030250}
   StatusUI: {fileID: 333641606}
+  gameEndUI: {fileID: 0}
   pause: 0
 --- !u!1 &1587033912
 GameObject:
