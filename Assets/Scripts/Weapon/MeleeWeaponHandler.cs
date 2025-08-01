@@ -13,7 +13,7 @@ public class MeleeWeaponHandler : BaseWeaponHandler
     {
         base.Attack();
         RaycastHit2D hit = Physics2D.BoxCast(transform.position + (Vector3)Controller.LookDirection * collideBoxSize.x,
-            collideBoxSize, 0, Vector2.zero, target);
+            collideBoxSize, 0, Vector2.zero, 0f, target);
 
         if (hit.collider != null)
         {

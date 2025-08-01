@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7366239020360313878}
   - component: {fileID: 1903458004812957977}
   - component: {fileID: 8152059826259501272}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MainSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,7 +115,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7917305783173955530}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WeaponPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -152,7 +152,7 @@ GameObject:
   - component: {fileID: 138016651849909073}
   - component: {fileID: -3895378429667629893}
   - component: {fileID: -1605746817342339694}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TestPlayer
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -273,7 +273,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
+  maxHealth: 0
   speed: 3
+  level: 1
+  exp: 5
 --- !u!114 &-3895378429667629893
 MonoBehaviour:
   m_ObjectHideFlags: 0
