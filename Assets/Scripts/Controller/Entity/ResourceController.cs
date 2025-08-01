@@ -15,10 +15,11 @@ public class ResourceController : MonoBehaviour
     public float CurrentHealth { get; private set; }
     public float MaxHealth => statHandler.Health;
 
-    public int Exp { get; private set; }
+    public float Exp { get; private set; }
     public int Level => statHandler.Level;
 
-    private int RequireExp = 10;
+    public float RequireExp { get; private set; }
+    
 
     private void Awake()
     {
@@ -31,6 +32,7 @@ public class ResourceController : MonoBehaviour
     void Start()
     {
         CurrentHealth = statHandler.Health;
+        RequireExp = 10;
         
     }
 

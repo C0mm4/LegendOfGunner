@@ -4,14 +4,22 @@ using UnityEngine;
 
 public class EXPUI : MonoBehaviour
 {
+    ResourceController resourceController;
     public RectTransform expGauge;
-    public int maxEXP;
-    public int nowEXP;
+    public float RequireExp;
+    public float CurrentExp;
+
+    private void Start()
+    {
+        resourceController = FindObjectOfType<ResourceController>();
+    }
 
     // Update is called once per frame
     void Update()
     {
-        float nowEXPWidth = (float)nowEXP / (float)maxEXP * 100 * 18;
+        RequireExp = resourceController.RequireExp;
+        CurrentExp = resourceController.Exp;
+        float nowEXPWidth = (float)(CurrentExp/ RequireExp) * 360;
         expGauge.sizeDelta = new Vector2(nowEXPWidth, 25);
     }
 }
