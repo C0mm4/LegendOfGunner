@@ -18,6 +18,8 @@ public class PlayerController : BaseController
         GameObject go = new GameObject();
         go.transform.SetParent(transform);
         targetTrans = go.transform;
+
+        Time.timeScale = 1f;   // It can play game when player push the play button in mainmenu 
     }
 
 
