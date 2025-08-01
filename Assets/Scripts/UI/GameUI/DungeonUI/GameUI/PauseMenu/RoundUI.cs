@@ -9,8 +9,13 @@ public class RoundUI : MonoBehaviour
 
     public TMP_Text RoundText;
 
+    private void Start()
+    {
+        dungeonManager = FindObjectOfType<DungeonManager>();
+    }
+
     private void Update()
     {
-        RoundText.text = $"{dungeonManager.stage} - {dungeonManager.currentWaveInStage} round";
+        RoundText.text = $"{dungeonManager.stage} - {dungeonManager.wave} round";
     }
 }
