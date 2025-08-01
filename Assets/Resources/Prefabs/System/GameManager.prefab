@@ -5080,6 +5080,8 @@ MonoBehaviour:
   isPause: 0
   DebugMode: 0
   text: 
+  TitleBGM: {fileID: 8300000, guid: e4c0e35960639794b97e0a058d76b8e2, type: 3}
+  InGameBGM: {fileID: 8300000, guid: f0acdf2da46c31443a59abdfaeb620c5, type: 3}
 --- !u!1 &6203057363590902750
 GameObject:
   m_ObjectHideFlags: 0
