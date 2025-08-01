@@ -7,14 +7,22 @@ public class UIManager : MonoSingleton<UIManager>
     public GameObject pauseUI;
     public GameObject pauseMenu;
     public GameObject StatusUI;
+    public GameObject gameEndUI = null;
     public bool pause;
-
     protected override void Awake()
     {
         base.Awake();
-
+        
         pauseUI.SetActive(false);
         pauseMenu.SetActive(false);
         StatusUI.SetActive(false);
+    }
+
+    public void ActiveGameEndUI(bool isDie)
+    {
+        if (gameEndUI != null)
+        {
+            gameEndUI.SetActive(true);
+        }
     }
 }

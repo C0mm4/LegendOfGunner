@@ -18,6 +18,8 @@ public class PlayerController : BaseController
         GameObject go = new GameObject();
         go.transform.SetParent(transform);
         targetTrans = go.transform;
+
+        Time.timeScale = 1f;   // It can play game when player push the play button in mainmenu 
     }
 
 
@@ -49,7 +51,7 @@ public class PlayerController : BaseController
 
             targetTrans.rotation = Quaternion.Euler(0, 0, rotZ);
             targetTrans.localPosition = isLeft ?
-                new Vector3(Mathf.Cos(-radianRotZ), Mathf.Sin(radianRotZ)):
+                new Vector3(Mathf.Cos(-radianRotZ), Mathf.Sin(radianRotZ)) :
                 new Vector3(Mathf.Cos(radianRotZ), Mathf.Sin(radianRotZ));
 
         }
@@ -70,7 +72,11 @@ public class PlayerController : BaseController
 
         }
     }
-
+    public override void Death()
+    {
+        UIManager.Instance.ActiveGameEndUI(true);
+        Debug.Log("Player Death");
+    }
     private void EquipWeapon(int index)
     {
         EquipWeapon(weapons[index]);
