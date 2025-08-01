@@ -97,7 +97,7 @@ public class ResourceController : MonoBehaviour
         
         Exp -= RequireExp;
         statHandler.Level++;
-
+        //Pin Level
         if (statHandler.Level >= 2 && statHandler.Level <= 4)
         {
             RequireExp = 10 + 5 * (statHandler.Level - 1);
