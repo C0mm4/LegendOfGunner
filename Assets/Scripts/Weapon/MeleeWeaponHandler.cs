@@ -8,24 +8,16 @@ public class MeleeWeaponHandler : BaseWeaponHandler
     [Header("Melee Attack Info")]
     public Vector2 collideBoxSize = Vector2.one;
 
-    [SerializeField]
-    TrailRenderer TrailRenderer;
-    protected void Start()
-    {
-        TrailRenderer.gameObject.SetActive(false);
-    }
 
     public override void Attack()
     {
         base.Attack();
-        TrailRenderer.gameObject.SetActive(true);
-        Invoke("AttackTrailEnd", 1 / Speed);
-
         RaycastHit2D hit = Physics2D.BoxCast(transform.position + (Vector3)Controller.LookDirection * collideBoxSize.x,
             collideBoxSize, 0, Vector2.zero, target);
 
         if (hit.collider != null)
         {
+            Debug.Log("Melee Attack");
             // Add Hit Action
             /*
             ResourceController resource = hit.collider.GetComponent<ResourceController>();
@@ -56,8 +48,4 @@ public class MeleeWeaponHandler : BaseWeaponHandler
         }
     }
 
-    public void AttackTrailEnd()
-    {
-        TrailRenderer.gameObject.SetActive(false);
-    }
 }

@@ -19,6 +19,7 @@ public class EnemyController : BaseController
     {
         base.Awake();
         playerObject = GameObject.FindObjectOfType<PlayerController>().gameObject;
+        targetTrans = playerObject.transform;
     }
 
     public virtual void Init()
@@ -33,6 +34,7 @@ public class EnemyController : BaseController
 
     protected override void Update() // base에서 처리
     {
+        lookDirection = movementDirection;
         base.Update();
     }
     protected override void FixedUpdate()
@@ -53,7 +55,7 @@ public class EnemyController : BaseController
     //몬스터 마다 움직임이 다르다 판단함
     protected virtual void Movement()
     {
-        movementDirection = (playerObject.transform.position - transform.position).normalized;
+        movementDirection = (targetTrans.position - transform.position).normalized;
         /*
                 Vector3 enemyToPlayerDirection = (playerObject.transform.position - transform.position).normalized;
                 base.Movement(enemyToPlayerDirection);

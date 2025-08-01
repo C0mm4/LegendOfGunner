@@ -40,6 +40,9 @@ public class BaseController : MonoBehaviour
     [SerializeField] private BaseWeaponHandler weapon;
     protected bool isAttackInput = true;
 
+    protected Transform targetTrans;
+
+
     protected virtual void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
@@ -143,7 +146,7 @@ public class BaseController : MonoBehaviour
     {
         if (currentWeapon == null) return;
 
-        if(lastAttackTime >= currentWeapon.Delay)
+        if(lastAttackTime >= currentWeapon.Delay && Vector2.Distance(transform.position, targetTrans.position) <= currentWeapon.AttackRange)
         {
             currentWeapon?.Attack();
             lastAttackTime = 0;

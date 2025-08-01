@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : BaseController
@@ -13,6 +14,10 @@ public class PlayerController : BaseController
         base.Start();
         camera = Camera.main;
 
+        // Set Target Transform Object
+        GameObject go = new GameObject();
+        go.transform.SetParent(transform);
+        targetTrans = go.transform;
     }
 
 
@@ -27,13 +32,26 @@ public class PlayerController : BaseController
 
         lookDirection = (worldPos - (Vector2)transform.position);
 
-        if(lookDirection.magnitude < .9f)
+        if(lookDirection.magnitude < .01f)
         {
             lookDirection = Vector2.zero;
         }
         else
         {
             lookDirection = lookDirection.normalized;
+        }
+
+        if (targetTrans != null)
+        {
+            float radianRotZ = Mathf.Atan2(lookDirection.y, lookDirection.x);
+            float rotZ = radianRotZ * Mathf.Rad2Deg;
+            bool isLeft = Mathf.Abs(rotZ) > 90f;
+
+            targetTrans.rotation = Quaternion.Euler(0, 0, rotZ);
+            targetTrans.localPosition = isLeft ?
+                new Vector3(Mathf.Cos(-radianRotZ), Mathf.Sin(radianRotZ)):
+                new Vector3(Mathf.Cos(radianRotZ), Mathf.Sin(radianRotZ));
+
         }
 
         // For Test Weapon Equip
