@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Achievement 
@@ -12,12 +13,12 @@ public class Achievement
 
     private IAchievementCondition condition;
 
-    public Achievement(string name, string desc, bool unLock, IAchievementCondition condi)
+    public Achievement(string title, string description, IAchievementCondition condition)
     {
-        Name = name;
-        Desc = desc;
-        IsUnlock = unLock;
-        condition = condi;
+        Name = title;
+        Desc = description;
+        this.condition = condition;
+        IsUnlock = false;
     }
 
     public void CheckUnlock()

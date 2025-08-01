@@ -18,3 +18,4 @@ MonoBehaviour:
   level: 1
   exp: 15
   name: SR_Enemy
+  id: 5

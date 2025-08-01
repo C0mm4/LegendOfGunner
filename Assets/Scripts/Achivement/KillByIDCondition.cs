@@ -12,20 +12,24 @@ public class KillByIDCondition : IAchievementCondition
         reqCounts = requires;
         foreach (var req in reqCounts)
         {
-            killCounts[req.Key] = req.Value;
+            killCounts[req.Key] = 0;
         }
     }
 
     public void AddKill(int enemyID)
     {
-        if(killCounts.ContainsKey(enemyID))
+        if (killCounts.ContainsKey(enemyID))
+        {
             killCounts[enemyID]++;
+            Debug.Log($"{enemyID} : {killCounts[enemyID]}");
+        }
     }
 
     public bool IsSatisfied()
     {
         foreach (var kvp in reqCounts)
         {
+            Debug.Log($"{kvp.Key}: {killCounts[kvp.Key]} / {kvp.Value}");
             if (killCounts[kvp.Key] < kvp.Value)
                 return false;
         }
