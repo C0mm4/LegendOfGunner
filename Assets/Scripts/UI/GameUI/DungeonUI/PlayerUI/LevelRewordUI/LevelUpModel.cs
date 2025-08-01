@@ -12,9 +12,18 @@ public class LevelUpModel : MonoBehaviour
     {
         public string name;
         public string info;
+        [Header("수치")]
         public float levels;
+
+        [Header("이 함수가 몇번 실행가능한지")]
+        public int count;
         [SerializeField]
         public UnityEvent callback;
+
+        public void SetCount(int _count)
+        {
+            count = _count;
+        }
     }
     [SerializeField]
     public sCharacteristic[] handgun;
