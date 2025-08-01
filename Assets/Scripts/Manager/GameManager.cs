@@ -1,12 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public enum GameState
+{
+    Title, Load, Menu, InPlay
+}
 
 public class GameManager : MonoSingleton<GameManager>
 {
     // To Do List
     // object change to playercontroller
     public static object PlayerInstance;
+
+    public static GameState gameState = GameState.Title;
 
     public bool isFirstRun = false;
     public readonly string firstRunKey = "isFirstRun";
@@ -16,10 +25,12 @@ public class GameManager : MonoSingleton<GameManager>
     [SerializeField]
     private bool DebugMode = false;
 
+    [SerializeField]
+    string text;
+
     protected override void Awake()
     {
         base.Awake();
-
         if (DebugMode)
         {
             // 최초 실행 시 동작
@@ -47,6 +58,13 @@ public class GameManager : MonoSingleton<GameManager>
 
         // 해상도 FHD
         Screen.SetResolution(1920, 1080, true);
+
+        gameState = GameState.Title;
+    }
+
+    private void Update()
+    {
+        text = gameState.ToString();
     }
 
 
@@ -71,7 +89,7 @@ public class GameManager : MonoSingleton<GameManager>
     /// </summary>
     public void StartGame()
     {
-
+        SceneManager.LoadScene("InGameScene");
     }
 
     /// <summary>
@@ -96,7 +114,7 @@ public class GameManager : MonoSingleton<GameManager>
     /// </summary>
     public void ClearStage()
     {
-
+        
     }
 
     /// <summary>

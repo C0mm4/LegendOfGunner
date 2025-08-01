@@ -9,6 +9,7 @@ public class BaseController : MonoBehaviour
     [SerializeField] private SpriteRenderer characterRenderer;
     [SerializeField] protected Transform weaponPivot;
 
+    [SerializeField]
     protected Vector2 movementDirection = Vector2.zero;
     public Vector2 MovementDirection { get { return movementDirection; } }
 
@@ -30,14 +31,18 @@ public class BaseController : MonoBehaviour
     [SerializeField]
     private BaseWeaponHandler baseWeapon;
 
+    [SerializeField]
     private float lastAttackTime = 0f;
 
     private Vector3 weaponPivotPos;
     protected AnimationHandler animationHandler;
     protected StatHandler statHandler;
 
-    [SerializeField] private BaseWeaponHandler weapon;
     protected bool isAttackInput = true;
+
+    [SerializeField]
+    protected Transform targetTrans;
+
 
     protected virtual void Awake()
     {
@@ -60,8 +65,12 @@ public class BaseController : MonoBehaviour
 
             }
         }
-        SetBaseWeapon(weapons[0]);
-        EquipWeapon(weapons[0]);
+
+        if (weaponPref.Count > 0)
+        {
+            SetBaseWeapon(weapons[0]);
+            EquipWeapon(weapons[0]);
+        }
     }
 
     protected virtual void Start()
@@ -71,18 +80,32 @@ public class BaseController : MonoBehaviour
 
     protected virtual void Update()
     {
-        HandleAction();
-        Rotate(lookDirection);
-        AttackHandler();
-        UpdateCooltime();
+        if(targetTrans == null)
+        {
+            movementDirection = Vector2.zero;
+        }
+        if(GameManager.gameState == GameState.InPlay)
+        {
+            HandleAction();
+            Rotate(lookDirection);
+            AttackHandler();
+            UpdateCooltime();
+        }
     }
 
     protected virtual void FixedUpdate()
     {
-        Movement(movementDirection);
-        if (knockbackDuration > 0.0f)
+        if (GameManager.gameState == GameState.InPlay)
         {
-            knockbackDuration -= Time.deltaTime;
+            Movement(movementDirection);
+            if (knockbackDuration > 0.0f)
+            {
+                knockbackDuration -= Time.deltaTime;
+            }
+        }
+        else
+        {
+            _rigidbody.velocity = Vector2.zero;
         }
     }
 
@@ -102,7 +125,7 @@ public class BaseController : MonoBehaviour
         }
     }
 
-    private void Movement(Vector2 direction)
+    protected virtual void Movement(Vector2 direction)
     {
         direction = direction * statHandler.Speed;
         if (knockbackDuration > 0.0f)
@@ -116,27 +139,37 @@ public class BaseController : MonoBehaviour
 
     private void Rotate(Vector2 direction)
     {
-        float radianRotZ = Mathf.Atan2(direction.y, direction.x);
-        float rotZ = radianRotZ * Mathf.Rad2Deg;
-        bool isLeft = Mathf.Abs(rotZ) > 90f;
-
-        characterRenderer.flipX = isLeft;
-
-        if (weaponPivot != null)
+        if (Time.timeScale == 0)
         {
-            weaponPivot.rotation = Quaternion.Euler(0, 0, rotZ);
-            weaponPivot.localPosition = isLeft ?
-                new Vector3(Mathf.Cos(-radianRotZ), Mathf.Sin(radianRotZ)) * weaponPivotPos.magnitude :
-                new Vector3(Mathf.Cos(radianRotZ), Mathf.Sin(radianRotZ)) * weaponPivotPos.magnitude;
+            return;
+        }
+        else
+        {
+            float radianRotZ = Mathf.Atan2(direction.y, direction.x);
+            float rotZ = radianRotZ * Mathf.Rad2Deg;
+            bool isLeft = Mathf.Abs(rotZ) > 90f;
 
+            characterRenderer.flipX = isLeft;
 
-            currentWeapon.Rotate(isLeft);
+            if (weaponPivot != null)
+            {
+                weaponPivot.rotation = Quaternion.Euler(0, 0, rotZ);
+                weaponPivot.localPosition = isLeft ?
+                    new Vector3(Mathf.Cos(-radianRotZ), Mathf.Sin(radianRotZ)) * weaponPivotPos.magnitude :
+                    new Vector3(Mathf.Cos(radianRotZ), Mathf.Sin(radianRotZ)) * weaponPivotPos.magnitude;
+
+                if (currentWeapon != null)
+                    currentWeapon.Rotate(isLeft);
+            }
         }
     }
 
     private void AttackHandler()
     {
-        if(lastAttackTime >= currentWeapon.Delay)
+        if (currentWeapon == null) return;
+        if (targetTrans == null) return;
+        if (lookDirection.magnitude <= 0.5f) return;
+        if(lastAttackTime >= currentWeapon.Delay && Vector2.Distance(transform.position, targetTrans.position) <= currentWeapon.AttackRange)
         {
             currentWeapon?.Attack();
             lastAttackTime = 0;

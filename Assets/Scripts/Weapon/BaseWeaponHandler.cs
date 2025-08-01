@@ -34,7 +34,6 @@ public class BaseWeaponHandler : MonoBehaviour
     public LayerMask target;
 
     private static readonly int IsAttack = Animator.StringToHash("IsAttack");
-    private static readonly int IsReload = Animator.StringToHash("IsReload");
 
     public BaseController Controller {  get; private set; }
 
@@ -51,6 +50,7 @@ public class BaseWeaponHandler : MonoBehaviour
     {
         Controller = GetComponentInParent<BaseController>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     private void Start()
@@ -60,6 +60,8 @@ public class BaseWeaponHandler : MonoBehaviour
 
     public virtual void Attack()
     {
+        if (animator != null)
+            animator.SetTrigger(IsAttack);
         if(MaxAmmo != -1)
         {
             currentAmmo--;

@@ -57,13 +57,11 @@ public class ProjectileController : MonoBehaviour
         else if (weaponHandler.target.value == (weaponHandler.target.value | (1 << collision.gameObject.layer)))
         {
             // Add Target Collision Event
-
-            
             ResourceController resource = collision.GetComponent<ResourceController>();
             if (resource != null)
             {
                 resource.ChangeHealth(-weaponHandler.Power);
-                // ³Ë¹é?
+                // ï¿½Ë¹ï¿½?
 /*                if (weaponHandler.IsOnKnockBack)
                 {
                     BaseController baseCon = collision.GetComponent<BaseController>();
@@ -74,7 +72,8 @@ public class ProjectileController : MonoBehaviour
                     }
                 }*/
             }
-            Debug.Log("Collision!");
+            collision.GetComponent<EnemyController>()?.Damaged();
+
             DestroyProjectile(collision.ClosestPoint(transform.position), fxOnDestroy);
         }
     }
