@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Boss1Controller : EnemyController
 {
+    bool isAttack = false;
     protected override void Start()
     {
         base.Start();
@@ -12,25 +13,27 @@ public class Boss1Controller : EnemyController
     {
         base.Init();
         view.SetActiveUI(enemyModel.name);
-        InvokeRepeating("spawnEnemy", 1, 5);
+        InvokeRepeating("SpawnEnemyTriger", 1, 5);
     }
-
+    void SpawnEnemyTriger()
+    { 
+        view.AttackAnimation(1);
+    }
     protected override void OnDisable()
     {
         base.OnDisable();
-        CancelInvoke("spawnEnemy");
         view.DeActiveUI();
     }
 
     // Update is called once per frame
     protected override void Update()
     {
-        base.Update();
     }
 
     public override void Damaged()
     {
         base.Damaged();
+        view.HitAnimaion();
     }
     public override void Death()
     {
@@ -41,9 +44,14 @@ public class Boss1Controller : EnemyController
             EnemyManager.Instance.EnemyList[0].GetComponent<EnemyController>().Death();
         }
     }
-    void spawnEnemy()
+    protected override void Movement()
+    {
+
+    }
+    public void spawnEnemy()
     {
         for (int i = 0; i < 5; i++)
             EnemyManager.Instance.AddEnemy(EnemyManager.eEnemyType.eTemp, Vector3.zero);
     }
+
 }
