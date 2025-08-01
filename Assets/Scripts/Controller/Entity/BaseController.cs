@@ -134,21 +134,28 @@ public class BaseController : MonoBehaviour
 
     private void Rotate(Vector2 direction)
     {
-        float radianRotZ = Mathf.Atan2(direction.y, direction.x);
-        float rotZ = radianRotZ * Mathf.Rad2Deg;
-        bool isLeft = Mathf.Abs(rotZ) > 90f;
-
-        characterRenderer.flipX = isLeft;
-
-        if (weaponPivot != null)
+        if (Time.timeScale == 0)
         {
-            weaponPivot.rotation = Quaternion.Euler(0, 0, rotZ);
-            weaponPivot.localPosition = isLeft ?
-                new Vector3(Mathf.Cos(-radianRotZ), Mathf.Sin(radianRotZ)) * weaponPivotPos.magnitude :
-                new Vector3(Mathf.Cos(radianRotZ), Mathf.Sin(radianRotZ)) * weaponPivotPos.magnitude;
+            return;
+        }
+        else
+        {
+            float radianRotZ = Mathf.Atan2(direction.y, direction.x);
+            float rotZ = radianRotZ * Mathf.Rad2Deg;
+            bool isLeft = Mathf.Abs(rotZ) > 90f;
 
-            if(currentWeapon != null)
-                currentWeapon.Rotate(isLeft);
+            characterRenderer.flipX = isLeft;
+
+            if (weaponPivot != null)
+            {
+                weaponPivot.rotation = Quaternion.Euler(0, 0, rotZ);
+                weaponPivot.localPosition = isLeft ?
+                    new Vector3(Mathf.Cos(-radianRotZ), Mathf.Sin(radianRotZ)) * weaponPivotPos.magnitude :
+                    new Vector3(Mathf.Cos(radianRotZ), Mathf.Sin(radianRotZ)) * weaponPivotPos.magnitude;
+
+                if (currentWeapon != null)
+                    currentWeapon.Rotate(isLeft);
+            }
         }
     }
 
