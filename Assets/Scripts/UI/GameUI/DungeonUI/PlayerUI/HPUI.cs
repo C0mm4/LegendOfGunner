@@ -20,7 +20,7 @@ public class HPUI : MonoBehaviour
     {
         MaxHealth = resourceController.MaxHealth;
         CurrentHealth = resourceController.CurrentHealth;
-        float nowHPWidth = (CurrentHealth/MaxHealth) * 16;                        // maxHP, nowHP�� ĳ���Ͳ� ��������
+        float nowHPWidth = CurrentHealth * 16;                        // maxHP, nowHP�� ĳ���Ͳ� ��������
         float maxHPWidth = CurrentHealth > 0 ? MaxHealth * 16 : 0;                            // ü�� 1�� ���� 18. �ִ� 36
         hpBar.sizeDelta = new Vector2(maxHPWidth, 25);
         hpGauge.sizeDelta = new Vector2(nowHPWidth, 25);
