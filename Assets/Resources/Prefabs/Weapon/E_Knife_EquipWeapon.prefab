@@ -151,16 +151,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a972fc85bcd1294ebb947a9266fb98c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 1
-  power: 1
-  speed: 1
-  attackRange: 1
-  currentAmmo: -1
-  maxAmmo: -1
+  data: {fileID: 11400000, guid: 0edd1d724f125ee498ab9def59f33eee, type: 2}
   target:
     serializedVersion: 2
     m_Bits: 256
   spriteRenderer: {fileID: 1926140553264005392}
-  coolTime: 0
-  isCooltime: 0
   collideBoxSize: {x: 1, y: 1}

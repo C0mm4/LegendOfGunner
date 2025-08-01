@@ -5,15 +5,18 @@ using static UnityEngine.GraphicsBuffer;
 
 public class MeleeWeaponHandler : BaseWeaponHandler
 {
-    [Header("Melee Attack Info")]
-    public Vector2 collideBoxSize = Vector2.one;
+    MeleeWeaponData meleeData;
 
+    private void Start()
+    {
+        meleeData = data as MeleeWeaponData;
+    }
 
     public override void Attack()
     {
         base.Attack();
-        RaycastHit2D hit = Physics2D.BoxCast(transform.position + (Vector3)Controller.LookDirection * collideBoxSize.x,
-            collideBoxSize, 0, Vector2.zero, 0f, target);
+        RaycastHit2D hit = Physics2D.BoxCast(transform.position + (Vector3)Controller.LookDirection * meleeData.collideBoxSize.x,
+            meleeData.collideBoxSize, 0, Vector2.zero, 0f, target);
 
         if (hit.collider != null)
         {

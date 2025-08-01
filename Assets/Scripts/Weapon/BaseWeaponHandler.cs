@@ -5,31 +5,18 @@ using UnityEngine;
 public class BaseWeaponHandler : MonoBehaviour
 {
     [SerializeField]
-    private float delay = 0.2f;
-    public float Delay {  get { return delay; } set { delay = value; } }
+    public WeaponData data;
+    public float Delay {  get { return data.Delay; } set { data.Delay = value; } }
 
-    [SerializeField]
-    private float power = 1f;
-    public float Power { get { return power; } set { power = value; } }
+    public float Power { get { return data.Power; } set { data.Power = value; } }
 
-    [SerializeField]
-    public float speed = 1f;
-    public float Speed {  get { return speed; } set { speed = value; } }
+    public float Speed {  get { return data.Speed; } set { data.Speed = value; } }
 
-    [SerializeField]
-    private float attackRange = 10f;
-    [SerializeField]
-    public float AttackRange {  get { return attackRange; } set { attackRange = value; } }
+    public float AttackRange {  get { return data.AttackRange; } set { data.AttackRange = value; } }
 
-    [SerializeField]
-    private int currentAmmo;
-    public int CurrentAmmo { get { return currentAmmo; } }
+    public int CurrentAmmo { get { return data.CurrentAmmo; } set { data.CurrentAmmo = value; } }
 
-    [SerializeField]
-    private int maxAmmo;
-    [SerializeField]
-    public int MaxAmmo { get { return maxAmmo; } }
-
+    public int MaxAmmo { get { return data.MaxAmmo; } set { data.MaxAmmo = value; } }
 
     public LayerMask target;
 
@@ -41,21 +28,18 @@ public class BaseWeaponHandler : MonoBehaviour
     [SerializeField]
     private SpriteRenderer spriteRenderer;
 
-    [SerializeField]
-    protected float coolTime = 0f;
-    public bool isCooltime = false;
-    protected float leftCooltime = 0f;
 
     protected virtual void Awake()
     {
         Controller = GetComponentInParent<BaseController>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         animator = GetComponentInChildren<Animator>();
+        data = Instantiate(data);
     }
 
     private void Start()
     {
-        currentAmmo = maxAmmo;
+        CurrentAmmo = MaxAmmo;
     }
 
     public virtual void Attack()
@@ -64,13 +48,13 @@ public class BaseWeaponHandler : MonoBehaviour
             animator.SetTrigger(IsAttack);
         if(MaxAmmo != -1)
         {
-            currentAmmo--;
+            CurrentAmmo--;
         }
     }
 
     public void EquipWeapon()
     {
-        currentAmmo = maxAmmo;
+        CurrentAmmo = MaxAmmo;
     }
 
     public virtual void Rotate(bool isLeft)
@@ -80,16 +64,16 @@ public class BaseWeaponHandler : MonoBehaviour
 
     public void SetCooltime()
     {
-        isCooltime = true;
-        leftCooltime = coolTime;
+        data.IsCooltime = true;
+        data.LeftCoolTime = data.CoolTime;
     }
 
     public void UpdateCooltime(float deltaT)
     {
-        leftCooltime -= deltaT;
-        if(leftCooltime <= 0f)
+        data.LeftCoolTime -= deltaT;
+        if(data.LeftCoolTime <= 0f)
         {
-            isCooltime = false;
+            data.IsCooltime = false;
         }
     }
 }

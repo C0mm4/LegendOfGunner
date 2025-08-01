@@ -121,7 +121,7 @@ public class BaseController : MonoBehaviour
     {
         for (int i = 0; i < weapons.Count; i++)
         {
-            if (weapons[i].isCooltime)
+            if (weapons[i].data.IsCooltime)
             {
                 weapons[i].UpdateCooltime(Time.deltaTime);
             }
@@ -226,7 +226,7 @@ public class BaseController : MonoBehaviour
     {
         if(weapon != this.currentWeapon)
         {
-            if (weapon.isCooltime) return;
+            if (weapon.data.IsCooltime) return;
 
             if(this.currentWeapon != null)
                 this.currentWeapon.gameObject.SetActive(false);

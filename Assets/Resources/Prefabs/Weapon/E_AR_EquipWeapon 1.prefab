@@ -183,23 +183,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5a97c0bea099aa439bd07ac3e05b106, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 0.25
-  power: 10
-  speed: 2
-  attackRange: 10
-  currentAmmo: -1
-  maxAmmo: -1
+  data: {fileID: 11400000, guid: 6170c4266be9b8942a63f81b8e96ab41, type: 2}
   target:
     serializedVersion: 2
     m_Bits: 256
   spriteRenderer: {fileID: 0}
-  coolTime: 0
-  isCooltime: 0
   projectileSpawn: {fileID: 2037861509463839872}
-  bullet: {fileID: 8353363161459075883, guid: e90c6083f841d9944996e35759edd723, type: 3}
-  bulletSize: 1
-  duration: 2
-  spread: 20
-  numProjectilePerShot: 1
-  multiProjectileAngle: 0
-  projectileColor: {r: 1, g: 0.36320752, b: 0.36320752, a: 1}
