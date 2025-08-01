@@ -4,56 +4,43 @@ using UnityEngine;
 
 public class RangeWeaponHandler : BaseWeaponHandler
 {
-    [Header("Ranged Attack Data")]
+    [Header("Ranged Attack Data")] 
+    RangeWeaponData rangeData;
     [SerializeField]
     private Transform projectileSpawn;
 
-    [SerializeField]
-    private GameObject bullet;
-    public GameObject Bullet {  get { return bullet; } }
+    public GameObject Bullet {  get { return rangeData.Bullet; } }
 
-    [SerializeField]
-    private float bulletSize = 1f;
-    public float BulletSize {  get { return bulletSize; } }
+    public float BulletSize {  get { return rangeData.BulletSize; } }
 
-    [SerializeField]
-    private float duration;
-    public float Duration { get { return duration; } }
+    public float Duration { get { return rangeData.Duration; } }
 
-    [SerializeField]
-    private float spread;
-    public float Spread { get { return spread; } }
+    public float Spread { get { return rangeData.Spread; } }
 
-    [SerializeField]
-    private int numProjectilePerShot;
-    public int NumProjectilePerShot { get { return numProjectilePerShot; } }
+    public int NumProjectilePerShot { get { return rangeData.NumProjectilePerShot; } }
 
-    [SerializeField]
-    private float multiProjectileAngle;
-    public float MultiProjectileAngle { get { return multiProjectileAngle; } }
+    public float MultiProjectileAngle { get { return rangeData.MultiProjectileAngle; } }
 
-    [SerializeField]
-    private Color projectileColor;
-    public Color ProjectileColor { get { return projectileColor; } }
-
+    public Color ProjectileColor { get { return rangeData.ProjectileColor; } }
+    
     protected void Start()
     {
-
+        rangeData = data as RangeWeaponData;
     }
 
     public override void Attack()
     {
         base.Attack();
 
-        float projectileAngleSpace = multiProjectileAngle;
-        int numberOfProjectilePerShot = numProjectilePerShot;
+        float projectileAngleSpace = rangeData.MultiProjectileAngle;
+        int numberOfProjectilePerShot = rangeData.NumProjectilePerShot;
 
         float minAngle = -(numberOfProjectilePerShot / 2f) * projectileAngleSpace;
 
         for (int i = 0; i < numberOfProjectilePerShot; i++)
         {
             float angle = minAngle + projectileAngleSpace * i;
-            float randomSpread = Random.Range(-spread, spread);
+            float randomSpread = Random.Range(-rangeData.Spread, rangeData.Spread);
             angle += randomSpread;
 
             Debug.Log(Controller.LookDirection);

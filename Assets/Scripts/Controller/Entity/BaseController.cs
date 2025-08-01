@@ -36,12 +36,15 @@ public class BaseController : MonoBehaviour
 
     private Vector3 weaponPivotPos;
     protected AnimationHandler animationHandler;
-    protected StatHandler statHandler;
-
-    protected bool isAttackInput = true;
-
     [SerializeField]
     protected Transform targetTrans;
+
+
+    [Header("Charactor Status")]
+    [SerializeField]
+    public StatHandler statHandler;
+
+    protected bool isAttackInput = true;
 
 
     protected virtual void Awake()
@@ -50,7 +53,7 @@ public class BaseController : MonoBehaviour
         weaponPivotPos = weaponPivot.localPosition;
         CreateWeapon();
         animationHandler = GetComponent<AnimationHandler>();
-        statHandler = GetComponent<StatHandler>();
+        statHandler = Instantiate(statHandler);
     }
 
     protected virtual void CreateWeapon()
@@ -118,7 +121,7 @@ public class BaseController : MonoBehaviour
     {
         for (int i = 0; i < weapons.Count; i++)
         {
-            if (weapons[i].isCooltime)
+            if (weapons[i].data.IsCooltime)
             {
                 weapons[i].UpdateCooltime(Time.deltaTime);
             }
@@ -223,7 +226,7 @@ public class BaseController : MonoBehaviour
     {
         if(weapon != this.currentWeapon)
         {
-            if (weapon.isCooltime) return;
+            if (weapon.data.IsCooltime) return;
 
             if(this.currentWeapon != null)
                 this.currentWeapon.gameObject.SetActive(false);

@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 45298337719273407}
   - component: {fileID: 2413428407577512459}
-  - component: {fileID: 841444410892637774}
   - component: {fileID: 1806510559689243699}
   - component: {fileID: 9085831942077965813}
   - component: {fileID: 90254037868830673}
@@ -51,24 +50,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88bf917ccc729394d861d5d97755d0cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &841444410892637774
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 743498950123072358}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c56322f8862e0d8439c6d6890ad8ddb6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 10
-  maxHealth: 0
-  speed: 3
-  level: 1
-  exp: 5
-  name: none
 --- !u!114 &1806510559689243699
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,8 +72,9 @@ MonoBehaviour:
   baseWeapon: {fileID: 0}
   lastAttackTime: 0
   targetTrans: {fileID: 0}
+  statHandler: {fileID: 11400000, guid: b1f188a7e73b4a4459c1729764ec5d86, type: 2}
   view: {fileID: 2413428407577512459}
-  enemyModel: {fileID: 841444410892637774}
+  enemyModel: {fileID: 0}
 --- !u!114 &9085831942077965813
 MonoBehaviour:
   m_ObjectHideFlags: 0
