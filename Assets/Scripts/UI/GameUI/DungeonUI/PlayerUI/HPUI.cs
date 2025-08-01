@@ -19,6 +19,7 @@ public class HPUI : MonoBehaviour
     void Update()
     {
         MaxHealth = resourceController.MaxHealth;
+        Debug.Log(MaxHealth);
         CurrentHealth = resourceController.CurrentHealth;
         float nowHPWidth = CurrentHealth * 16;                        // maxHP, nowHP�� ĳ���Ͳ� ��������
         float maxHPWidth = CurrentHealth > 0 ? MaxHealth * 16 : 0;                            // ü�� 1�� ���� 18. �ִ� 36
