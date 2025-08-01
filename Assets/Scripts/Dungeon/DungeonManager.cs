@@ -10,8 +10,6 @@ public class DungeonManager : MonoBehaviour
     SpriteRenderer fadeSprite;
     public int wave;
     bool isClear;
-    [SerializeField]
-    private int leftToBossWave;
     private int ememySpawnCount = 5;
     [SerializeField]
     private GameObject portalObject;
@@ -34,9 +32,20 @@ public class DungeonManager : MonoBehaviour
     [SerializeField]
     private List<Rect> spawnRects;
 
+
+    [SerializeField]
+    public int stage;
+
+    [SerializeField]
+    public int currentWaveInStage;
+
+    [SerializeField]
+    public int targetToBossWave;
+
     void Start()
     {
-        leftToBossWave = Random.Range(3, 6);
+        targetToBossWave = Random.Range(3, 6);
+        stage = 1;
         StartDungeon();
     }
 
@@ -61,17 +70,22 @@ public class DungeonManager : MonoBehaviour
     public void StartDungeon()
     {
         isSpawnning = true;
+        isClear = false;
         portalObject.SetActive(false);
         lastSpawnT = 0;
         wave++;
+
+        currentWaveInStage++;
+
         GameManager.gameState = GameState.Load;
         fadeSprite.gameObject.SetActive(true);
         fadeSprite.DOFade(1, 1f).OnComplete(() =>
         {
+            // 여기서 UI 갱신
             if(waveUIText != null)
                 waveUIText.SetText(wave.ToString());
-            leftToBossWave--;
-            isClear = false;
+
+
             if (dungeonFieldObjects != null)
             {
                 if (prevDungeonFieldObj != null)
@@ -79,11 +93,11 @@ public class DungeonManager : MonoBehaviour
                     Destroy(prevDungeonFieldObj);
                     Destroy(prevDungoneWallObj);
                 }
-
-                if (leftToBossWave <= 0)
+                // 현재 웨이브가 보스까지의 웨이브일 시 보스방 생성 및 초기화
+                if(currentWaveInStage == targetToBossWave)
                 {
-                    // Add Boss Map Load
-                    leftToBossWave = Random.Range(3, 6);
+                    currentWaveInStage = 0;
+                    stage++;
                 }
                 else
                 {

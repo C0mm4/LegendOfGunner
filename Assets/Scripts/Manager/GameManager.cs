@@ -25,6 +25,9 @@ public class GameManager : MonoSingleton<GameManager>
     [SerializeField]
     private bool DebugMode = false;
 
+    [SerializeField]
+    string text;
+
     protected override void Awake()
     {
         base.Awake();
@@ -57,6 +60,11 @@ public class GameManager : MonoSingleton<GameManager>
         Screen.SetResolution(1920, 1080, true);
 
         gameState = GameState.Title;
+    }
+
+    private void Update()
+    {
+        text = gameState.ToString();
     }
 
 
