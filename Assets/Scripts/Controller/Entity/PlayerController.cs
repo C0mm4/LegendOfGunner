@@ -61,7 +61,7 @@ public class PlayerController : BaseController
         {
             EquipWeapon(0);
         }
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             EquipWeapon(1);
         }
