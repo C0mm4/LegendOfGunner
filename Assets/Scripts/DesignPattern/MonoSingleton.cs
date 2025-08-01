@@ -28,7 +28,8 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
         if (_instance == null)
         {
             _instance = GetComponent<T>();
-            DontDestroyOnLoad(gameObject);
+            if(transform.parent == null)
+                DontDestroyOnLoad(gameObject);
         }
         else
         {

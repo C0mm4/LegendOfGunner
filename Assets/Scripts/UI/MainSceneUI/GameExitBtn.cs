@@ -8,6 +8,7 @@ public class GameExitBtn : MonoBehaviour
     public Button exitButton;
     public void ExitButtonClick()
     {
-        Debug.Log("°ÔÀÓ Á¾·á");
+        Debug.Log("ê²Œì„ ì¢…ë£Œ ì‹œë„ - ë¹Œë“œ ì‹œ ë°˜ì˜ë¨");
+        Application.Quit();
     }
 }

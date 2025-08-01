@@ -31,14 +31,21 @@ public class BaseController : MonoBehaviour
     [SerializeField]
     private BaseWeaponHandler baseWeapon;
 
+    [SerializeField]
     private float lastAttackTime = 0f;
 
     private Vector3 weaponPivotPos;
     protected AnimationHandler animationHandler;
-    protected StatHandler statHandler;
+    [SerializeField]
+    protected Transform targetTrans;
 
-    [SerializeField] private BaseWeaponHandler weapon;
+
+    [Header("Charactor Status")]
+    [SerializeField]
+    public StatHandler statHandler;
+
     protected bool isAttackInput = true;
+
 
     protected virtual void Awake()
     {
@@ -46,7 +53,7 @@ public class BaseController : MonoBehaviour
         weaponPivotPos = weaponPivot.localPosition;
         CreateWeapon();
         animationHandler = GetComponent<AnimationHandler>();
-        statHandler = GetComponent<StatHandler>();
+        statHandler = Instantiate(statHandler);
     }
 
     protected virtual void CreateWeapon()
@@ -76,18 +83,32 @@ public class BaseController : MonoBehaviour
 
     protected virtual void Update()
     {
-        HandleAction();
-        Rotate(lookDirection);
-        AttackHandler();
-        UpdateCooltime();
+        if(targetTrans == null)
+        {
+            movementDirection = Vector2.zero;
+        }
+        if(GameManager.gameState == GameState.InPlay)
+        {
+            HandleAction();
+            Rotate(lookDirection);
+            AttackHandler();
+            UpdateCooltime();
+        }
     }
 
     protected virtual void FixedUpdate()
     {
-        Movement(movementDirection);
-        if (knockbackDuration > 0.0f)
+        if (GameManager.gameState == GameState.InPlay)
         {
-            knockbackDuration -= Time.deltaTime;
+            Movement(movementDirection);
+            if (knockbackDuration > 0.0f)
+            {
+                knockbackDuration -= Time.deltaTime;
+            }
+        }
+        else
+        {
+            _rigidbody.velocity = Vector2.zero;
         }
     }
 
@@ -121,29 +142,37 @@ public class BaseController : MonoBehaviour
 
     private void Rotate(Vector2 direction)
     {
-        float radianRotZ = Mathf.Atan2(direction.y, direction.x);
-        float rotZ = radianRotZ * Mathf.Rad2Deg;
-        bool isLeft = Mathf.Abs(rotZ) > 90f;
-
-        characterRenderer.flipX = isLeft;
-
-        if (weaponPivot != null)
+        if (Time.timeScale == 0)
         {
-            weaponPivot.rotation = Quaternion.Euler(0, 0, rotZ);
-            weaponPivot.localPosition = isLeft ?
-                new Vector3(Mathf.Cos(-radianRotZ), Mathf.Sin(radianRotZ)) * weaponPivotPos.magnitude :
-                new Vector3(Mathf.Cos(radianRotZ), Mathf.Sin(radianRotZ)) * weaponPivotPos.magnitude;
+            return;
+        }
+        else
+        {
+            float radianRotZ = Mathf.Atan2(direction.y, direction.x);
+            float rotZ = radianRotZ * Mathf.Rad2Deg;
+            bool isLeft = Mathf.Abs(rotZ) > 90f;
 
-            if(currentWeapon != null)
-                currentWeapon.Rotate(isLeft);
+            characterRenderer.flipX = isLeft;
+
+            if (weaponPivot != null)
+            {
+                weaponPivot.rotation = Quaternion.Euler(0, 0, rotZ);
+                weaponPivot.localPosition = isLeft ?
+                    new Vector3(Mathf.Cos(-radianRotZ), Mathf.Sin(radianRotZ)) * weaponPivotPos.magnitude :
+                    new Vector3(Mathf.Cos(radianRotZ), Mathf.Sin(radianRotZ)) * weaponPivotPos.magnitude;
+
+                if (currentWeapon != null)
+                    currentWeapon.Rotate(isLeft);
+            }
         }
     }
 
     private void AttackHandler()
     {
         if (currentWeapon == null) return;
-
-        if(lastAttackTime >= currentWeapon.Delay)
+        if (targetTrans == null) return;
+        if (lookDirection.magnitude <= 0.5f) return;
+        if(lastAttackTime >= currentWeapon.Delay && Vector2.Distance(transform.position, targetTrans.position) <= currentWeapon.AttackRange)
         {
             currentWeapon?.Attack();
             lastAttackTime = 0;

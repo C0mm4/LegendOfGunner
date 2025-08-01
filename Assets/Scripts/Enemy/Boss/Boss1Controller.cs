@@ -13,7 +13,13 @@ public class Boss1Controller : EnemyController
         base.Init();
         view.SetActiveUI(enemyModel.name);
         InvokeRepeating("spawnEnemy", 1, 5);
-        Debug.Log("tq");
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        CancelInvoke("spawnEnemy");
+        view.DeActiveUI();
     }
 
     // Update is called once per frame
@@ -24,9 +30,17 @@ public class Boss1Controller : EnemyController
 
     public override void Damaged()
     {
-        view.SetHpBar(10, (int)enemyModel.Health);
+        base.Damaged();
     }
-
+    public override void Death()
+    {
+        base.Death();
+        int len = EnemyManager.Instance.GetEnemyListSize();
+        for (int i = 0; i < len; i++)
+        {
+            EnemyManager.Instance.EnemyList[0].GetComponent<EnemyController>().Death();
+        }
+    }
     void spawnEnemy()
     {
         for (int i = 0; i < 5; i++)

@@ -19,6 +19,8 @@ public class EnemyController : BaseController
     {
         base.Awake();
         playerObject = GameObject.FindObjectOfType<PlayerController>().gameObject;
+        targetTrans = playerObject.transform;
+        enemyModel = statHandler as EnemyModel;
     }
 
     public virtual void Init()
@@ -33,6 +35,7 @@ public class EnemyController : BaseController
 
     protected override void Update() // base에서 처리
     {
+        lookDirection = movementDirection;
         base.Update();
     }
     protected override void FixedUpdate()
@@ -48,12 +51,15 @@ public class EnemyController : BaseController
     protected virtual void OnDisable() // base에서 처리
     {
         EnemyManager.Instance.RemoveObject(this.gameObject);
+        if(playerObject != null ) 
+            playerObject.GetComponent<ResourceController>().AddExp(statHandler.Exp);
     }
 
     //몬스터 마다 움직임이 다르다 판단함
     protected virtual void Movement()
     {
-        movementDirection = (playerObject.transform.position - transform.position).normalized;
+        if (targetTrans == null) return;
+        movementDirection = (targetTrans.position - transform.position).normalized;
         /*
                 Vector3 enemyToPlayerDirection = (playerObject.transform.position - transform.position).normalized;
                 base.Movement(enemyToPlayerDirection);
@@ -62,5 +68,11 @@ public class EnemyController : BaseController
 
     public virtual void Damaged()
     {
+        Debug.Log($"Get Damaged HP : {statHandler.Health}");
+        if(view != null)
+        {
+
+//            view.SetHpBar((int)enemyModel.Health, (int)enemyModel.Health);
+        }
     }
 }

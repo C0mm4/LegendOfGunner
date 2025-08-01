@@ -4,4 +4,5 @@ using UnityEngine;
 
 public class BossView : EnemyView
 {
+
 }

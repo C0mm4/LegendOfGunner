@@ -15,15 +15,15 @@ public class Skill_1_Btn : MonoBehaviour
     float coolDown;
     bool isCoolDown = false; // true - 스킬 사용 불가, false - 스킬 사용 가능
 
-    public void Update()
+    void Update()
     {
         if (Input.GetKeyUp(KeyCode.Alpha2))
         {
-            ClickSkill_1_Btn();
+            UsingSkill();
         }
     }
 
-    public void ClickSkill_1_Btn()
+    void UsingSkill()
     {
         //스킬 사용 메서드
         if (isCoolDown) return;

@@ -61,7 +61,7 @@ public class ProjectileController : MonoBehaviour
             if (resource != null)
             {
                 resource.ChangeHealth(-weaponHandler.Power);
-                // ³Ë¹é?
+                // ï¿½Ë¹ï¿½?
 /*                if (weaponHandler.IsOnKnockBack)
                 {
                     BaseController baseCon = collision.GetComponent<BaseController>();
@@ -74,7 +74,6 @@ public class ProjectileController : MonoBehaviour
             }
             collision.GetComponent<EnemyController>()?.Damaged();
 
-            Debug.Log("Collision!");
             DestroyProjectile(collision.ClosestPoint(transform.position), fxOnDestroy);
         }
     }

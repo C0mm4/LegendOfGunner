@@ -13,11 +13,16 @@ public class ResourceController : MonoBehaviour
     private float timeSinceLastChange = float.MaxValue;
 
     public float CurrentHealth { get; private set; }
-    public float MaxHealth => statHandler.Health;
+    public float MaxHealth => statHandler.MaxHealth;
+
+    public float Exp { get; private set; }
+    public int Level => statHandler.Level;
+
+    public float RequireExp { get; private set; }
+    
 
     private void Awake()
     {
-        statHandler = GetComponent<StatHandler>();
         baseController = GetComponent<BaseController>();
         animationHandler = GetComponent<AnimationHandler>();
     }
@@ -25,7 +30,9 @@ public class ResourceController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        statHandler = baseController.statHandler;
         CurrentHealth = statHandler.Health;
+        RequireExp = 10;
         
     }
 
@@ -54,6 +61,7 @@ public class ResourceController : MonoBehaviour
         CurrentHealth = CurrentHealth > MaxHealth ? MaxHealth : CurrentHealth;
         CurrentHealth = CurrentHealth < 0 ? 0 : CurrentHealth;
         statHandler.Health = CurrentHealth;
+
         if(change < 0)
         {
             if(animationHandler != null)
@@ -69,6 +77,75 @@ public class ResourceController : MonoBehaviour
 
         return true;
     }
+
+    public void AddExp(int GetExp)
+    {
+        if (Level == 20) return;
+        else
+        {
+            Exp += GetExp;
+            while (Exp >= RequireExp)
+            {
+                if (Level == 20) break;
+                else LevelUP();
+
+            }
+        }
+    }
+
+    public void LevelUP()
+    {
+        
+        Exp -= RequireExp;
+        statHandler.Level++;
+        //Pin Level
+        if (statHandler.Level >= 2 && statHandler.Level <= 4)
+        {
+            RequireExp = 10 + 5 * (statHandler.Level - 1);
+            statHandler.Health = (float)(statHandler.Health + statHandler.Health * 0.1);
+            statHandler.Speed = (float)(statHandler.Speed + statHandler.Speed * 0.1);
+        }
+        else if (statHandler.Level == 5)
+        {
+            RequireExp = 40;
+            statHandler.Health = (float)(statHandler.Health + statHandler.Health * 0.1);
+            statHandler.Speed = (float)(statHandler.Speed + statHandler.Speed * 0.1);
+        }
+        else if (statHandler.Level >= 6 && statHandler.Level <= 8)
+        {
+            RequireExp = 40 + 10 * (statHandler.Level - 5);
+            statHandler.Health = (float)(statHandler.Health + statHandler.Health * 0.1);
+            statHandler.Speed = (float)(statHandler.Speed + statHandler.Speed * 0.1);
+        }
+        else if (statHandler.Level == 9)
+        {
+            RequireExp = 100;
+            statHandler.Health = (float)(statHandler.Health + statHandler.Health * 0.05);
+            statHandler.Speed = (float)(statHandler.Speed + statHandler.Speed * 0.05);
+        }
+        else if (statHandler.Level >= 10 && statHandler.Level <= 14)
+        {
+            RequireExp = 100 + 20 * (statHandler.Level - 9);
+            statHandler.Health = (float)(statHandler.Health + statHandler.Health * 0.05);
+            statHandler.Speed = (float)(statHandler.Speed + statHandler.Speed * 0.05);
+        }
+        else if (statHandler.Level >= 15 && statHandler.Level <= 19)
+        {
+            RequireExp = 200 + 40 * (statHandler.Level - 14);
+            statHandler.Health = (float)(statHandler.Health + statHandler.Health * 0.05);
+            statHandler.Speed = (float)(statHandler.Speed + statHandler.Speed * 0.05);
+        }
+        else if (Level == 20)
+        {
+            Exp = 0;
+            RequireExp = 1;
+            statHandler.Health = (float)(statHandler.Health + statHandler.Health * 0.05);
+            statHandler.Speed = (float)(statHandler.Speed + statHandler.Speed * 0.05);
+        }
+
+    }
+
+    
 
     private void Death()
     {

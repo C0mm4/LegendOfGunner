@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 45298337719273407}
   - component: {fileID: 1216557131800615769}
-  - component: {fileID: 841444410892637774}
   - component: {fileID: 3205021425747622630}
   - component: {fileID: 9085831942077965813}
   - component: {fileID: 90254037868830673}
@@ -51,21 +50,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaae188ef67cc6541ac6f24f2d96df0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hpBar: {fileID: 9184872345102165881, guid: e35da38c7da29b740aa1ecf807f8a5a9, type: 3}
---- !u!114 &841444410892637774
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 743498950123072358}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c56322f8862e0d8439c6d6890ad8ddb6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 10
-  speed: 3
 --- !u!114 &3205021425747622630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85,9 +69,11 @@ MonoBehaviour:
   weapons: []
   currentWeapon: {fileID: 0}
   baseWeapon: {fileID: 0}
-  weapon: {fileID: 0}
+  lastAttackTime: 0
+  targetTrans: {fileID: 0}
+  statHandler: {fileID: 11400000, guid: d380e96040091ea43bf4fcdd00696195, type: 2}
   view: {fileID: 1216557131800615769}
-  enemyModel: {fileID: 841444410892637774}
+  enemyModel: {fileID: 0}
 --- !u!114 &9085831942077965813
 MonoBehaviour:
   m_ObjectHideFlags: 0
