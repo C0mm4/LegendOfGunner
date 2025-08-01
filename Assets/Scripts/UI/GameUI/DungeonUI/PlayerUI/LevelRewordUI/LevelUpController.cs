@@ -9,6 +9,7 @@ public class LevelUpController : MonoBehaviour
 
     private void Start()
     {
+        UIManager.Instance.levelUPRewordUI = this.gameObject;
         model = transform.GetComponent<LevelUpModel>();
         view = GetComponent<LevelUpView>();
         gameObject.SetActive(false);

@@ -95,7 +95,7 @@ public class ResourceController : MonoBehaviour
 
     public void LevelUP()
     {
-        
+        UIManager.Instance.ActiveLevelUPUI();
         Exp -= RequireExp;
         statHandler.Level++;
         //Pin Level
