@@ -13,7 +13,6 @@ public class Boss1Controller : EnemyController
         base.Init();
         view.SetActiveUI(enemyModel.name);
         InvokeRepeating("spawnEnemy", 1, 5);
-        Debug.Log("tq");
     }
 
     protected override void OnDisable()
@@ -33,7 +32,15 @@ public class Boss1Controller : EnemyController
     {
         base.Damaged();
     }
-
+    public override void Death()
+    {
+        base.Death();
+        int len = EnemyManager.Instance.GetEnemyListSize();
+        for (int i = 0; i < len; i++)
+        {
+            EnemyManager.Instance.EnemyList[0].GetComponent<EnemyController>().Death();
+        }
+    }
     void spawnEnemy()
     {
         for (int i = 0; i < 5; i++)

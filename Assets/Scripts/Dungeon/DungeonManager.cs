@@ -35,18 +35,21 @@ public class DungeonManager : MonoBehaviour
 
     [SerializeField]
     public int stage;
-
+    bool isClearGame = false;
     [SerializeField]
     public int currentWaveInStage;
 
     [SerializeField]
     public int targetToBossWave;
+    private bool isBossStage = false;
 
     void Start()
     {
         targetToBossWave = Random.Range(3, 6);
         stage = 1;
         StartDungeon();
+        isBossStage = false;
+        isClearGame = false;
     }
 
     void Update()
@@ -74,15 +77,12 @@ public class DungeonManager : MonoBehaviour
         portalObject.SetActive(false);
         lastSpawnT = 0;
         wave++;
-
-        currentWaveInStage++;
-
         GameManager.gameState = GameState.Load;
         fadeSprite.gameObject.SetActive(true);
         fadeSprite.DOFade(1, 1f).OnComplete(() =>
         {
             // 여기서 UI 갱신
-            if(waveUIText != null)
+            if (waveUIText != null)
                 waveUIText.SetText(wave.ToString());
 
 
@@ -94,24 +94,22 @@ public class DungeonManager : MonoBehaviour
                     Destroy(prevDungoneWallObj);
                 }
                 // 현재 웨이브가 보스까지의 웨이브일 시 보스방 생성 및 초기화
-                if(currentWaveInStage == targetToBossWave)
+                if (currentWaveInStage == targetToBossWave - 1)
                 {
-                    currentWaveInStage = 0;
-                    stage++;
+                    isBossStage = true;
                 }
                 else
                 {
                     int selectRandomDungeon = Random.Range(0, dungeonFieldObjects.Length);
                     prevDungeonFieldObj = Instantiate(dungeonFields[selectRandomDungeon], Vector3.zero, Quaternion.identity, transform);
                     prevDungoneWallObj = Instantiate(dungeonFieldObjects[selectRandomDungeon], Vector3.zero, Quaternion.identity, transform);
+                    isBossStage = false;
                 }
-
             }
             else
             {
                 Debug.Log("�����ʵ尡 �����ϴ�");
             }
-
             fadeSprite.DOFade(0, 1f).OnComplete(() =>
             {
                 isClear = false;
@@ -121,54 +119,75 @@ public class DungeonManager : MonoBehaviour
             });
 
         });
-
         //EnemyManager.Instance.AddBoss(1, Vector3.zero); ���� �׽�Ʈ �ڵ�
-
     }
-/*
-    private void WaveLogic()
-    {
-        if (EnemyManager.Instance.GetEnemyListSize() <= 0)
+    /*
+        private void WaveLogic()
         {
-            if (wave == maxWave)
+            if (EnemyManager.Instance.GetEnemyListSize() <= 0)
             {
-                isClear = true;
-                portalObject.SetActive(true);
-            }
-            else
-            {
-                for (int i = 0; i < ememySpawnCount; i++)
+                if (wave == maxWave)
                 {
-                    StartCoroutine(SpawnEnemy(new Vector2(0, 0)));
-                    EnemyManager.eEnemyType randomEnemyType = (EnemyManager.eEnemyType)Random.Range((int)EnemyManager.eEnemyType.eTemp, (int)EnemyManager.eEnemyType.eEnd);
-                    EnemyManager.Instance.AddEnemy(randomEnemyType, Vector3.zero);
+                    isClear = true;
+                    portalObject.SetActive(true);
                 }
-                wave++;
-                waveUIText.SetText(wave.ToString());
+                else
+                {
+                    for (int i = 0; i < ememySpawnCount; i++)
+                    {
+                        StartCoroutine(SpawnEnemy(new Vector2(0, 0)));
+                        EnemyManager.eEnemyType randomEnemyType = (EnemyManager.eEnemyType)Random.Range((int)EnemyManager.eEnemyType.eTemp, (int)EnemyManager.eEnemyType.eEnd);
+                        EnemyManager.Instance.AddEnemy(randomEnemyType, Vector3.zero);
+                    }
+                    wave++;
+                    waveUIText.SetText(wave.ToString());
+                }
             }
         }
-    }
-*/
+    */
     private void CreateWave()
     {
-        for (int i = 0; i < ememySpawnCount; i++)
+        currentWaveInStage++;
+        if (isBossStage == true)
         {
-            
-            StartCoroutine(SpawnEnemy(GetRandomPos()));
-
+            StartCoroutine(SpawnBoss(GetRandomPos()));
         }
-        Debug.Log(EnemyManager.Instance.GetEnemyListSize());
+        else
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                StartCoroutine(SpawnEnemy(GetRandomPos()));
+            }
+        }
+        //Debug.Log(EnemyManager.Instance.GetEnemyListSize());
+        //
     }
 
     private void CheckClear()
     {
-        if(EnemyManager.Instance.GetEnemyListSize() <= 0)
+        if (EnemyManager.Instance.GetEnemyListSize() <= 0)
         {
             if (!isClear)
             {
                 Debug.Log($"{EnemyManager.Instance.GetEnemyListSize()} DungeonClear");
-                isClear = true;
-                portalObject.SetActive(true);
+                if (stage == 3 && currentWaveInStage == targetToBossWave)
+                {
+                    isClearGame = true;
+                }
+                else
+                {
+                    isClear = true;
+                    portalObject.SetActive(true);
+                    if (isBossStage == true)
+                    {
+                        currentWaveInStage = 0;
+                        stage++;
+                    }
+                }
+                if (isClearGame)
+                {
+                    UIManager.Instance.ActiveGameEndUI(true);
+                }
             }
         }
     }
@@ -181,7 +200,13 @@ public class DungeonManager : MonoBehaviour
         GameObject go = Instantiate(spawnCirclePref, pos, Quaternion.identity);
         go.GetComponent<SpawnCircle>().SetEnemyData(randomEnemyType);
     }
-
+    private IEnumerator SpawnBoss(Vector2 pos)
+    {
+        yield return new WaitForSeconds(0.2f);
+        Debug.Log("test");
+        GameObject go = Instantiate(spawnCirclePref, pos, Quaternion.identity);
+        go.GetComponent<SpawnCircle>().SetBossData(1);
+    }
     private Vector2 GetRandomPos()
     {
         int randIndex = Random.Range(0, spawnRects.Count);
@@ -193,7 +218,7 @@ public class DungeonManager : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        foreach(Rect rect in spawnRects)
+        foreach (Rect rect in spawnRects)
         {
             float centerX, centerY;
             centerX = (rect.xMin + rect.xMax) / 2;

@@ -102,10 +102,6 @@ public class BaseController : MonoBehaviour
                 knockbackDuration -= Time.deltaTime;
             }
         }
-        else
-        {
-            _rigidbody.velocity = Vector2.zero;
-        }
     }
 
     protected virtual void HandleAction()

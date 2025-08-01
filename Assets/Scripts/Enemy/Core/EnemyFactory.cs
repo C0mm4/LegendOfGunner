@@ -33,7 +33,7 @@ public class EnemyFactory : MonoBehaviour
         {
             case 1:
                 obj = Instantiate(boss1Object, spawnPos, Quaternion.identity);
-                obj.GetComponent<EnemyModel>().SettingStatus(10, 1, 1, "TaewoongTestBoss");
+                obj.GetComponent<EnemyModel>().SettingStatus(3, 1, 1, "TaewoongTestBoss");
                 obj.GetComponent<EnemyController>().Init();
                 break;
         }

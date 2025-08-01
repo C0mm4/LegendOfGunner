@@ -16,7 +16,7 @@ public class EnemyView : MonoBehaviour
     {
         hpBar = GameObject.Find("BossHpBar").GetComponent<RectTransform>();
         nameText = GameObject.Find("BossNameText").GetComponent<TextMeshProUGUI>();
-        //nameText.gameObject.SetActive(true);
+        nameText.gameObject.SetActive(true);
         nameText.text = name;
         hpBar.gameObject.SetActive(true);
     }
