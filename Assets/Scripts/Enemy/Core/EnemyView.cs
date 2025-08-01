@@ -9,9 +9,7 @@ public class EnemyView : MonoBehaviour
 {
     protected RectTransform hpBar;
     protected TextMeshProUGUI nameText;
-    private void Start()
-    {
-    }
+    protected Animator animator;
     virtual public void SetActiveUI(string name)
     {
         hpBar = GameObject.Find("BossHpBar").GetComponent<RectTransform>();
@@ -33,5 +31,14 @@ public class EnemyView : MonoBehaviour
     {
         hpBar?.gameObject.SetActive(false);
         nameText?.gameObject.SetActive(false);
+    }
+
+    virtual public void HitAnimaion()
+    {
+
+    }
+
+    virtual public void AttackAnimation(int idx)
+    {
     }
 }
