@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -993070928048802997}
   - component: {fileID: -6846542588729338608}
   m_Layer: 7
-  m_Name: tempEnemy
+  m_Name: Enemy_1_AlarmBot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63,12 +63,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c56322f8862e0d8439c6d6890ad8ddb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
-  maxHealth: 0
-  speed: 3
+  health: 5
+  maxHealth: 5
+  speed: 1
   level: 1
-  exp: 5
-  name: none
+  exp: 3
+  name: Alarm Bot
 --- !u!114 &1806510559689243699
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85,7 +85,7 @@ MonoBehaviour:
   weaponPivot: {fileID: 4815752749644669841}
   movementDirection: {x: 0, y: 0}
   weaponPref:
-  - {fileID: 7293436377208475634, guid: 183719bbd82856a4e8d8b1dcf9ff4e70, type: 3}
+  - {fileID: 8178576655273856303, guid: eb6af9042c2348845969cc6e5ef540f4, type: 3}
   weapons: []
   currentWeapon: {fileID: 0}
   baseWeapon: {fileID: 0}

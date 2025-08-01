@@ -1680,8 +1680,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expGauge: {fileID: 1843186809}
-  maxEXP: 200
-  nowEXP: 1
+  RequireExp: 0
+  CurrentExp: 0
 --- !u!1001 &629042413
 PrefabInstance:
   m_ObjectHideFlags: 0

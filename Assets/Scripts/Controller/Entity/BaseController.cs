@@ -31,15 +31,16 @@ public class BaseController : MonoBehaviour
     [SerializeField]
     private BaseWeaponHandler baseWeapon;
 
+    [SerializeField]
     private float lastAttackTime = 0f;
 
     private Vector3 weaponPivotPos;
     protected AnimationHandler animationHandler;
     protected StatHandler statHandler;
 
-    [SerializeField] private BaseWeaponHandler weapon;
     protected bool isAttackInput = true;
 
+    [SerializeField]
     protected Transform targetTrans;
 
 
@@ -156,6 +157,7 @@ public class BaseController : MonoBehaviour
     {
         if (currentWeapon == null) return;
         if (targetTrans == null) return;
+        if (lookDirection.magnitude <= 0.5f) return;
         if(lastAttackTime >= currentWeapon.Delay && Vector2.Distance(transform.position, targetTrans.position) <= currentWeapon.AttackRange)
         {
             currentWeapon?.Attack();
