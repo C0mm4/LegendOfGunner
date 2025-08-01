@@ -1,8 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StatHandler : MonoBehaviour
+[CreateAssetMenu(fileName = "StatusData", menuName = "Scriptable Object/Status Data")]
+[Serializable]
+public class StatHandler : ScriptableObject
 {
     [SerializeField] private float health = 10;
     public float Health
@@ -14,7 +17,7 @@ public class StatHandler : MonoBehaviour
     [SerializeField]  private float maxHealth;
     public float MaxHealth
     {
-        get => health;
+        get => maxHealth;
         set => maxHealth = Mathf.Clamp(value, 0, 100);
     }
 
