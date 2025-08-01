@@ -149,7 +149,6 @@ GameObject:
   - component: {fileID: 6148254073026196644}
   - component: {fileID: 6025468895803324048}
   - component: {fileID: 1257065689667460619}
-  - component: {fileID: 138016651849909073}
   - component: {fileID: -3895378429667629893}
   - component: {fileID: -1605746817342339694}
   m_Layer: 8
@@ -261,23 +260,7 @@ MonoBehaviour:
   baseWeapon: {fileID: 0}
   lastAttackTime: 0
   targetTrans: {fileID: 0}
---- !u!114 &138016651849909073
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7950050956791840098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a08b6d5489b4a478488c09092333cdc4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 10
-  maxHealth: 0
-  speed: 3
-  level: 1
-  exp: 5
+  statHandler: {fileID: 11400000, guid: ee79abaae41b21c4f9167c2f0ced804f, type: 2}
 --- !u!114 &-3895378429667629893
 MonoBehaviour:
   m_ObjectHideFlags: 0

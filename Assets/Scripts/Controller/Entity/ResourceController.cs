@@ -13,7 +13,7 @@ public class ResourceController : MonoBehaviour
     private float timeSinceLastChange = float.MaxValue;
 
     public float CurrentHealth { get; private set; }
-    public float MaxHealth => statHandler.Health;
+    public float MaxHealth => statHandler.MaxHealth;
 
     public float Exp { get; private set; }
     public int Level => statHandler.Level;
@@ -23,7 +23,6 @@ public class ResourceController : MonoBehaviour
 
     private void Awake()
     {
-        statHandler = GetComponent<StatHandler>();
         baseController = GetComponent<BaseController>();
         animationHandler = GetComponent<AnimationHandler>();
     }
@@ -31,6 +30,7 @@ public class ResourceController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        statHandler = baseController.statHandler;
         CurrentHealth = statHandler.Health;
         RequireExp = 10;
         
@@ -60,7 +60,8 @@ public class ResourceController : MonoBehaviour
         CurrentHealth += change;
         CurrentHealth = CurrentHealth > MaxHealth ? MaxHealth : CurrentHealth;
         CurrentHealth = CurrentHealth < 0 ? 0 : CurrentHealth;
-        
+        statHandler.Health = CurrentHealth;
+
         if(change < 0)
         {
             if(animationHandler != null)

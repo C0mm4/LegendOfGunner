@@ -20,6 +20,7 @@ public class EnemyController : BaseController
         base.Awake();
         playerObject = GameObject.FindObjectOfType<PlayerController>().gameObject;
         targetTrans = playerObject.transform;
+        enemyModel = statHandler as EnemyModel;
     }
 
     public virtual void Init()
@@ -67,10 +68,11 @@ public class EnemyController : BaseController
 
     public virtual void Damaged()
     {
+        Debug.Log($"Get Damaged HP : {statHandler.Health}");
         if(view != null)
         {
 
-            view.SetHpBar((int)enemyModel.Health, (int)enemyModel.Health);
+//            view.SetHpBar((int)enemyModel.Health, (int)enemyModel.Health);
         }
     }
 }

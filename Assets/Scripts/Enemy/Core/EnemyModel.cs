@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "Enemy Data", menuName = "Scriptable Object/Enemy Status Data")]
 public class EnemyModel : StatHandler
 {/*
     public class EnemyStatus : StatHandler
