@@ -68,7 +68,7 @@ public class DungeonManager : MonoBehaviour
         fadeSprite.gameObject.SetActive(true);
         fadeSprite.DOFade(1, 1f).OnComplete(() =>
         {
-            if(waveUIText != null)
+            if (waveUIText != null)
                 waveUIText.SetText(wave.ToString());
             leftToBossWave--;
             isClear = false;
@@ -91,7 +91,7 @@ public class DungeonManager : MonoBehaviour
                     prevDungeonFieldObj = Instantiate(dungeonFields[selectRandomDungeon], Vector3.zero, Quaternion.identity, transform);
                     prevDungoneWallObj = Instantiate(dungeonFieldObjects[selectRandomDungeon], Vector3.zero, Quaternion.identity, transform);
                 }
-
+                portalObject.SetActive(false);
             }
             else
             {
@@ -107,52 +107,50 @@ public class DungeonManager : MonoBehaviour
             });
 
         });
-
         //EnemyManager.Instance.AddBoss(1, Vector3.zero); ���� �׽�Ʈ �ڵ�
-
     }
-/*
-    private void WaveLogic()
-    {
-        if (EnemyManager.Instance.GetEnemyListSize() <= 0)
+    /*
+        private void WaveLogic()
         {
-            if (wave == maxWave)
+            if (EnemyManager.Instance.GetEnemyListSize() <= 0)
             {
-                isClear = true;
-                portalObject.SetActive(true);
-            }
-            else
-            {
-                for (int i = 0; i < ememySpawnCount; i++)
+                if (wave == maxWave)
                 {
-                    StartCoroutine(SpawnEnemy(new Vector2(0, 0)));
-                    EnemyManager.eEnemyType randomEnemyType = (EnemyManager.eEnemyType)Random.Range((int)EnemyManager.eEnemyType.eTemp, (int)EnemyManager.eEnemyType.eEnd);
-                    EnemyManager.Instance.AddEnemy(randomEnemyType, Vector3.zero);
+                    isClear = true;
+                    portalObject.SetActive(true);
                 }
-                wave++;
-                waveUIText.SetText(wave.ToString());
+                else
+                {
+                    for (int i = 0; i < ememySpawnCount; i++)
+                    {
+                        StartCoroutine(SpawnEnemy(new Vector2(0, 0)));
+                        EnemyManager.eEnemyType randomEnemyType = (EnemyManager.eEnemyType)Random.Range((int)EnemyManager.eEnemyType.eTemp, (int)EnemyManager.eEnemyType.eEnd);
+                        EnemyManager.Instance.AddEnemy(randomEnemyType, Vector3.zero);
+                    }
+                    wave++;
+                    waveUIText.SetText(wave.ToString());
+                }
             }
         }
-    }
-*/
+    */
     private void CreateWave()
     {
-        for (int i = 0; i < ememySpawnCount; i++)
-        {
-            
-            StartCoroutine(SpawnEnemy(GetRandomPos()));
+        //for (int i = 0; i < ememySpawnCount; i++)
+        //{
+        //    StartCoroutine(SpawnEnemy(GetRandomPos()));
+        //}
 
-        }
-        Debug.Log(EnemyManager.Instance.GetEnemyListSize());
+        //Debug.Log(EnemyManager.Instance.GetEnemyListSize());
+        StartCoroutine(SpawnBoss(GetRandomPos()));
     }
 
     private void CheckClear()
     {
-        if(EnemyManager.Instance.GetEnemyListSize() <= 0)
+        if (EnemyManager.Instance.GetEnemyListSize() <= 0)
         {
             if (!isClear)
             {
-                Debug.Log($"{EnemyManager.Instance.GetEnemyListSize()} DungeonClear");
+                //Debug.Log($"{EnemyManager.Instance.GetEnemyListSize()} DungeonClear");
                 isClear = true;
                 portalObject.SetActive(true);
             }
@@ -167,7 +165,13 @@ public class DungeonManager : MonoBehaviour
         GameObject go = Instantiate(spawnCirclePref, pos, Quaternion.identity);
         go.GetComponent<SpawnCircle>().SetEnemyData(randomEnemyType);
     }
-
+    private IEnumerator SpawnBoss(Vector2 pos)
+    {
+        yield return new WaitForSeconds(0.2f);
+        Debug.Log("test");
+        GameObject go = Instantiate(spawnCirclePref, pos, Quaternion.identity);
+        go.GetComponent<SpawnCircle>().SetBossData(1);
+    }
     private Vector2 GetRandomPos()
     {
         int randIndex = Random.Range(0, spawnRects.Count);
@@ -179,7 +183,7 @@ public class DungeonManager : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        foreach(Rect rect in spawnRects)
+        foreach (Rect rect in spawnRects)
         {
             float centerX, centerY;
             centerX = (rect.xMin + rect.xMax) / 2;

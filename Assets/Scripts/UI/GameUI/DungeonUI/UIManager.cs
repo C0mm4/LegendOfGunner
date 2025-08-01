@@ -12,10 +12,10 @@ public class UIManager : MonoBehaviour
 
     public void Awake()
     {
-        if (Instance == null && Instance != this)
-        {
-            Destroy(gameObject);
-        }
+        //if (Instance == null && Instance != this)
+        //{
+        //    Destroy(gameObject);
+        //}
         Instance = this;
 
         pauseUI.SetActive(false);

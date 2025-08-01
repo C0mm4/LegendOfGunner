@@ -915,6 +915,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 611536078291543040, guid: be652c724a567894582914ceb2c3f571, type: 3}
+      propertyPath: enemyFactory
+      value: 
+      objectReference: {fileID: 428357106}
     - target: {fileID: 5869842986404509595, guid: be652c724a567894582914ceb2c3f571, type: 3}
       propertyPath: m_Name
       value: GameManager
@@ -1159,6 +1163,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1474008024}
   m_CullTransparentMesh: 1
+--- !u!1 &1773163050 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8857794901613253306, guid: 44292dffb3dbdf2459e7040ed4ddcb6d, type: 3}
+  m_PrefabInstance: {fileID: 1781023117}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1781023117
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1175,9 +1184,37 @@ PrefabInstance:
       propertyPath: waveUIText
       value: 
       objectReference: {fileID: 1474008026}
+    - target: {fileID: 1161066045544944736, guid: 44292dffb3dbdf2459e7040ed4ddcb6d, type: 3}
+      propertyPath: portalObject
+      value: 
+      objectReference: {fileID: 1773163050}
+    - target: {fileID: 1161066045544944736, guid: 44292dffb3dbdf2459e7040ed4ddcb6d, type: 3}
+      propertyPath: spawnRects.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1161066045544944736, guid: 44292dffb3dbdf2459e7040ed4ddcb6d, type: 3}
+      propertyPath: spawnRects.Array.data[0].x
+      value: -7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1161066045544944736, guid: 44292dffb3dbdf2459e7040ed4ddcb6d, type: 3}
+      propertyPath: spawnRects.Array.data[0].y
+      value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1161066045544944736, guid: 44292dffb3dbdf2459e7040ed4ddcb6d, type: 3}
+      propertyPath: spawnRects.Array.data[0].width
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1161066045544944736, guid: 44292dffb3dbdf2459e7040ed4ddcb6d, type: 3}
+      propertyPath: spawnRects.Array.data[0].height
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1577692912698780128, guid: 44292dffb3dbdf2459e7040ed4ddcb6d, type: 3}
       propertyPath: m_Name
       value: Dungeon4 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8857794901613253306, guid: 44292dffb3dbdf2459e7040ed4ddcb6d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9007626458729701978, guid: 44292dffb3dbdf2459e7040ed4ddcb6d, type: 3}
       propertyPath: m_LocalPosition.x
