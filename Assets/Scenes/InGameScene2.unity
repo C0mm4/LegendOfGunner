@@ -2277,6 +2277,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseUI: {fileID: 542851232}
   pauseMenu: {fileID: 1480776197}
+  levelUPRewordUI: {fileID: 0}
   StatusUI: {fileID: 687913887}
   gameEndUI: {fileID: 0}
   pause: 0
@@ -2309,7 +2310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19335de043835db4ca36f60703bcb30c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tempObject: {fileID: 743498950123072358, guid: ea44c33c9517fef4398292ca34a6cee7, type: 3}
+  tempObject: {fileID: 743498950123072358, guid: 2a5b9367b17638245a50f534c8d14b61, type: 3}
   boss1Object: {fileID: 743498950123072358, guid: e12babbd8f75721429dca76383a11934, type: 3}
 --- !u!4 &1162858738
 Transform:

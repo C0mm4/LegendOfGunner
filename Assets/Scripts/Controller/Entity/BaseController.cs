@@ -54,6 +54,7 @@ public class BaseController : MonoBehaviour
         CreateWeapon();
         animationHandler = GetComponent<AnimationHandler>();
         statHandler = Instantiate(statHandler);
+        characterRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
     }
 
     protected virtual void CreateWeapon()
