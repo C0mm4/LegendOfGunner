@@ -21,7 +21,7 @@ public class StatusUIManager : MonoBehaviour
 
     private void Update()
     {
-        HP.text = $"HP : {resourceController.CurrentHealth}  /  {resourceController.MaxHealth}";
+        HP.text = $"HP : {resourceController.CurrentHealth}  /  {Mathf.Round(resourceController.MaxHealth)}";
         Exp.text = $"Exp : {resourceController.Exp}  /  {resourceController.RequireExp}";
         Level.text = $"Level : {resourceController.Level}";
     }
