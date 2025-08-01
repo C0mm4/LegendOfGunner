@@ -85,11 +85,12 @@ MonoBehaviour:
   weaponPivot: {fileID: 4815752749644669841}
   movementDirection: {x: 0, y: 0}
   weaponPref:
-  - {fileID: 7293436377208475634, guid: 183719bbd82856a4e8d8b1dcf9ff4e70, type: 3}
+  - {fileID: 8178576655273856303, guid: eb6af9042c2348845969cc6e5ef540f4, type: 3}
   weapons: []
   currentWeapon: {fileID: 0}
   baseWeapon: {fileID: 0}
-  weapon: {fileID: 0}
+  lastAttackTime: 0
+  targetTrans: {fileID: 0}
   view: {fileID: 2413428407577512459}
   enemyModel: {fileID: 841444410892637774}
 --- !u!114 &9085831942077965813

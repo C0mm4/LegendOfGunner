@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2812050069110561364
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2037861509463839872}
+  m_Layer: 0
+  m_Name: BulletPivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2037861509463839872
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2812050069110561364}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.522, y: 0.14, z: -0.0045035956}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8066525298462786922}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3358334232563112796
 GameObject:
   m_ObjectHideFlags: 0
@@ -26,13 +57,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3358334232563112796}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.877689, w: 0.4792308}
-  m_LocalPosition: {x: 0, y: 0.00000004888917, z: 0}
-  m_LocalScale: {x: 0.06, y: 0.06, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8066525298462786922}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 122.73}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1926140553264005392
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -74,7 +105,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 120
-  m_Sprite: {fileID: 21300000, guid: e69cacc20f61d5a43b0e615a75e49756, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6d0bcb00a713ad6418700cb4cd697ba0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -115,9 +146,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8066525298462786922}
-  - component: {fileID: 8178576655273856303}
+  - component: {fileID: 7293436377208475634}
   m_Layer: 0
-  m_Name: E_Pistol_EquipWeapon 2
+  m_Name: E_SR_EquipWeapon 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -133,13 +164,14 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.12, y: 0.12, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 586824012006341258}
+  - {fileID: 2037861509463839872}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8178576655273856303
+--- !u!114 &7293436377208475634
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -148,19 +180,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 6461628191026741596}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a972fc85bcd1294ebb947a9266fb98c, type: 3}
+  m_Script: {fileID: 11500000, guid: c5a97c0bea099aa439bd07ac3e05b106, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   delay: 1
-  power: 1
-  speed: 1
-  attackRange: 1
+  power: 7
+  speed: 15
+  attackRange: 10
   currentAmmo: -1
   maxAmmo: -1
   target:
     serializedVersion: 2
     m_Bits: 256
-  spriteRenderer: {fileID: 1926140553264005392}
+  spriteRenderer: {fileID: 0}
   coolTime: 0
   isCooltime: 0
-  collideBoxSize: {x: 1, y: 1}
+  projectileSpawn: {fileID: 2037861509463839872}
+  bullet: {fileID: 8353363161459075883, guid: e90c6083f841d9944996e35759edd723, type: 3}
+  bulletSize: 1
+  duration: 2
+  spread: 5
+  numProjectilePerShot: 1
+  multiProjectileAngle: 0
+  projectileColor: {r: 1, g: 0.36320752, b: 0.36320752, a: 1}
