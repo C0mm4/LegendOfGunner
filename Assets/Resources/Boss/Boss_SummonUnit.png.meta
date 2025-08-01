@@ -124,8 +124,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 41cf68a896294fa4f81c40da53753c22
-      internalID: -1122646533
+      spriteID: b0b6306e34b0e0e42bbf9a9302f58a93
+      internalID: -1697987914
       vertices: []
       indices: 
       edges: []
@@ -145,8 +145,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 26950479cfa8a42469fda672a54a563f
-      internalID: 197935778
+      spriteID: c00ebc7b0ba2f1e499c736dcd01edb21
+      internalID: 125918956
       vertices: []
       indices: 
       edges: []
@@ -166,8 +166,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 96595e50f4969a048a517eae6b724b1c
-      internalID: -1511495292
+      spriteID: 3ea332ca320c58846976659cb178aca1
+      internalID: 1518924609
       vertices: []
       indices: 
       edges: []
@@ -187,8 +187,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 344e4184dc5b04f4e89a03ccad7b8034
-      internalID: -1596938394
+      spriteID: 48f9307d4e370bf4bbf3f215544266cb
+      internalID: -186302358
       vertices: []
       indices: 
       edges: []
@@ -208,8 +208,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ac6ad9b760d81b84aa6db505a6440fe0
-      internalID: 1501156652
+      spriteID: d558d29572ee9e64ea170c6c4af136ed
+      internalID: -203845204
       vertices: []
       indices: 
       edges: []
@@ -225,11 +225,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Boss_SummonUnit_0: -1122646533
-      Boss_SummonUnit_1: 197935778
-      Boss_SummonUnit_2: -1511495292
-      Boss_SummonUnit_3: -1596938394
-      Boss_SummonUnit_4: 1501156652
+      Boss_SummonUnit_0: -1697987914
+      Boss_SummonUnit_1: 125918956
+      Boss_SummonUnit_2: 1518924609
+      Boss_SummonUnit_3: -186302358
+      Boss_SummonUnit_4: -203845204
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
