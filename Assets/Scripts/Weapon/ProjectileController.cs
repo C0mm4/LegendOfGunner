@@ -61,16 +61,7 @@ public class ProjectileController : MonoBehaviour
             if (resource != null)
             {
                 resource.ChangeHealth(-weaponHandler.Power);
-                // �˹�?
-/*                if (weaponHandler.IsOnKnockBack)
-                {
-                    BaseController baseCon = collision.GetComponent<BaseController>();
 
-                    if (baseCon != null)
-                    {
-                        baseCon.ApplyKnockback(transform, weaponHandler.KnockBackPower, weaponHandler.KnockBackTime);
-                    }
-                }*/
             }
             collision.GetComponent<EnemyController>()?.Damaged();
 

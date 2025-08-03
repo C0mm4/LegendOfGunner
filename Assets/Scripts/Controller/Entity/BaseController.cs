@@ -13,6 +13,7 @@ public class BaseController : MonoBehaviour
     protected Vector2 movementDirection = Vector2.zero;
     public Vector2 MovementDirection { get { return movementDirection; } }
 
+    [SerializeField]
     protected Vector2 lookDirection = Vector2.zero;
     public Vector2 LookDirection { get { return lookDirection; } }
 
@@ -170,22 +171,32 @@ public class BaseController : MonoBehaviour
 
     private void AttackHandler()
     {
-        if (currentWeapon == null) return;
-        if (targetTrans == null) return;
-        if (lookDirection.magnitude <= 0.5f) return;
-        if(lastAttackTime >= currentWeapon.Delay && Vector2.Distance(transform.position, targetTrans.position) <= currentWeapon.AttackRange)
+        if (currentWeapon == null)
+        {
+            Debug.Log("Weapon Null");
+            return;
+        }
+        if (targetTrans == null) 
+        {
+            return; 
+        }
+        if (lookDirection.magnitude <= 0.5f)
+        {
+            Debug.Log("look Direction Is Null");
+            return;
+        }
+        if (lastAttackTime >= currentWeapon.Delay && Vector2.Distance(transform.position, targetTrans.position) <= currentWeapon.AttackRange)
         {
             currentWeapon?.Attack();
             lastAttackTime = 0;
             // 현재 무기 탄환 다 쓰면 기본 무기 장착
             // 기본무기는 MaxAmmo -1로 두어 예외처리
-            if(currentWeapon?.MaxAmmo != -1 && currentWeapon?.CurrentAmmo <= 0)
+            if (currentWeapon?.MaxAmmo != -1 && currentWeapon?.CurrentAmmo <= 0)
             {
                 currentWeapon.SetCooltime();
                 GameObject go = Instantiate(currentWeapon.gameObject, currentWeapon.transform.position, currentWeapon.transform.rotation);
                 Destroy(go.GetComponent<BaseWeaponHandler>());
                 go.AddComponent<WeaponDust>();
-
                 EquipBaseWeapon();
             }
         }
