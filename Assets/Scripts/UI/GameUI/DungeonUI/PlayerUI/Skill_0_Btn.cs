@@ -7,11 +7,8 @@ using System;
 public class Skill_0_Btn : MonoBehaviour
 {
     PlayerController playerController;
-    public float maxCoolDown; // ��Ÿ�� �޾ƿ;���
     public Image coolDownIcon;
     public TextMeshProUGUI coolDownText;
-    float coolDown;
-    bool isCoolDown = false; // true - ��ų ��� �Ұ�, false - ��ų ��� ����
 
     private void Awake()
     {
