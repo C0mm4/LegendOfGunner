@@ -1,0 +1,86 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "Attribute", menuName = "Attribute/new Attribute")]
+public class Attribute : ScriptableObject
+{
+    [SerializeField]
+    private string name;
+    public string GetName {  get { return name; } }
+
+    [SerializeField] 
+    private string description;
+    public string GetDesc {  get { return description; } }
+
+    [SerializeField]
+    private int maxLevel = 1;
+    public int MaxLevvel {  get { return maxLevel; } }
+
+    [SerializeField]
+    private int currentLevel = 0;
+    public int CurrentLevel {  get { return currentLevel; } }
+    
+    public enum AttributeType
+    {
+        Status, ChangeBullet, AddBullet, AddAction
+    }
+
+    [SerializeField]
+    private AttributeType attributeType;
+    public AttributeType GetAttributeType {  get { return attributeType; } }
+
+    public enum WeaponType
+    {
+        HG, AR, SG, SR
+    }
+
+    [SerializeField]
+    private WeaponType weaponType;
+    public WeaponType GetWeaponType { get { return weaponType; } }
+
+    protected BaseWeaponHandler applyTargetWeapon;
+
+    public virtual void ApplyAttribute()
+    {
+        currentLevel++;
+        applyTargetWeapon = SetTargetWeapon();
+        switch (attributeType)
+        {
+            case AttributeType.Status:
+                AddStatus();
+                break;
+            case AttributeType.ChangeBullet:
+                ChangeBullet();
+                break;
+            case AttributeType.AddBullet:
+                AddBullet();
+                break;
+            case AttributeType.AddAction:
+                AddAction();
+                break;
+        }
+    }
+
+    private BaseWeaponHandler SetTargetWeapon()
+    {
+        switch (weaponType)
+        {
+            case WeaponType.HG:
+                return GameManager.PlayerInstance.GetWeapon(0);
+            case WeaponType.AR:
+                return GameManager.PlayerInstance.GetWeapon(1);
+            case WeaponType.SG:
+                return GameManager.PlayerInstance.GetWeapon(2);
+            case WeaponType.SR:
+                return GameManager.PlayerInstance.GetWeapon(3);
+
+        }
+        return null;
+    }
+
+    protected virtual void AddStatus() { }
+    protected virtual void ChangeBullet() { }
+    protected virtual void AddAction() { }
+    protected virtual void AddBullet() { }
+}

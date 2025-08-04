@@ -12,17 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20a0b7348951fff48a5069a26b84e8e6, type: 3}
   m_Name: Player_SR
   m_EditorClassIdentifier: 
-  delay: 1
+  delay: 3
   power: 15
   speed: 8
   attackRange: 10
   currentAmmo: 1
-  maxAmmo: 1
+  maxAmmo: 10
   coolTime: 90
   attackSFX: {fileID: 8300000, guid: 929fd214252d7034d93c9463bf63e091, type: 3}
   bullet: {fileID: 8353363161459075883, guid: e90c6083f841d9944996e35759edd723, type: 3}
   bulletSize: 1
-  duration: 0
+  duration: 4
   spread: 10
   numProjectilePerShot: 1
   multiProjectileAngle: 0

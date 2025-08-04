@@ -27,11 +27,12 @@ public class UIManager : MonoSingleton<UIManager>
         }
     }
 
-    public void ActiveLevelUPUI()
+    public async void ActiveLevelUPUI()
     {
         if(levelUPRewordUI != null)
         {
             levelUPRewordUI.SetActive(true);
+
         }
     }
 }

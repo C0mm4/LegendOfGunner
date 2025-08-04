@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public class BaseController : MonoBehaviour
@@ -25,6 +26,7 @@ public class BaseController : MonoBehaviour
 
     [SerializeField]
     protected List<BaseWeaponHandler> weapons;
+    public BaseWeaponHandler GetWeapon(int index) => weapons[index];
 
     [SerializeField]
     private BaseWeaponHandler currentWeapon;
@@ -258,4 +260,6 @@ public class BaseController : MonoBehaviour
     {
         EquipWeapon(baseWeapon);
     }
+
+    
 }

@@ -5,9 +5,9 @@ using UnityEngine;
 public class RangeWeaponHandler : BaseWeaponHandler
 {
     [Header("Ranged Attack Data")] 
-    RangeWeaponData rangeData;
+    protected RangeWeaponData rangeData;
     [SerializeField]
-    private Transform projectileSpawn;
+    protected Transform projectileSpawn;
 
     public GameObject Bullet {  get { return rangeData.Bullet; } }
 
@@ -23,13 +23,15 @@ public class RangeWeaponHandler : BaseWeaponHandler
 
     public Color ProjectileColor { get { return rangeData.ProjectileColor; } }
     
-    protected void Start()
+    protected override void Start()
     {
+        base.Start();
         rangeData = data as RangeWeaponData;
     }
 
     public override void Attack()
     {
+        if (!gameObject.activeSelf) return;
         base.Attack();
 
         float projectileAngleSpace = rangeData.MultiProjectileAngle;
@@ -49,6 +51,7 @@ public class RangeWeaponHandler : BaseWeaponHandler
 
     private void CreateProjectile(Vector2 _lookDir, float angle)
     {
+        Debug.Log(projectileSpawn.position);
         ProjectileManager.Instance?.ShootBullet(this, projectileSpawn.position, RotateVector2(_lookDir, angle));
     }
 

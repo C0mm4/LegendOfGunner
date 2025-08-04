@@ -156,4 +156,3 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   spriteRenderer: {fileID: 1926140553264005392}
-  collideBoxSize: {x: 1, y: 1}

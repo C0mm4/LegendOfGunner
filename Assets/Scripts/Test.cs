@@ -14,8 +14,8 @@ public class Test : MonoBehaviour
     AudioClip SFX1;
     [SerializeField]
     AudioClip SFX2;
-
-
+    [SerializeField]
+    Attribute testAttrib;
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -34,5 +34,12 @@ public class Test : MonoBehaviour
         {
             SoundManager.Instance.PlaySFX(SFX2);
         }
+
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            testAttrib.ApplyAttribute();
+        }
     }
+
+    
 }

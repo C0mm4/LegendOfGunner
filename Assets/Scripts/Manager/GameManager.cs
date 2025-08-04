@@ -13,7 +13,17 @@ public class GameManager : MonoSingleton<GameManager>
 {
     // To Do List
     // object change to playercontroller
-    public static object PlayerInstance;
+    [SerializeField]
+    private static PlayerController player;
+    public static PlayerController PlayerInstance
+    {
+        get 
+        {
+            if (player == null)
+                player = FindAnyObjectByType<PlayerController>();
+            return player;
+        }
+    }
 
     public static GameState gameState = GameState.Title;
 

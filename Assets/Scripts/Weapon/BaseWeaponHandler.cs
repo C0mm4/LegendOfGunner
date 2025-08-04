@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class BaseWeaponHandler : MonoBehaviour
@@ -22,11 +24,14 @@ public class BaseWeaponHandler : MonoBehaviour
 
     private static readonly int IsAttack = Animator.StringToHash("IsAttack");
 
+    [SerializeField]
     public BaseController Controller {  get; private set; }
 
     private Animator animator;
     [SerializeField]
     private SpriteRenderer spriteRenderer;
+
+    public Action attackCallback;
 
 
     protected virtual void Awake()
@@ -34,18 +39,19 @@ public class BaseWeaponHandler : MonoBehaviour
         Controller = GetComponentInParent<BaseController>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         animator = GetComponentInChildren<Animator>();
-        data = Instantiate(data);
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         CurrentAmmo = MaxAmmo;
+        data = Instantiate(data);
     }
 
     public virtual void Attack()
     {
         if (animator != null)
-            animator.SetTrigger(IsAttack);
+            if (animator.runtimeAnimatorController != null)
+                animator.SetTrigger(IsAttack);
         if(data.attackSFX != null)
         {
             SoundManager.Instance.PlaySFX(data.attackSFX);
@@ -54,6 +60,7 @@ public class BaseWeaponHandler : MonoBehaviour
         {
             CurrentAmmo--;
         }
+        attackCallback?.Invoke();
     }
 
     public void EquipWeapon()
@@ -61,9 +68,12 @@ public class BaseWeaponHandler : MonoBehaviour
         CurrentAmmo = MaxAmmo;
     }
 
+    public Action<bool> rotateCallback;
+
     public virtual void Rotate(bool isLeft)
     {
         spriteRenderer.flipY = isLeft;
+        rotateCallback?.Invoke(isLeft);
     }
 
     public void SetCooltime()
