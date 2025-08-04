@@ -15,10 +15,11 @@ MonoBehaviour:
   name: Add Hand Gun
   description: Create sub HandGun
   maxLevel: 1
-  currentLevel: 0
-  attributeType: 3
+  currentLevel: 1
+  attributeType: 2
   IncreaseDMG: 0
   DecreaseDelay: 0
   IncreaseBullet: 0
   ReplaceBulletPref: {fileID: 0}
+  DecreaseCooltime: 0
   weaponType: 0

@@ -18,8 +18,8 @@ MonoBehaviour:
   currentLevel: 0
   attributeType: 0
   IncreaseDMG: 0
-  DecreaseDelay: 3
+  DecreaseDelay: 0
   IncreaseBullet: 0
   ReplaceBulletPref: {fileID: 0}
-  DecreaseCooltime: 0
+  DecreaseCooltime: 3
   weaponType: 3
