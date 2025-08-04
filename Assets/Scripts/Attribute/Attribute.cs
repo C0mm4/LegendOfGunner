@@ -99,7 +99,7 @@ public class Attribute : ScriptableObject
 
         data.Power += IncreaseDMG;
         data.Delay -= DecreaseDelay;
-        data.NumProjectilePerShot += IncreaseBullet;
+        data.MaxAmmo += IncreaseBullet;
         data.CoolTime -= DecreaseCooltime;
 
         Debug.Log(data.Power);
