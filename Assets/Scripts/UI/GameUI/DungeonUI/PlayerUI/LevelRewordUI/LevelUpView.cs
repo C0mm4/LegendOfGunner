@@ -26,5 +26,6 @@ public class LevelUpView : MonoBehaviour
         infoText[0].text = item1.GetDesc;
         infoText[1].text = item2.GetDesc;
         infoText[2].text = item3.GetDesc;
+
     }
 }
