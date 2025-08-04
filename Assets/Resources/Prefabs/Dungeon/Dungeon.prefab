@@ -48,12 +48,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeSprite: {fileID: 3856167793288776160}
   wave: 0
-  leftToBossWave: 0
   portalObject: {fileID: 8857794901613253306}
   dungeonFieldObjects:
-  - {fileID: 106422919752321256, guid: 7ed98f7002ee3f54597d179b6828dbba, type: 3}
-  dungeonFields:
-  - {fileID: 9170153687439971775, guid: 880e85d98a1861041ade84b88ad8b444, type: 3}
+  - {fileID: 209437052322853826, guid: 2ff3db8277266b545b520f6cdfa29479, type: 3}
+  - {fileID: 1033687099178572915, guid: 21f086153390ced46afe13e951c251c6, type: 3}
+  - {fileID: 2252645328664071541, guid: 8ba6ef2b2d01392419723cb55d2ae770, type: 3}
   waveUIText: {fileID: 0}
   spawnCirclePref: {fileID: 5192481374132709821, guid: 0762bf247fa65c343b8793d40fbbcfcc, type: 3}
   spawnRects:
@@ -62,6 +61,9 @@ MonoBehaviour:
     y: -4
     width: 14
     height: 8
+  stage: 0
+  currentWaveInStage: 0
+  targetToBossWave: 0
 --- !u!1 &5633449937957893009
 GameObject:
   m_ObjectHideFlags: 0

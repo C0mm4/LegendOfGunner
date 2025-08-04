@@ -693,12 +693,17 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8862073433110198944, guid: 6a455716eee144c7ebd243ea5c7a0033, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 2.796875
+      objectReference: {fileID: 0}
     - target: {fileID: 9046144352213915655, guid: 6a455716eee144c7ebd243ea5c7a0033, type: 3}
       propertyPath: m_RaycastTarget
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 655002399705972494, guid: 6a455716eee144c7ebd243ea5c7a0033, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1513750781606290993, guid: 6a455716eee144c7ebd243ea5c7a0033, type: 3}
       insertIndex: -1
@@ -888,18 +893,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 231615502897041968, guid: 97bcbe8882acaa348870331cd8be0bf9, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 231615502897041968, guid: 97bcbe8882acaa348870331cd8be0bf9, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 231615502897041968, guid: 97bcbe8882acaa348870331cd8be0bf9, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 231615502897041968, guid: 97bcbe8882acaa348870331cd8be0bf9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -950,10 +943,6 @@ PrefabInstance:
     - target: {fileID: 839971016933718568, guid: 97bcbe8882acaa348870331cd8be0bf9, type: 3}
       propertyPath: m_Name
       value: GameEndUI
-      objectReference: {fileID: 0}
-    - target: {fileID: 839971016933718568, guid: 97bcbe8882acaa348870331cd8be0bf9, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

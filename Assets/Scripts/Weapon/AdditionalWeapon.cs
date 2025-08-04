@@ -7,6 +7,10 @@ public class AdditionalWeapon : RangeWeaponHandler
 {
     public BaseWeaponHandler baseWeapon;
 
+    protected virtual void Awake()
+    {
+
+    }
     protected override void Start()
     {
         

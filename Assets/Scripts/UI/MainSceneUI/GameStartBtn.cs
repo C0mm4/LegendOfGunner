@@ -13,7 +13,6 @@ public class GameStartBtn : MonoBehaviour
     {
         try
         {
-            SceneManager.LoadScene("InGameScene");
             GameManager.Instance.StartGame();
         }
         catch (Exception e)

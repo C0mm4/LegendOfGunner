@@ -17,6 +17,8 @@ public class DungeonManager : MonoBehaviour
     [SerializeField]
     private GameObject[] dungeonFieldObjects;
     [SerializeField]
+    private GameObject[] dungeonBossMapPrefs;
+    [SerializeField]
     private TextMeshProUGUI waveUIText;
 
     [SerializeField]
@@ -39,11 +41,12 @@ public class DungeonManager : MonoBehaviour
 
     [SerializeField]
     public int targetToBossWave;
-    private bool isBossStage = false;
+    private bool _isBossStage = false;
+    public bool isBossStage { get { return _isBossStage; } set { _isBossStage = value; } }
 
     void Start()
     {
-        targetToBossWave = 3;
+        targetToBossWave = Random.Range(3, 6);
         stage = 1;
         StartDungeon();
         isBossStage = false;
@@ -93,7 +96,13 @@ public class DungeonManager : MonoBehaviour
                 // 현재 웨이브가 보스까지의 웨이브일 시 보스방 생성 및 초기화
                 if (currentWaveInStage == targetToBossWave - 1)
                 {
-                    isBossStage = true;
+                    isBossStage = true; 
+                    int selectRandomDungeon = Random.Range(0, dungeonBossMapPrefs.Length);
+                    Debug.Log(dungeonBossMapPrefs.Length);
+                    Debug.Log(selectRandomDungeon);
+                    prevDungeonFieldObj = Instantiate(dungeonBossMapPrefs[selectRandomDungeon], Vector3.zero, Quaternion.identity, transform);
+                    Tilemap tilemap = prevDungeonFieldObj.GetComponentInChildren<Tilemap>();
+                    Camera.main.GetComponent<FollowCamera>().SetTilemap(tilemap);
                 }
                 else
                 {

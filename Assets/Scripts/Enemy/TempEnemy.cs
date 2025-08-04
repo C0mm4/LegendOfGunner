@@ -13,10 +13,5 @@ public class TempEnemy : EnemyController
     protected override void Update()
     {
         base.Update();
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            GetComponent<ResourceController>().ChangeHealth(-100);
-//            enemyModel.HitEnemy(100);
-        }
     }
 }
