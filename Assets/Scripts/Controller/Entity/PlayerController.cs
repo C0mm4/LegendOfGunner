@@ -75,7 +75,7 @@ public class PlayerController : BaseController
     public override void Death()
     {
         UIManager.Instance.ActiveGameEndUI(true);
-        Time.timeScale = 0f;
+        GameManager.Instance.EndGame();
         Debug.Log("Player Death");
     }
     private void EquipWeapon(int index)

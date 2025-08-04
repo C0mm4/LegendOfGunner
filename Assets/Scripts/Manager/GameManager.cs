@@ -25,8 +25,6 @@ public class GameManager : MonoSingleton<GameManager>
     [SerializeField]
     private bool DebugMode = false;
 
-    [SerializeField]
-    string text;
 
     [SerializeField]
     private AudioClip TitleBGM;
@@ -75,7 +73,14 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void Update()
     {
-        text = gameState.ToString();
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            SoundManager.Instance.SetVolume(0.5f, SoundManager.VolumeType.Music);
+        }
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            SoundManager.Instance.SetVolume(1f, SoundManager.VolumeType.Music);
+        }
     }
 
 

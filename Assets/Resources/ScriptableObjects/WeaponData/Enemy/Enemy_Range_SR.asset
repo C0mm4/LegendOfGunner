@@ -19,9 +19,10 @@ MonoBehaviour:
   currentAmmo: -1
   maxAmmo: -1
   coolTime: 0
+  attackSFX: {fileID: 0}
   bullet: {fileID: 8353363161459075883, guid: e90c6083f841d9944996e35759edd723, type: 3}
   bulletSize: 1
-  duration: 0
+  duration: 5
   spread: 1
   numProjectilePerShot: 1
   multiProjectileAngle: 0

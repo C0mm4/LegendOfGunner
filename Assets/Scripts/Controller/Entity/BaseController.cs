@@ -173,7 +173,6 @@ public class BaseController : MonoBehaviour
     {
         if (currentWeapon == null)
         {
-            Debug.Log("Weapon Null");
             return;
         }
         if (targetTrans == null) 
@@ -182,7 +181,6 @@ public class BaseController : MonoBehaviour
         }
         if (lookDirection.magnitude <= 0.5f)
         {
-            Debug.Log("look Direction Is Null");
             return;
         }
         if (lastAttackTime >= currentWeapon.Delay && Vector2.Distance(transform.position, targetTrans.position) <= currentWeapon.AttackRange)

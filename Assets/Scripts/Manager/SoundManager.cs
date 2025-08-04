@@ -8,6 +8,7 @@ public class SoundManager : MonoSingleton<SoundManager>
 {
     [Header("Audio Mixer")]
     [SerializeField] private AudioMixer audioMixer;
+    [SerializeField] private string masterVolumeParam = "MasterVolume";
     [SerializeField] private string bgmVolumeParam = "BGMVolume";
     [SerializeField] private string sfxVolumeParam = "SFXVolume";
 
@@ -17,6 +18,37 @@ public class SoundManager : MonoSingleton<SoundManager>
 
     private List<AudioSource> sfxSources = new List<AudioSource>();
 
+    public enum VolumeType
+    {
+        Master, Music, SFX
+    }
+
+    private float masterVolume, bgmVolume, sfxVolume;
+    private float SetMasterVolume(float volume) => masterVolume = Mathf.Log10(Mathf.Clamp01(volume)) * 20f;
+    private float SetBGMVolume(float volume) => bgmVolume = Mathf.Log10(Mathf.Clamp01(volume)) * 20f;
+    private float SetSFXVolume(float volume) => sfxVolume = Mathf.Log10(Mathf.Clamp01(volume)) * 20f;
+
+
+    public void SetVolume(float volume, VolumeType type = VolumeType.Master)
+    {
+        switch (type) 
+        {
+            case VolumeType.Master:
+                SetMasterVolume(volume);
+                break;
+            case VolumeType.Music:
+                SetBGMVolume(volume); 
+                break;
+            case VolumeType.SFX:
+                SetSFXVolume(volume);
+                break;
+        }
+
+        audioMixer.SetFloat(masterVolumeParam, masterVolume);
+        audioMixer.SetFloat(bgmVolumeParam, bgmVolume);
+        audioMixer.SetFloat(sfxVolumeParam, sfxVolume);
+
+    }
 
     #region BGM
 
@@ -51,14 +83,15 @@ public class SoundManager : MonoSingleton<SoundManager>
         bgmSource.Play();
 
         // 페이드인
+        float targetDesbel = Mathf.Pow(10, bgmVolume / 20);
         for (float t = 0; t < fadeDuration; t += Time.unscaledDeltaTime)
         {
-            float v = Mathf.Lerp(0f, 1f, t / fadeDuration);
+            float v = Mathf.Lerp(0f, targetDesbel, t / fadeDuration);
             audioMixer.SetFloat(bgmVolumeParam, Mathf.Log10(Mathf.Max(v, 0.0001f)) * 20f);
             yield return null;
         }
 
-        audioMixer.SetFloat(bgmVolumeParam, 0f); // 0 dB로 고정
+        audioMixer.SetFloat(bgmVolumeParam, bgmVolume); // 0 dB로 고정
     }
 
     public void StopBGM()
@@ -66,10 +99,6 @@ public class SoundManager : MonoSingleton<SoundManager>
         bgmSource.Stop();
     }
 
-    public void SetBGMVolume(float volume)
-    {
-        audioMixer.SetFloat(bgmVolumeParam, Mathf.Log10(Mathf.Clamp01(volume)) * 20f);
-    }
 
     #endregion
 
@@ -84,10 +113,6 @@ public class SoundManager : MonoSingleton<SoundManager>
         StartCoroutine(DisableWhenDone(source));
     }
 
-    public void SetSFXVolume(float volume)
-    {
-        audioMixer.SetFloat(sfxVolumeParam, Mathf.Log10(Mathf.Clamp01(volume)) * 20f);
-    }
 
     private AudioSource GetAvailableSFXSource()
     {
