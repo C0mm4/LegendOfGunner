@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[CreateAssetMenu(fileName = "HGAttribute", menuName = "Attribute/new Attribute")]
+[CreateAssetMenu(fileName = "Attribute", menuName = "Attribute/new Attribute")]
 public class Attribute : ScriptableObject
 {
     [SerializeField]
@@ -49,6 +49,9 @@ public class Attribute : ScriptableObject
     private GameObject ReplaceBulletPref;
 
     [SerializeField]
+    private float DecreaseCooltime;
+
+    [SerializeField]
     private WeaponType weaponType;
     public WeaponType GetWeaponType { get { return weaponType; } }
 
@@ -75,6 +78,7 @@ public class Attribute : ScriptableObject
         }
     }
 
+
     private BaseWeaponHandler SetTargetWeapon()
     {
         switch (weaponType)
@@ -99,7 +103,12 @@ public class Attribute : ScriptableObject
         data.Power += IncreaseDMG;
         data.Delay -= DecreaseDelay;
         data.NumProjectilePerShot += IncreaseBullet;
+        data.CoolTime -= DecreaseCooltime;
 
+        Debug.Log(data.Power);
+        Debug.Log(data.Delay);
+        Debug.Log(data.NumProjectilePerShot);
+        Debug.Log(data.CoolTime);
     }
     protected virtual void ChangeBullet() { }
     protected virtual void AddAction() { }

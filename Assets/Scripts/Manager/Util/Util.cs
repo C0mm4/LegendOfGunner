@@ -9,7 +9,6 @@ public static class Util
     public static T[] Shuffle<T>(T[] types)
     {
         T[] result = types;
-        Debug.Log(result[0].ToString());
         int random1, random2;
         for (int i = 0; i < types.Length; ++i)
         {
@@ -19,6 +18,8 @@ public static class Util
         }
         return result;
     }
+
+    
 
     public static void Swap<T>(ref T t1, ref T t2)
     {

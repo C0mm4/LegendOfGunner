@@ -10,15 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9650905c4934db443bb7bc3609b5ec6f, type: 3}
-  m_Name: HGAttribute 1
+  m_Name: SGAttribute 3
   m_EditorClassIdentifier: 
-  name: 
-  description: 
-  maxLevel: 1
+  name: Rifle Speed
+  description: Increase Rifle Speed
+  maxLevel: 5
   currentLevel: 0
   attributeType: 0
-  IncreaseDMG: 5
-  DecreaseDelay: 0.2
-  IncreaseBullet: 5
+  IncreaseDMG: 0
+  DecreaseDelay: 0.1
+  IncreaseBullet: 0
   ReplaceBulletPref: {fileID: 0}
-  weaponType: 0
+  DecreaseCooltime: 0
+  weaponType: 2

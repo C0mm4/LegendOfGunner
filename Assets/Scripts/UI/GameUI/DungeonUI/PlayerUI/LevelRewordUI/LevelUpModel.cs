@@ -7,89 +7,84 @@ using UnityEngine.Events;
 
 public class LevelUpModel : MonoBehaviour
 {
-    [Serializable]
-    public struct sCharacteristic
-    {
-        public string name;
-        public string info;
-        [Header("수치")]
-        public float levels;
 
-        [Header("이 함수가 몇번 실행가능한지")]
-        public int count;
-        [SerializeField]
-        public UnityEvent callback;
+    [SerializeField]
+    public Attribute[] handgun;
+    [SerializeField]
+    public Attribute[] shotgun;
+    [SerializeField]
+    public Attribute[] rifle;
+    [SerializeField]
+    public Attribute[] sniper;
 
-        public void SetCount(int _count)
-        {
-            count = _count;
-        }
-    }
-    [SerializeField]
-    public sCharacteristic[] handgun;
-    [SerializeField]
-    public sCharacteristic[] shotgun;
-    [SerializeField]
-    public sCharacteristic[] rifle;
-    [SerializeField]
-    public sCharacteristic[] sniper;
+    public Queue<Attribute> handgunQueue = new();
+    Queue<Attribute> shotgunQueue = new();
+    Queue<Attribute> rifleQueue = new();
+    Queue<Attribute> sniperQueue = new();
 
-    public Queue<sCharacteristic> handgunQueue;
-    Queue<sCharacteristic> shotgunQueue;
-    Queue<sCharacteristic> rifleQueue;
-    Queue<sCharacteristic> sniperQueue;
-
-    Queue<sCharacteristic>[] randomReword;
+    Queue<Attribute>[] randomReword;
 
     int shotgunWeight = 100;
     int rifleWeight = 100;
     int sniperWeight = 100;
     private void Start()
     {
-        handgunQueue = new Queue<sCharacteristic>();
-        shotgunQueue = new Queue<sCharacteristic>();
-        rifleQueue = new Queue<sCharacteristic>();
-        sniperQueue = new Queue<sCharacteristic>();
+        SetRandomQueue();
+    }
+
+    public void SetRandomQueue()
+    {
 
         foreach (var item in Util.Shuffle(handgun))
         {
-            handgunQueue.Enqueue(item);
+            if(item.CurrentLevel < item.MaxLevvel)
+                handgunQueue.Enqueue(item);
         }
         foreach (var item in Util.Shuffle(shotgun))
         {
-            shotgunQueue.Enqueue(item);
+            if (item.CurrentLevel < item.MaxLevvel)
+                shotgunQueue.Enqueue(item);
         }
         foreach (var item in Util.Shuffle(rifle))
         {
-            rifleQueue.Enqueue(item);
+            if (item.CurrentLevel < item.MaxLevvel)
+                rifleQueue.Enqueue(item);
         }
         foreach (var item in Util.Shuffle(sniper))
         {
-            sniperQueue.Enqueue(item);
+            if (item.CurrentLevel < item.MaxLevvel)
+                sniperQueue.Enqueue(item);
         }
     }
 
     public void SelectReword(int number)
     {
+        Attribute target = null;
         switch (number)
         {
             case 0:
-                handgunQueue.Dequeue().callback.Invoke();
+                target = handgunQueue.Dequeue();
                 break;
             case 1:
-                randomReword[0].Dequeue().callback.Invoke();
+                target = randomReword[0].Dequeue();
                 break;
             case 2:
-                randomReword[1].Dequeue().callback.Invoke();
+                target = randomReword[1].Dequeue();
                 break;
+        }
+        if(target != null)
+        {
+            target.ApplyAttribute();
         }
         gameObject.SetActive(false);
     }
 
-    public Queue<sCharacteristic>[] SetRandomReword()
+    public Queue<Attribute>[] SetRandomReword()
     {
-        randomReword = new Queue<sCharacteristic>[3] { shotgunQueue, rifleQueue, sniperQueue };
+        SetRandomQueue();
+        randomReword = new Queue<Attribute>[3] { shotgunQueue, rifleQueue, sniperQueue };
         randomReword = Util.RandomReturn2(shotgunWeight, rifleWeight, sniperWeight, randomReword);
+
         return randomReword;
     }
 

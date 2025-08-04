@@ -12,9 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d36244929e14cac4ea0d3af6c57f0620, type: 3}
   m_Name: HGAttribute
   m_EditorClassIdentifier: 
-  name: 
-  description: 
+  name: Add Hand Gun
+  description: Create sub HandGun
   maxLevel: 1
   currentLevel: 0
   attributeType: 3
+  IncreaseDMG: 0
+  DecreaseDelay: 0
+  IncreaseBullet: 0
+  ReplaceBulletPref: {fileID: 0}
   weaponType: 0
