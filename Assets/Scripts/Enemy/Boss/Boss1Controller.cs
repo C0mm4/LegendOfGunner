@@ -22,7 +22,7 @@ public class Boss1Controller : EnemyController
     protected override void OnDisable()
     {
         base.OnDisable();
-        view.DeActiveUI();
+        //view.DeActiveUI();
     }
 
     // Update is called once per frame
