@@ -11,32 +11,32 @@ public class EnemyView : MonoBehaviour
     protected TextMeshProUGUI nameText;
     protected Animator animator;
     public AnimationClip clip;
-    virtual public void SetActiveUI(string name)
+    virtual public void SetActiveUI(string name,int hp, int maxHp)
     {
         hpBar = GameObject.Find("BossHpBar").GetComponent<RectTransform>();
         nameText = GameObject.Find("BossNameText").GetComponent<TextMeshProUGUI>();
-        nameText.gameObject.SetActive(true);
         nameText.text = name;
-        hpBar.gameObject.SetActive(true);
+        SetHpBar(hp, maxHp);
     }
-  
+
     virtual public void SetHpBar(int maxHp, int hp)
     {
         if (hpBar == null) return;
-        Vector2 size = hpBar.localScale;
-        size.x -= 3.5f / maxHp;
+
+        Vector3 size = hpBar.localScale;
+        size.x = 3.5f / maxHp * hp;
         hpBar.localScale = size;
+        Debug.Log("tqweoihb");
     }
 
     virtual public void DeActiveUI()
     {
-        hpBar?.gameObject.SetActive(false);
-        nameText?.gameObject.SetActive(false);
+        SetHpBar(0, 0);
+        nameText.text = "";
     }
 
     virtual public void HitAnimaion()
     {
-
     }
 
     virtual public void AttackAnimation(int idx)

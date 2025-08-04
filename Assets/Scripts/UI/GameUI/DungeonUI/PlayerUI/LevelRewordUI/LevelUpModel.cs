@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml;
 using UnityEngine;
 using UnityEngine.Events;
@@ -34,38 +35,43 @@ public class LevelUpModel : MonoBehaviour
     [SerializeField]
     public sCharacteristic[] sniper;
 
-    public Queue<sCharacteristic> handgunQueue;
-    Queue<sCharacteristic> shotgunQueue;
-    Queue<sCharacteristic> rifleQueue;
-    Queue<sCharacteristic> sniperQueue;
+    public List<sCharacteristic> handguns;
+    List<sCharacteristic> shotguns;
+    List<sCharacteristic> rifles;
+    List<sCharacteristic> snipers;
 
-    Queue<sCharacteristic>[] randomReword;
+    List<sCharacteristic>[] randomReword;
 
     int shotgunWeight = 100;
     int rifleWeight = 100;
     int sniperWeight = 100;
     private void Start()
     {
-        handgunQueue = new Queue<sCharacteristic>();
-        shotgunQueue = new Queue<sCharacteristic>();
-        rifleQueue = new Queue<sCharacteristic>();
-        sniperQueue = new Queue<sCharacteristic>();
+
+    }
+
+    public void Init()
+    {
+        handguns = new List<sCharacteristic>();
+        shotguns = new List<sCharacteristic>();
+        rifles = new List<sCharacteristic>();
+        snipers = new List<sCharacteristic>();
 
         foreach (var item in Util.Shuffle(handgun))
         {
-            handgunQueue.Enqueue(item);
+            handguns.Add(item);
         }
         foreach (var item in Util.Shuffle(shotgun))
         {
-            shotgunQueue.Enqueue(item);
+            shotguns.Add(item);
         }
         foreach (var item in Util.Shuffle(rifle))
         {
-            rifleQueue.Enqueue(item);
+            rifles.Add(item);
         }
         foreach (var item in Util.Shuffle(sniper))
         {
-            sniperQueue.Enqueue(item);
+            snipers.Add(item);
         }
     }
 
@@ -74,22 +80,60 @@ public class LevelUpModel : MonoBehaviour
         switch (number)
         {
             case 0:
-                handgunQueue.Dequeue().callback.Invoke();
+                handguns[0].callback.Invoke();
+                if (handguns[0].count <= 0)
+                {
+                    handguns.Remove(handguns[0]);
+                }
+                else
+                {
+                    handguns = Util.Shuffle(handguns.ToArray()).ToList<sCharacteristic>();
+                }
                 break;
             case 1:
-                randomReword[0].Dequeue().callback.Invoke();
+                randomReword[0][0].callback.Invoke();
+                randomReword[0].Remove(randomReword[0][0]);
                 break;
             case 2:
-                randomReword[1].Dequeue().callback.Invoke();
+                randomReword[1][0].callback.Invoke();
+                randomReword[1].Remove(randomReword[1][0]);
                 break;
         }
         gameObject.SetActive(false);
     }
 
-    public Queue<sCharacteristic>[] SetRandomReword()
+    public List<sCharacteristic>[] SetRandomReword()
     {
-        randomReword = new Queue<sCharacteristic>[3] { shotgunQueue, rifleQueue, sniperQueue };
-        randomReword = Util.RandomReturn2(shotgunWeight, rifleWeight, sniperWeight, randomReword);
+        if (shotguns == null)
+            Init();
+        randomReword = new List<sCharacteristic>[3] { shotguns, rifles, snipers };
+        Debug.Log("2¹ø");
+
+        if (shotguns.Count == 0 && rifles.Count == 0 && snipers.Count != 0)
+        {
+            randomReword = new List<sCharacteristic>[1] { snipers };
+        }
+        else if (shotguns.Count == 0 && snipers.Count == 0 && rifles.Count != 0)
+        {
+            randomReword = new List<sCharacteristic>[1] { rifles };
+        }
+        else if (snipers.Count == 0 && rifles.Count == 0 && shotguns.Count != 0)
+        {
+            randomReword = new List<sCharacteristic>[1] { shotguns };
+        }
+        else if (snipers.Count == 0 && rifles.Count == 0 && shotguns.Count == 0)
+        {
+            randomReword = null;
+        }
+        else
+        {
+            randomReword = Util.RandomReturn2(
+                shotguns.Count == 0 ? 0 : shotgunWeight,
+                rifles.Count == 0 ? 0 : rifleWeight,
+                snipers.Count == 0 ? 0 : sniperWeight,
+                randomReword);
+        }
+
         return randomReword;
     }
 
