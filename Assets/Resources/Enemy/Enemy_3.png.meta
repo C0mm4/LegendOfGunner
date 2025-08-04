@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ff55794f38476dc4fad5e3f961f4ee16
+guid: 8272d1880abd2ed4986942086375e186
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 200
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Enemy_3_Idle_1
+      name: Enemy_2_Idle_1
       rect:
         serializedVersion: 2
         x: 0
@@ -118,20 +118,20 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b0b76d0cd5473404a8b030b15c71aace
-      internalID: -481040411
+      spriteID: 41c309a044149bd4abeed00265d1e2c7
+      internalID: -1022677020
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_3_Idle_0
+      name: Enemy_2_Idle_0
       rect:
         serializedVersion: 2
         x: 64
@@ -139,20 +139,20 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0739a2203d2325a4db71456a3dfb22d2
-      internalID: -1141619167
+      spriteID: 7ae3e87ff0481eb49bff3a2f8245aaef
+      internalID: 736386961
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_3_Walk_0
+      name: Enemy_2_Walk_0
       rect:
         serializedVersion: 2
         x: 128
@@ -160,20 +160,20 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f4025cb605247df459f174b50869e241
-      internalID: 1613073850
+      spriteID: 03ae132dac585574da0375faf21fbf0e
+      internalID: 1072688124
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_3_Walk_1
+      name: Enemy_2_Walk_1
       rect:
         serializedVersion: 2
         x: 0
@@ -181,20 +181,20 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 36eefe4e8f4cbf041a381d1b3c293ad8
-      internalID: 60915177
+      spriteID: 975f57bcbac72334f8a3125d3bf6bc5f
+      internalID: 676431062
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_3_Walk_2
+      name: Enemy_2_Walk_2
       rect:
         serializedVersion: 2
         x: 64
@@ -202,20 +202,20 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0664cf2707af246468f69a2b8c24e620
-      internalID: -1955077866
+      spriteID: c4ddcb28720a2594692c40df31a7880a
+      internalID: 957010182
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_3_Walk_3
+      name: Enemy_2_Walk_3
       rect:
         serializedVersion: 2
         x: 128
@@ -223,20 +223,20 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ccbe83764a9d84740ac5d525ed5be07c
-      internalID: -1761689338
+      spriteID: ff3609a3c6841fd45a562c760c7b0a66
+      internalID: -289955074
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_3_Hurt
+      name: Enemy_2_Hurt
       rect:
         serializedVersion: 2
         x: 0
@@ -244,14 +244,14 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a1a6c50a87cf584bb74e7d34cabb4a0
-      internalID: -484063843
+      spriteID: a8759a1273226fd4297b6692e2c8aedb
+      internalID: 70033129
       vertices: []
       indices: 
       edges: []
@@ -267,13 +267,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Enemy_3_Hurt: -484063843
-      Enemy_3_Idle_0: -1141619167
-      Enemy_3_Idle_1: -481040411
-      Enemy_3_Walk_0: 1613073850
-      Enemy_3_Walk_1: 60915177
-      Enemy_3_Walk_2: -1955077866
-      Enemy_3_Walk_3: -1761689338
+      Enemy_2_Hurt: 70033129
+      Enemy_2_Idle_0: 736386961
+      Enemy_2_Idle_1: -1022677020
+      Enemy_2_Walk_0: 1072688124
+      Enemy_2_Walk_1: 676431062
+      Enemy_2_Walk_2: 957010182
+      Enemy_2_Walk_3: -289955074
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

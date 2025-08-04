@@ -213,15 +213,16 @@ public class BaseController : MonoBehaviour
 
     public virtual void Death()
     {
-        _rigidbody.velocity = Vector3.zero;
-        foreach(SpriteRenderer renderer in transform.GetComponentsInChildren<SpriteRenderer>())
-        {
-            Color color = renderer.color;
-            color.a = 0.3f;
-            renderer.color = color;
-        }
+        _rigidbody.velocity = Vector2.zero;
+        //foreach (SpriteRenderer renderer in transform.GetComponentsInChildren<SpriteRenderer>())
+        //{
+        //    Color color = renderer.color;
+        //    color.a = 0.3f;
+        //    renderer.color = color;
+        //}
+        // 죽는 모션 생겨서 잠시 주석처리 했습니다.
 
-        foreach(Behaviour component in transform.GetComponentsInChildren<Behaviour>())
+        foreach (Behaviour component in transform.GetComponentsInChildren<Behaviour>())
         {
             if (!(component is Animator))
             {

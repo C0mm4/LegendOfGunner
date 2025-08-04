@@ -71,7 +71,7 @@ public class ResourceController : MonoBehaviour
         if(CurrentHealth <= 0)
         {
             if(animationHandler != null)
-                animationHandler?.Die();
+                animationHandler.Die();
             Death();
         }
 
