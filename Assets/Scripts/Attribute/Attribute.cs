@@ -24,7 +24,7 @@ public class Attribute : ScriptableObject
     
     public enum AttributeType
     {
-        Status, ChangeBullet, AddBullet, AddAction
+        Status, ChangeBullet, AddAction
     }
 
     [SerializeField]
@@ -69,9 +69,6 @@ public class Attribute : ScriptableObject
             case AttributeType.ChangeBullet:
                 ChangeBullet();
                 break;
-            case AttributeType.AddBullet:
-                AddBullet();
-                break;
             case AttributeType.AddAction:
                 AddAction();
                 break;
@@ -112,5 +109,4 @@ public class Attribute : ScriptableObject
     }
     protected virtual void ChangeBullet() { }
     protected virtual void AddAction() { }
-    protected virtual void AddBullet() { }
 }
