@@ -17,8 +17,6 @@ public class DungeonManager : MonoBehaviour
     [SerializeField]
     private GameObject[] dungeonFieldObjects;
     [SerializeField]
-    private GameObject[] dungeonFields;
-    [SerializeField]
     private TextMeshProUGUI waveUIText;
 
     [SerializeField]
@@ -28,7 +26,6 @@ public class DungeonManager : MonoBehaviour
     private float lastSpawnT = 0;
 
     private GameObject prevDungeonFieldObj;
-    private GameObject prevDungoneWallObj;
 
     [SerializeField]
     private List<Rect> spawnRects;
@@ -92,7 +89,6 @@ public class DungeonManager : MonoBehaviour
                 if (prevDungeonFieldObj != null)
                 {
                     Destroy(prevDungeonFieldObj);
-                    Destroy(prevDungoneWallObj);
                 }
                 // 현재 웨이브가 보스까지의 웨이브일 시 보스방 생성 및 초기화
                 if (currentWaveInStage == targetToBossWave - 1)
@@ -102,9 +98,10 @@ public class DungeonManager : MonoBehaviour
                 else
                 {
                     int selectRandomDungeon = Random.Range(0, dungeonFieldObjects.Length);
-                    prevDungeonFieldObj = Instantiate(dungeonFields[selectRandomDungeon], Vector3.zero, Quaternion.identity, transform);
-                    prevDungoneWallObj = Instantiate(dungeonFieldObjects[selectRandomDungeon], Vector3.zero, Quaternion.identity, transform);
-                    Tilemap tilemap = prevDungoneWallObj.GetComponentInChildren<Tilemap>();
+                    Debug.Log(dungeonFieldObjects.Length);
+                    Debug.Log(selectRandomDungeon);
+                    prevDungeonFieldObj = Instantiate(dungeonFieldObjects[selectRandomDungeon], Vector3.zero, Quaternion.identity, transform);
+                    Tilemap tilemap = prevDungeonFieldObj.GetComponentInChildren<Tilemap>();
                     Camera.main.GetComponent<FollowCamera>().SetTilemap(tilemap);
                     isBossStage = false;
                 }
@@ -122,32 +119,8 @@ public class DungeonManager : MonoBehaviour
             });
 
         });
-        //EnemyManager.Instance.AddBoss(1, Vector3.zero); ���� �׽�Ʈ �ڵ�
     }
-    /*
-        private void WaveLogic()
-        {
-            if (EnemyManager.Instance.GetEnemyListSize() <= 0)
-            {
-                if (wave == maxWave)
-                {
-                    isClear = true;
-                    portalObject.SetActive(true);
-                }
-                else
-                {
-                    for (int i = 0; i < ememySpawnCount; i++)
-                    {
-                        StartCoroutine(SpawnEnemy(new Vector2(0, 0)));
-                        EnemyManager.eEnemyType randomEnemyType = (EnemyManager.eEnemyType)Random.Range((int)EnemyManager.eEnemyType.eTemp, (int)EnemyManager.eEnemyType.eEnd);
-                        EnemyManager.Instance.AddEnemy(randomEnemyType, Vector3.zero);
-                    }
-                    wave++;
-                    waveUIText.SetText(wave.ToString());
-                }
-            }
-        }
-    */
+
     private void CreateWave()
     {
         currentWaveInStage++;
@@ -162,8 +135,6 @@ public class DungeonManager : MonoBehaviour
                 StartCoroutine(SpawnEnemy(GetRandomPos()));
             }
         }
-        //Debug.Log(EnemyManager.Instance.GetEnemyListSize());
-        //
     }
 
     private void CheckClear()

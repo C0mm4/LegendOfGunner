@@ -448,6 +448,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1161066045544944736, guid: 44292dffb3dbdf2459e7040ed4ddcb6d, type: 3}
+      propertyPath: dungeonFieldObjects.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1161066045544944736, guid: 44292dffb3dbdf2459e7040ed4ddcb6d, type: 3}
+      propertyPath: dungeonFieldObjects.Array.data[0]
+      value: 
+      objectReference: {fileID: 209437052322853826, guid: 2ff3db8277266b545b520f6cdfa29479, type: 3}
+    - target: {fileID: 1161066045544944736, guid: 44292dffb3dbdf2459e7040ed4ddcb6d, type: 3}
+      propertyPath: dungeonFieldObjects.Array.data[1]
+      value: 
+      objectReference: {fileID: 1033687099178572915, guid: 21f086153390ced46afe13e951c251c6, type: 3}
+    - target: {fileID: 1161066045544944736, guid: 44292dffb3dbdf2459e7040ed4ddcb6d, type: 3}
+      propertyPath: dungeonFieldObjects.Array.data[2]
+      value: 
+      objectReference: {fileID: 2252645328664071541, guid: 8ba6ef2b2d01392419723cb55d2ae770, type: 3}
+    - target: {fileID: 1161066045544944736, guid: 44292dffb3dbdf2459e7040ed4ddcb6d, type: 3}
+      propertyPath: dungeonFieldObjects.Array.data[3]
+      value: 
+      objectReference: {fileID: 2252645328664071541, guid: 8ba6ef2b2d01392419723cb55d2ae770, type: 3}
     - target: {fileID: 1577692912698780128, guid: 44292dffb3dbdf2459e7040ed4ddcb6d, type: 3}
       propertyPath: m_Name
       value: Dungeon
