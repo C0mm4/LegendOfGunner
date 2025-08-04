@@ -9,53 +9,38 @@ using System.Net;
 
 public class Skill_1_Btn : MonoBehaviour
 {
-    public float maxCoolDown; // ÄðÅ¸ÀÓ ¹Þ¾Æ¿Í¾ßÇÔ
+    PlayerController playerController;
+    public float maxCoolDown; // ï¿½ï¿½Å¸ï¿½ï¿½ ï¿½Þ¾Æ¿Í¾ï¿½ï¿½ï¿½
     public Image coolDownIcon;
     public TextMeshProUGUI coolDownText;
-    float coolDown;
-    bool isCoolDown = false; // true - ½ºÅ³ »ç¿ë ºÒ°¡, false - ½ºÅ³ »ç¿ë °¡´É
+    
+
+ 
+
+    private void Awake()
+    {
+        playerController = FindObjectOfType<PlayerController>();
+    }
 
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Alpha2))
+        BaseWeaponHandler weapon = playerController.GetWeapon(2);
+        WeaponData data = weapon.data;
+        if (data.IsCooltime)
         {
-            UsingSkill();
+            float left = data.LeftCoolTime;
+            float max = data.CoolTime;
+
+            coolDownIcon.fillAmount = left / max;
+            coolDownText.text = left.ToString("N1");
+
+            coolDownText.gameObject.SetActive(true);
+            coolDownIcon.gameObject.SetActive(true);
         }
-    }
-
-    void UsingSkill()
-    {
-        //½ºÅ³ »ç¿ë ¸Þ¼­µå
-        if (isCoolDown) return;
-        StartCoroutine(CoolDownTime(maxCoolDown));
-    }
-
-    IEnumerator CoolDownTime(float maxCoolDownTime)
-    {
-        coolDown = maxCoolDownTime;
-        SetCoolDown(true);
-
-        while (coolDown > 0)
+        else
         {
-            if (UIManager.Instance.pauseUI.activeSelf)
-            {
-                yield return null;
-                continue;
-            }
-
-            coolDown -= Time.deltaTime;
-            coolDownIcon.fillAmount = coolDown / maxCoolDown;
-            coolDownText.text = coolDown.ToString("N1");
-            yield return null;
+            coolDownText.gameObject.SetActive(false);
+            coolDownIcon.gameObject.SetActive(false);
         }
-
-        SetCoolDown(false);
-    }
-
-    void SetCoolDown(bool boolean)
-    {
-        isCoolDown = boolean;
-        coolDownText.gameObject.SetActive(boolean);
-        coolDownIcon.gameObject.SetActive(boolean);
     }
 }
