@@ -9,6 +9,7 @@ public static class Util
     public static T[] Shuffle<T>(T[] types)
     {
         T[] result = types;
+        Debug.Log(result[0].ToString());
         int random1, random2;
         for (int i = 0; i < types.Length; ++i)
         {
@@ -38,16 +39,23 @@ public static class Util
             case int n when (rndVal < a):
                 temp[0] = values[0];
                 temp[1] = RandomReturn(b, c, values[1], values[2]);
+                Debug.Log(temp[0].ToString());
+                Debug.Log(temp[1].ToString());
                 break;
             case int n when (rndVal < a + b):
                 temp[0] = values[1];
                 temp[1] = RandomReturn(a, c, values[0], values[2]);
+                Debug.Log(temp[0].ToString());
+                Debug.Log(temp[1].ToString());
                 break;
             case int n when (rndVal < a + b + c):
                 temp[0] = values[2];
                 temp[1] = RandomReturn(a, b, values[0], values[1]);
+                Debug.Log(temp[0].ToString());
+                Debug.Log(temp[1].ToString());
                 break;
         }
+
         return temp;
     }
 

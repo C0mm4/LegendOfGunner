@@ -64,8 +64,6 @@ public class PlayerController : BaseController
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             EquipWeapon(1);
-            
-            
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
@@ -75,15 +73,12 @@ public class PlayerController : BaseController
         {
             EquipWeapon(3);
         }
-        
-    }
-    public BaseWeaponHandler GetWeapon(int index)
-    {
-        if(index >= 0 && index < weapons.Count)
+        if (Input.GetKeyDown(KeyCode.C))
         {
-            return weapons [index];
+            ResourceController resourceController = GetComponent<ResourceController>();
+            resourceController.ChangeHealth(-5);
+
         }
-        return null;
     }
     public override void Death()
     {

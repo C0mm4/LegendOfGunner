@@ -12,11 +12,11 @@ public class Boss1Controller : EnemyController
     public override void Init()
     {
         base.Init();
-        view.SetActiveUI(enemyModel.name, (int)enemyModel.Health, (int)enemyModel.MaxHealth);
+        view.SetActiveUI(enemyModel.name);
         InvokeRepeating("SpawnEnemyTriger", 1, 5);
     }
     void SpawnEnemyTriger()
-    {
+    { 
         view.AttackAnimation(1);
     }
     protected override void OnDisable()
@@ -34,7 +34,6 @@ public class Boss1Controller : EnemyController
     {
         base.Damaged();
         view.HitAnimaion();
-        view.SetHpBar((int)enemyModel.MaxHealth, (int)enemyModel.Health);
     }
     public override void Death()
     {
