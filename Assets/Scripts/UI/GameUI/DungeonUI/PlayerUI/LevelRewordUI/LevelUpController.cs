@@ -13,10 +13,14 @@ public class LevelUpController : MonoBehaviour
         model = transform.GetComponent<LevelUpModel>();
         view = GetComponent<LevelUpView>();
         gameObject.SetActive(false);
+        model.SetRandomReword();
     }
     private void OnEnable()
     {
-        view.SetRewordUI(model.handgunQueue, model.SetRandomReword());
+        Debug.Log("qwcxztweq");
+
+        var val = model.SetRandomReword();
+        view.SetRewordUI(model.handguns, val);
     }
     public void AddRage()
     {
