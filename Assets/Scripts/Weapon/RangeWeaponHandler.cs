@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 
 public class RangeWeaponHandler : BaseWeaponHandler
@@ -57,5 +58,13 @@ public class RangeWeaponHandler : BaseWeaponHandler
     private static Vector2 RotateVector2(Vector2 v, float degree)
     {
         return Quaternion.Euler(0, 0, degree) * v;
+    }
+    public void ChangeBullet(GameObject newBulletPref)
+    {
+        rangeData.Bullet = newBulletPref;
+        if(subWeapon != null)
+        {
+            subWeapon.GetComponent<RangeWeaponHandler>().ChangeBullet(newBulletPref);
+        }
     }
 }

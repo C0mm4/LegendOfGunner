@@ -15,10 +15,12 @@ MonoBehaviour:
   name: Handgun - Lazer
   description: Replace Bullet to lazer
   maxLevel: 1
-  currentLevel: 0
+  currentLevel: 1
   attributeType: 1
   IncreaseDMG: 0
   DecreaseDelay: 0
   IncreaseBullet: 0
-  ReplaceBulletPref: {fileID: 0}
+  ReplaceBulletPref: {fileID: 8353363161459075883, guid: 69dc2a5597009e048b96794c8419fc90, type: 3}
+  DecreaseCooltime: 0
   weaponType: 0
+  TargettoChangeBullet: {fileID: 0}

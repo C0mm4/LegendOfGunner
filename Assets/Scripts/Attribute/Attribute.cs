@@ -107,6 +107,11 @@ public class Attribute : ScriptableObject
         Debug.Log(data.NumProjectilePerShot);
         Debug.Log(data.CoolTime);
     }
-    protected virtual void ChangeBullet() { }
+    protected virtual void ChangeBullet() 
+    {
+        if(ReplaceBulletPref == null) return;
+        applyTargetWeapon.GetComponent<RangeWeaponHandler>()?.ChangeBullet(ReplaceBulletPref);
+    }
+
     protected virtual void AddAction() { }
 }

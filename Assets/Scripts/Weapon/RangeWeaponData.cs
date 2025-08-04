@@ -10,7 +10,7 @@ public class RangeWeaponData : WeaponData
 
     [SerializeField]
     private GameObject bullet;
-    public GameObject Bullet { get { return bullet; } }
+    public GameObject Bullet { get { return bullet; } set { bullet = value; } }
 
     [SerializeField]
     private float bulletSize = 1f;

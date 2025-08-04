@@ -20,7 +20,7 @@ MonoBehaviour:
   maxAmmo: 3
   coolTime: 60
   attackSFX: {fileID: 8300000, guid: 947719fd38845824ba3638af9d8e4e54, type: 3}
-  bullet: {fileID: 8353363161459075883, guid: e90c6083f841d9944996e35759edd723, type: 3}
+  bullet: {fileID: 8353363161459075883, guid: 36f1e306cff87724391558e7761e3c7d, type: 3}
   bulletSize: 1
   duration: 2
   spread: 10
