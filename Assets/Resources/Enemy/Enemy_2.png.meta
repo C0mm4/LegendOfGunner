@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8272d1880abd2ed4986942086375e186
+guid: a90d09e6cb9d1704ea4b5449e1129721
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 200
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Enemy_2_Idle_1
+      name: Enemy_1_Idle_1
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 41c309a044149bd4abeed00265d1e2c7
-      internalID: -1022677020
+      spriteID: fb540b7486348bc4cbfeebd4ffbf44eb
+      internalID: -1400240328
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_2_Idle_0
+      name: Enemy_1_Idle_0
       rect:
         serializedVersion: 2
         x: 64
@@ -145,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7ae3e87ff0481eb49bff3a2f8245aaef
-      internalID: 736386961
+      spriteID: cd92324f4369d8e4295534dda22809b8
+      internalID: 2102745480
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_2_Walk_0
+      name: Enemy_1_Walk_0
       rect:
         serializedVersion: 2
         x: 128
@@ -166,14 +166,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 03ae132dac585574da0375faf21fbf0e
-      internalID: 1072688124
+      spriteID: 4326f260ec11d9341adebadcaa10d55c
+      internalID: -1228569139
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_2_Walk_1
+      name: Enemy_1_Walk_1
       rect:
         serializedVersion: 2
         x: 0
@@ -187,14 +187,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 975f57bcbac72334f8a3125d3bf6bc5f
-      internalID: 676431062
+      spriteID: ec9c9ed41656e494ba09c1e3709cfa96
+      internalID: 1603049735
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_2_Walk_2
+      name: Enemy_1_Walk_2
       rect:
         serializedVersion: 2
         x: 64
@@ -208,14 +208,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c4ddcb28720a2594692c40df31a7880a
-      internalID: 957010182
+      spriteID: 3807facfa90aee44e8b4d4d4b215069f
+      internalID: 847313920
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_2_Walk_3
+      name: Enemy_1_Walk_3
       rect:
         serializedVersion: 2
         x: 128
@@ -229,14 +229,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ff3609a3c6841fd45a562c760c7b0a66
-      internalID: -289955074
+      spriteID: 52cdc6bf652c68f49afa69b113bc4b14
+      internalID: -32499125
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_2_Hurt
+      name: Enemy_1_Hurt
       rect:
         serializedVersion: 2
         x: 0
@@ -250,8 +250,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a8759a1273226fd4297b6692e2c8aedb
-      internalID: 70033129
+      spriteID: 995b820ba30675541a28a6072a582391
+      internalID: -645266808
       vertices: []
       indices: 
       edges: []
@@ -267,13 +267,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Enemy_2_Hurt: 70033129
-      Enemy_2_Idle_0: 736386961
-      Enemy_2_Idle_1: -1022677020
-      Enemy_2_Walk_0: 1072688124
-      Enemy_2_Walk_1: 676431062
-      Enemy_2_Walk_2: 957010182
-      Enemy_2_Walk_3: -289955074
+      Enemy_1_Hurt: -645266808
+      Enemy_1_Idle_0: 2102745480
+      Enemy_1_Idle_1: -1400240328
+      Enemy_1_Walk_0: -1228569139
+      Enemy_1_Walk_1: 1603049735
+      Enemy_1_Walk_2: 847313920
+      Enemy_1_Walk_3: -32499125
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

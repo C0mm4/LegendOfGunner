@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 9085831942077965813}
   - component: {fileID: -993070928048802997}
   - component: {fileID: -6846542588729338608}
+  - component: {fileID: -5533968583999649699}
   m_Layer: 7
   m_Name: Enemy_2_HGEnemy
   m_TagString: Untagged
@@ -66,6 +67,7 @@ MonoBehaviour:
   characterRenderer: {fileID: 0}
   weaponPivot: {fileID: 4815752749644669841}
   movementDirection: {x: 0, y: 0}
+  lookDirection: {x: 0, y: 0}
   weaponPref:
   - {fileID: 7293436377208475634, guid: 183719bbd82856a4e8d8b1dcf9ff4e70, type: 3}
   weapons: []
@@ -161,6 +163,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &-5533968583999649699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 743498950123072358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b5fc7f99c232488b87dc013de999302, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1866690946710728420
 GameObject:
   m_ObjectHideFlags: 0
@@ -187,9 +201,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1866690946710728420}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.19401653, y: 0.19401653, z: 0.19401653}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 45298337719273407}
@@ -204,7 +218,7 @@ Animator:
   m_GameObject: {fileID: 1866690946710728420}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5f994738a4887404785b3fdc519c589c, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1cfec730be4e74d4194c622f94b8e5d9, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
