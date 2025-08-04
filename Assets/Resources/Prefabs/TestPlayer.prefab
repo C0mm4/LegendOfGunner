@@ -252,9 +252,12 @@ MonoBehaviour:
   characterRenderer: {fileID: 1903458004812957977}
   weaponPivot: {fileID: 7917305783173955530}
   movementDirection: {x: 0, y: 0}
+  lookDirection: {x: 0, y: 0}
   weaponPref:
   - {fileID: 6723112918198343287, guid: 3e852ae8ad3cd7f4ebc95a97cdd6569a, type: 3}
   - {fileID: 6723112918198343287, guid: 436044ac0ece1a44ca87c99d278f3e54, type: 3}
+  - {fileID: 6723112918198343287, guid: 05ece38e17207764b864f06462ef569f, type: 3}
+  - {fileID: 6723112918198343287, guid: c82cc1bb8acd9c6448342632ab38a88c, type: 3}
   weapons: []
   currentWeapon: {fileID: 0}
   baseWeapon: {fileID: 0}

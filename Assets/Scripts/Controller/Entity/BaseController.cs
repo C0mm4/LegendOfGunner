@@ -243,8 +243,9 @@ public class BaseController : MonoBehaviour
             this.currentWeapon = weapon;
             this.currentWeapon.gameObject.SetActive(true);
             this.currentWeapon.EquipWeapon();
+
             // Reset Attack Delay Time
-            lastAttackTime = 99f;
+            lastAttackTime = 1f;    // Set Value 99 to 0, cause if weapon end, double shooting with new weapon
         }
     }
 

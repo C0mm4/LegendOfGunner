@@ -65,6 +65,14 @@ public class PlayerController : BaseController
         {
             EquipWeapon(1);
         }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            EquipWeapon(2);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            EquipWeapon(3);
+        }
         if (Input.GetKeyDown(KeyCode.C))
         {
             ResourceController resourceController = GetComponent<ResourceController>();
@@ -78,6 +86,7 @@ public class PlayerController : BaseController
         GameManager.Instance.EndGame();
         Debug.Log("Player Death");
     }
+
     private void EquipWeapon(int index)
     {
         EquipWeapon(weapons[index]);

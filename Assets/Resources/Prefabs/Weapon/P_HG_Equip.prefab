@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7147522745714645110}
   - component: {fileID: 6723112918198343287}
   m_Layer: 0
-  m_Name: GoldPistol
+  m_Name: P_HG_Equip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
