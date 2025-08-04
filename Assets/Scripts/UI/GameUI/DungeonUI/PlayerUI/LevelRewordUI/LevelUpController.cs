@@ -7,6 +7,8 @@ public class LevelUpController : MonoBehaviour
     private LevelUpModel model;
     private LevelUpView view;
 
+    List<Attribute> showAttributes = new();
+
     private void Awake()
     {
         model = transform.GetComponent<LevelUpModel>();
@@ -14,7 +16,14 @@ public class LevelUpController : MonoBehaviour
     }
     private void OnEnable()
     {
-        view.SetRewordUI(model.handgunQueue, model.SetRandomReword());
+        model.SetRandomQueue();
+        var randomRewards = model.SetRandomReword();
+        showAttributes.Clear();
+        showAttributes.Add(AttributeManager.Instance._HandGunAttributes[0]);
+        showAttributes.Add(randomRewards[0][0]);
+        showAttributes.Add(randomRewards[1][0]);
+
+        view.SetRewordUI(showAttributes);
         GameManager.Instance.PauseGame();
     }
 
@@ -25,6 +34,6 @@ public class LevelUpController : MonoBehaviour
 
     public void SelectReword(int num)
     {
-        model.SelectReword(num);
+        model.SelectReword(num, showAttributes[num]);
     }
 }

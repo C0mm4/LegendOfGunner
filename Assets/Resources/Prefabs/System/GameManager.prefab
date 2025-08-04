@@ -4934,6 +4934,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: a2335198be9c65a49a3a4a7025652e0b, type: 2}
+  masterVolumeParam: MasterVolume
   bgmVolumeParam: BGMVolume
   sfxVolumeParam: SFXVolume
   bgmSource: {fileID: 7869339464714572224}
@@ -5062,6 +5063,7 @@ Transform:
   - {fileID: 9174913307917432494}
   - {fileID: 2800954619762240223}
   - {fileID: 2412066358207666442}
+  - {fileID: 867451886652589000}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2428499327040398493
@@ -5079,7 +5081,6 @@ MonoBehaviour:
   isFirstRun: 0
   isPause: 0
   DebugMode: 0
-  text: 
   TitleBGM: {fileID: 8300000, guid: e4c0e35960639794b97e0a058d76b8e2, type: 3}
   InGameBGM: {fileID: 8300000, guid: f0acdf2da46c31443a59abdfaeb620c5, type: 3}
 --- !u!1 &6203057363590902750
@@ -5256,3 +5257,64 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &7449819603437599829
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 867451886652589000}
+  - component: {fileID: 721590616760451617}
+  m_Layer: 0
+  m_Name: AttributeManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &867451886652589000
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7449819603437599829}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 642.93536, y: 568.4974, z: 1.4009209}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6994675061928847358}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &721590616760451617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7449819603437599829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7ba51331f0c2054f8e4d6b49f19bc6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _HandGunAttributes:
+  - {fileID: 11400000, guid: a24ecba5031bf214a882430a904afc6c, type: 2}
+  - {fileID: 11400000, guid: a5a1615f26ad11f4aa47f524de4a5466, type: 2}
+  - {fileID: 11400000, guid: a8a8cc944664bc84c9cc36ad637da238, type: 2}
+  - {fileID: 11400000, guid: 3ff6fdb304dfe6a46884bca81824f2e9, type: 2}
+  _RifleAttributes:
+  - {fileID: 11400000, guid: 1da8462a9d7fac14b8e603f8bb3c828d, type: 2}
+  - {fileID: 11400000, guid: 49925f71a9a89eb488fcc6770701bd01, type: 2}
+  - {fileID: 11400000, guid: 356b916fc4426734994fbd1cc7149145, type: 2}
+  _ShotgunAttributes:
+  - {fileID: 11400000, guid: ca2983abd5d0ae84eb8c8241d4eb63ec, type: 2}
+  - {fileID: 11400000, guid: fe23081cf9b2c964ab5c96ad7bd74c2d, type: 2}
+  - {fileID: 11400000, guid: db8339ccbcccb8c4586c766e6ee6db0e, type: 2}
+  _SniperAttributes:
+  - {fileID: 11400000, guid: e5dd369ff6f032f4d823b5eb44ba0ff8, type: 2}
+  - {fileID: 11400000, guid: 5ed987033b5f6d34694e6f6b6d809b85, type: 2}
+  - {fileID: 11400000, guid: b398e5a664904e145922946376ebe0f8, type: 2}

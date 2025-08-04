@@ -33,7 +33,6 @@ public class RangeWeaponHandler : BaseWeaponHandler
     {
         if (!gameObject.activeSelf) return;
         base.Attack();
-        Debug.Log(gameObject.name);
         float projectileAngleSpace = 0;
         int numberOfProjectilePerShot = rangeData.NumProjectilePerShot;
 
@@ -51,7 +50,6 @@ public class RangeWeaponHandler : BaseWeaponHandler
 
     private void CreateProjectile(Vector2 _lookDir, float angle)
     {
-        Debug.Log(projectileSpawn.position);
         ProjectileManager.Instance?.ShootBullet(this, projectileSpawn.position, RotateVector2(_lookDir, angle));
     }
 

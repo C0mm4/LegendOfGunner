@@ -15,8 +15,6 @@ public class WeaponDust : MonoBehaviour
         // Add Random Force
         randX = Random.Range(-1f, 1f);
         randY = Random.Range(.5f, 1.5f);
-        Debug.Log(randX);
-        Debug.Log(randY);
         body.AddForce(new Vector2(randX, randY), ForceMode2D.Impulse);
         body.bodyType = RigidbodyType2D.Kinematic;
 
@@ -44,6 +42,5 @@ public class WeaponDust : MonoBehaviour
     {
         body.simulated = false;
         body = null;
-        Debug.Log("Body Dead");
     }
 }

@@ -8,6 +8,7 @@ public class HandgunAttribute : Attribute
     protected override void AddAction()
     {
         base.AddAction();
+        Debug.Log("Add HandGun");
         applyTargetWeapon.transform.localPosition = new Vector3(-0.1f, 0.1f);
         GameObject additionalWeapon = Instantiate(applyTargetWeapon.gameObject, applyTargetWeapon.transform);
         additionalWeapon.transform.localPosition = new Vector3(0, -0.2f, 0);

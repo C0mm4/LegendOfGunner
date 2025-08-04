@@ -24,6 +24,6 @@ MonoBehaviour:
   bulletSize: 1
   duration: 2
   spread: 10
-  numProjectilePerShot: 1
-  multiProjectileAngle: 0
+  numProjectilePerShot: 5
+  multiProjectileAngle: 10
   projectileColor: {r: 1, g: 1, b: 1, a: 1}

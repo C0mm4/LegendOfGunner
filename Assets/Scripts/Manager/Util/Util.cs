@@ -41,7 +41,6 @@ public static class Util
     {
         T[] temp = new T[2];
         int total = a + b + c;
-        Debug.Log(total);
         int rndVal = UnityEngine.Random.Range(0, total);
         switch (rndVal)
         {

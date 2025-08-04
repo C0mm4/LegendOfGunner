@@ -46,7 +46,7 @@ public class DungeonManager : MonoBehaviour
 
     void Start()
     {
-        targetToBossWave = 1;
+        targetToBossWave = 3;
         stage = 1;
         StartDungeon();
         isBossStage = false;
