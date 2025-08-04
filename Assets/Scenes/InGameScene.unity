@@ -403,7 +403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19335de043835db4ca36f60703bcb30c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tempObject: {fileID: 743498950123072358, guid: ea44c33c9517fef4398292ca34a6cee7, type: 3}
+  tempObject: {fileID: 743498950123072358, guid: 2a5b9367b17638245a50f534c8d14b61, type: 3}
   boss1Object: {fileID: 743498950123072358, guid: e12babbd8f75721429dca76383a11934, type: 3}
 --- !u!4 &607853207
 Transform:
@@ -489,6 +489,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 1061248821497041472, guid: 6a455716eee144c7ebd243ea5c7a0033, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1924761743556027934, guid: 6a455716eee144c7ebd243ea5c7a0033, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1924761743556027934, guid: 6a455716eee144c7ebd243ea5c7a0033, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3210988511247513515, guid: 6a455716eee144c7ebd243ea5c7a0033, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -505,6 +517,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4671998458894906852, guid: 6a455716eee144c7ebd243ea5c7a0033, type: 3}
+      propertyPath: levelUPRewordUI
+      value: 
+      objectReference: {fileID: 1629940272}
     - target: {fileID: 4799673014112646050, guid: 6a455716eee144c7ebd243ea5c7a0033, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -625,6 +641,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9046144352213915655, guid: 6a455716eee144c7ebd243ea5c7a0033, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -701,6 +721,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1629940272 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4379667080185459408, guid: 6a455716eee144c7ebd243ea5c7a0033, type: 3}
+  m_PrefabInstance: {fileID: 691689184}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1918374529
 PrefabInstance:
   m_ObjectHideFlags: 0
