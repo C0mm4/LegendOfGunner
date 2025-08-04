@@ -47,6 +47,8 @@ public class AttributeManager : MonoSingleton<AttributeManager>
         sniperWeight = 100;
     }
 
+    
+
     public void ShuffleAttributes()
     {
         _HandGunAttributes.Shuffle();
@@ -86,4 +88,35 @@ public class AttributeManager : MonoSingleton<AttributeManager>
 
         return list;
     }
+
+    public enum WeaponType
+    {
+        HG,
+        AR,
+        SG,
+        SR
+    }
+
+    public string GetAttributeLevelString(WeaponType type, int index)
+    {
+        List<Attribute> list = GetAttributeListByType(type);
+        if (list == null || index < 0 || index >= list.Count)
+            return "[?/?]";
+
+        Attribute attr = list[index];
+        return $"[{attr.CurrentLevel}/{attr.MaxLevvel}]";
+    }
+
+    private List<Attribute> GetAttributeListByType(WeaponType type)
+    {
+        return type switch
+        {
+            WeaponType.HG => _HandGunAttributes,
+            WeaponType.AR => _RifleAttributes,
+            WeaponType.SG => _ShotgunAttributes,
+            WeaponType.SR => _SniperAttributes,
+            _ => null
+        };
+    }
+
 }

@@ -504,7 +504,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 2.7968597}
+  m_AnchoredPosition: {x: 0, y: 2.796875}
   m_SizeDelta: {x: -279.78027, y: -157.09583}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4078656052406971587
@@ -1594,6 +1594,16 @@ MonoBehaviour:
   HP: {fileID: 4745800015294230491}
   Exp: {fileID: 6036213328944719752}
   Level: {fileID: 667321664585466155}
+  HG_AtkSpd: {fileID: 2486546014342923904}
+  HG_dmg: {fileID: 3394424783773751587}
+  HG_double: {fileID: 7376232035778745579}
+  HG_laser: {fileID: 6108358457224982226}
+  HG_triple: {fileID: 6721902840660120987}
+  AR_AtkSpd: {fileID: 0}
+  AR_AddBullet: {fileID: 0}
+  AR_granade: {fileID: 0}
+  AR_laser: {fileID: 0}
+  AR_CD: {fileID: 0}
 --- !u!1 &1880637138369122733
 GameObject:
   m_ObjectHideFlags: 0
