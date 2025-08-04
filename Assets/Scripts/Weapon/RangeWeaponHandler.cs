@@ -34,7 +34,7 @@ public class RangeWeaponHandler : BaseWeaponHandler
         if (!gameObject.activeSelf) return;
         base.Attack();
         Debug.Log(gameObject.name);
-        float projectileAngleSpace = rangeData.MultiProjectileAngle;
+        float projectileAngleSpace = 0;
         int numberOfProjectilePerShot = rangeData.NumProjectilePerShot;
 
         float minAngle = -(numberOfProjectilePerShot / 2f) * projectileAngleSpace;

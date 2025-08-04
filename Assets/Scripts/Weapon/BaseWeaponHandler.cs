@@ -39,12 +39,12 @@ public class BaseWeaponHandler : MonoBehaviour
         Controller = GetComponentInParent<BaseController>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         animator = GetComponentInChildren<Animator>();
+        data = Instantiate(data);
     }
 
     protected virtual void Start()
     {
         CurrentAmmo = MaxAmmo;
-        data = Instantiate(data);
     }
 
     public virtual void Attack()

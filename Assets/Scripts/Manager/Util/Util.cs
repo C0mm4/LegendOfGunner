@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
 
 public static class Util
@@ -19,7 +18,16 @@ public static class Util
         return result;
     }
 
-    
+    private static System.Random rng = new System.Random();
+
+    public static void Shuffle<T>(this List<T> list)
+    {
+        for (int i = list.Count - 1; i > 0; i--)
+        {
+            int j = rng.Next(0, i + 1);
+            (list[i], list[j]) = (list[j], list[i]);
+        }
+    }
 
     public static void Swap<T>(ref T t1, ref T t2)
     {

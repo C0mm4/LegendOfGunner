@@ -46,7 +46,7 @@ public class DungeonManager : MonoBehaviour
 
     void Start()
     {
-        targetToBossWave = Random.Range(3, 6);
+        targetToBossWave = 1;
         stage = 1;
         StartDungeon();
         isBossStage = false;

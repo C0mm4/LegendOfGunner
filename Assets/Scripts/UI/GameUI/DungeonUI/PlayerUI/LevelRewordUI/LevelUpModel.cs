@@ -5,19 +5,10 @@ using System.Linq;
 using System.Xml;
 using UnityEngine;
 using UnityEngine.Events;
+using static UnityEditor.Progress;
 
 public class LevelUpModel : MonoBehaviour
 {
-
-    [SerializeField]
-    public Attribute[] handgun;
-    [SerializeField]
-    public Attribute[] shotgun;
-    [SerializeField]
-    public Attribute[] rifle;
-    [SerializeField]
-    public Attribute[] sniper;
-
     public Queue<Attribute> handgunQueue = new();
     Queue<Attribute> shotgunQueue = new();
     Queue<Attribute> rifleQueue = new();
@@ -28,30 +19,41 @@ public class LevelUpModel : MonoBehaviour
     int shotgunWeight = 100;
     int rifleWeight = 100;
     int sniperWeight = 100;
+
+    AttributeManager manager;
+
+
     private void Start()
     {
+        manager = AttributeManager.Instance;
+        manager.Init();
+
         SetRandomQueue();
     }
 
     public void SetRandomQueue()
     {
-
-        foreach (var item in Util.Shuffle(handgun))
+        manager.ShuffleAttributes();
+        handgunQueue.Clear();
+        foreach (var item in manager._HandGunAttributes)
         {
             if(item.CurrentLevel < item.MaxLevvel)
                 handgunQueue.Enqueue(item);
         }
-        foreach (var item in Util.Shuffle(shotgun))
+        shotgunQueue.Clear();
+        foreach (var item in manager._RifleAttributes)
         {
             if (item.CurrentLevel < item.MaxLevvel)
                 shotgunQueue.Enqueue(item);
         }
-        foreach (var item in Util.Shuffle(rifle))
+        rifleQueue.Clear();
+        foreach (var item in manager._ShotgunAttributes)
         {
             if (item.CurrentLevel < item.MaxLevvel)
                 rifleQueue.Enqueue(item);
         }
-        foreach (var item in Util.Shuffle(sniper))
+        sniperQueue.Clear();
+        foreach (var item in manager._SniperAttributes)
         {
             if (item.CurrentLevel < item.MaxLevvel)
                 sniperQueue.Enqueue(item);
@@ -86,9 +88,11 @@ public class LevelUpModel : MonoBehaviour
     {
         SetRandomQueue();
         randomReword = new Queue<Attribute>[3] { shotgunQueue, rifleQueue, sniperQueue };
+        
         randomReword = Util.RandomReturn2(shotgunWeight, rifleWeight, sniperWeight, randomReword);
         return randomReword;
     }
+
     /*
     public List<sCharacteristic>[] SetRandomReword()
     {

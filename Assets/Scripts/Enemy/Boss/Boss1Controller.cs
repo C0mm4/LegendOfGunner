@@ -12,7 +12,7 @@ public class Boss1Controller : EnemyController
     public override void Init()
     {
         base.Init();
-        view.SetActiveUI(enemyModel.name, (int)enemyModel.Health, (int)enemyModel.MaxHealth);
+//        view.SetActiveUI(enemyModel.name, (int)enemyModel.Health, (int)enemyModel.MaxHealth);
         InvokeRepeating("SpawnEnemyTriger", 1, 5);
     }
     void SpawnEnemyTriger()

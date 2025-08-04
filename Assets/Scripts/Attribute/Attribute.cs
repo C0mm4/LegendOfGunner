@@ -20,7 +20,7 @@ public class Attribute : ScriptableObject
 
     [SerializeField]
     private int currentLevel = 0;
-    public int CurrentLevel {  get { return currentLevel; } }
+    public int CurrentLevel {  get { return currentLevel; } set { currentLevel = value; } }
     
     public enum AttributeType
     {
