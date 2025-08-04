@@ -18,14 +18,9 @@ public class GameEndUI : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI topRecordRoundText;
 
-    private void Start()
-    {
-        UIManager.Instance.gameEndUI = this.gameEndObject;
-        gameEndObject.SetActive(false);
-    }
     public void GoToMainMenu()
     {
-        SceneManager.LoadScene("MainScene");
+        GameManager.Instance.GoToTitle();
     }
 
     public void EndGame(bool isDie)

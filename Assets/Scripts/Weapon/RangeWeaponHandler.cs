@@ -32,6 +32,7 @@ public class RangeWeaponHandler : BaseWeaponHandler
     public override void Attack()
     {
         if (!gameObject.activeSelf) return;
+        if (rangeData == null) return;
         base.Attack();
         float projectileAngleSpace = 0;
         int numberOfProjectilePerShot = rangeData.NumProjectilePerShot;

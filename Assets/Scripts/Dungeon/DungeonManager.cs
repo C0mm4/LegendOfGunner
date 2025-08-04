@@ -189,7 +189,7 @@ public class DungeonManager : MonoBehaviour
                 }
                 if (isClearGame)
                 {
-                    UIManager.Instance.ActiveGameEndUI(true);
+                    UIManager.Instance.ActiveGameEndUI(false);
                 }
             }
         }

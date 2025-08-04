@@ -24,6 +24,7 @@ public class UIManager : MonoSingleton<UIManager>
         if (gameEndUI != null)
         {
             gameEndUI.SetActive(true);
+            gameEndUI.GetComponent<GameEndUI>().EndGame(isDie);
         }
     }
 
@@ -32,6 +33,7 @@ public class UIManager : MonoSingleton<UIManager>
         if(levelUPRewordUI != null)
         {
             levelUPRewordUI.SetActive(true);
+            GameManager.Instance.PauseGame();
 
         }
     }

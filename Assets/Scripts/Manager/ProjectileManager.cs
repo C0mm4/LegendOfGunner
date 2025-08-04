@@ -36,4 +36,9 @@ public class ProjectileManager : MonoSingleton<ProjectileManager>
         mainModule.startSpeedMultiplier = weapon.BulletSize * 10f;
         impactParticleSystem.Play();
     }
+
+    public void MoveToTitle()
+    {
+        impactParticleSystem.Stop();
+    }
 }

@@ -88,8 +88,10 @@ public class PlayerController : BaseController
     public override void Death()
     {
         UIManager.Instance.ActiveGameEndUI(true);
-        GameManager.Instance.EndGame();
+
         Debug.Log("Player Death");
+
+        GameManager.Instance.EndGame();
     }
 
     private void EquipWeapon(int index)

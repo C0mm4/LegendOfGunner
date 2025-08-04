@@ -64,6 +64,7 @@ public class GameManager : MonoSingleton<GameManager>
         }
         else
         {
+            // 디버그 모드 시 로드 없이 초기화
             InitializeGameData();
         }
 
@@ -81,17 +82,6 @@ public class GameManager : MonoSingleton<GameManager>
         SoundManager.Instance.PlayBGM(TitleBGM);
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            SoundManager.Instance.SetVolume(0.5f, SoundManager.VolumeType.Music);
-        }
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            SoundManager.Instance.SetVolume(1f, SoundManager.VolumeType.Music);
-        }
-    }
 
 
     /// <summary>
@@ -115,7 +105,10 @@ public class GameManager : MonoSingleton<GameManager>
     /// </summary>
     public void StartGame()
     {
+        SceneManager.LoadScene("InGameScene");
         SoundManager.Instance.PlayBGM(InGameBGM);
+        isPause = true;
+        Time.timeScale = 1f;
     }
 
     /// <summary>
@@ -132,7 +125,8 @@ public class GameManager : MonoSingleton<GameManager>
     /// </summary>
     public void EndGame()
     {
-
+        isPause = true;
+        Time.timeScale = 0;
     }
 
     /// <summary>
@@ -149,5 +143,12 @@ public class GameManager : MonoSingleton<GameManager>
     public void NextStage()
     {
 
+    }
+
+    public void GoToTitle()
+    {
+        ProjectileManager.Instance.MoveToTitle();
+        SceneManager.LoadScene("MainScene");
+        SoundManager.Instance.PlayBGM(TitleBGM);
     }
 }
