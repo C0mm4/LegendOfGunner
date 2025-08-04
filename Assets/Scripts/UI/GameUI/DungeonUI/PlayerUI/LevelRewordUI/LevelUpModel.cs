@@ -11,9 +11,6 @@ public class LevelUpModel : MonoBehaviour
 {
     List<Attribute>[] randomReword;
 
-    int shotgunWeight = 100;
-    int rifleWeight = 100;
-    int sniperWeight = 100;
 
     AttributeManager manager;
 
@@ -25,15 +22,6 @@ public class LevelUpModel : MonoBehaviour
 
     }
 
-    public void SetRandomQueue()
-    {
-        if(manager == null)
-        {
-            manager = AttributeManager.Instance;
-            manager.Init();
-        }
-        manager.ShuffleAttributes();
-    }
 
     public void SelectReword(int number, Attribute target)
     {
@@ -44,48 +32,9 @@ public class LevelUpModel : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public List<Attribute>[] SetRandomReword()
+    public List<Attribute> SetRandomReword()
     {
-        randomReword = new List<Attribute>[3] { manager._RifleAttributes, manager._ShotgunAttributes, manager._SniperAttributes };
+        return AttributeManager.Instance.Get3Attributes();
         
-        randomReword = Util.RandomReturn2(shotgunWeight, rifleWeight, sniperWeight, randomReword);
-        return randomReword;
     }
-
-    /*
-    public List<sCharacteristic>[] SetRandomReword()
-    {
-        if (shotguns == null)
-            Init();
-        randomReword = new List<sCharacteristic>[3] { shotguns, rifles, snipers };
-        Debug.Log("2¹ø");
-
-        if (shotguns.Count == 0 && rifles.Count == 0 && snipers.Count != 0)
-        {
-            randomReword = new List<sCharacteristic>[1] { snipers };
-        }
-        else if (shotguns.Count == 0 && snipers.Count == 0 && rifles.Count != 0)
-        {
-            randomReword = new List<sCharacteristic>[1] { rifles };
-        }
-        else if (snipers.Count == 0 && rifles.Count == 0 && shotguns.Count != 0)
-        {
-            randomReword = new List<sCharacteristic>[1] { shotguns };
-        }
-        else if (snipers.Count == 0 && rifles.Count == 0 && shotguns.Count == 0)
-        {
-            randomReword = null;
-        }
-        else
-        {
-            randomReword = Util.RandomReturn2(
-                shotguns.Count == 0 ? 0 : shotgunWeight,
-                rifles.Count == 0 ? 0 : rifleWeight,
-                snipers.Count == 0 ? 0 : sniperWeight,
-                randomReword);
-        }
-
-        return randomReword;
-    }
-*/
 }

@@ -16,12 +16,11 @@ public class LevelUpController : MonoBehaviour
     }
     private void OnEnable()
     {
-        model.SetRandomQueue();
         var randomRewards = model.SetRandomReword();
         showAttributes.Clear();
-        showAttributes.Add(AttributeManager.Instance._HandGunAttributes[0]);
-        showAttributes.Add(randomRewards[0][0]);
-        showAttributes.Add(randomRewards[1][0]);
+        showAttributes.Add(randomRewards[0]);
+        showAttributes.Add(randomRewards[1]);
+        showAttributes.Add(randomRewards[2]);
 
         view.SetRewordUI(showAttributes);
         GameManager.Instance.PauseGame();

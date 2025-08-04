@@ -14,6 +14,15 @@ public class AttributeManager : MonoSingleton<AttributeManager>
     [SerializeField]
     public List<Attribute> _SniperAttributes;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        Init();
+    }
+
+    int shotgunWeight = 100;
+    int rifleWeight = 100;
+    int sniperWeight = 100;
 
     public void Init()
     {
@@ -33,6 +42,9 @@ public class AttributeManager : MonoSingleton<AttributeManager>
         {
             item.CurrentLevel = 0;
         }
+        shotgunWeight = 100;
+        rifleWeight = 100;
+        sniperWeight = 100;
     }
 
     public void ShuffleAttributes()
@@ -45,11 +57,32 @@ public class AttributeManager : MonoSingleton<AttributeManager>
 
     public List<Attribute> Get3Attributes()
     {
+        ShuffleAttributes();
         List<Attribute> list = new List<Attribute>();
 
         // Select Weapon Attributes
-
+        for(int i = 0; i < _HandGunAttributes.Count; i++)
+        {
+            if (_HandGunAttributes[i].CurrentLevel < _HandGunAttributes[i].MaxLevvel)
+            {
+                list.Add(_HandGunAttributes[i]);
+                break;
+            }
+        }
         // Select 2 Random Weapon Attributes
+        var randomReword = new List<Attribute>[3] { _RifleAttributes, _ShotgunAttributes, _SniperAttributes };
+        randomReword = Util.RandomReturn2(shotgunWeight, rifleWeight, sniperWeight, randomReword);
+        for(int i = 0; i < 2; i++)
+        {
+            for(int j = 0; j < randomReword[i].Count; j++)
+            {
+                if (randomReword[i][j].CurrentLevel < randomReword[i][j].MaxLevvel)
+                {
+                    list.Add(randomReword[i][j]);
+                    break;
+                }
+            }
+        }
 
         return list;
     }
