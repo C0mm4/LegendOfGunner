@@ -448,45 +448,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1161066045544944736, guid: 44292dffb3dbdf2459e7040ed4ddcb6d, type: 3}
-      propertyPath: dungeonFieldObjects.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1161066045544944736, guid: 44292dffb3dbdf2459e7040ed4ddcb6d, type: 3}
-      propertyPath: dungeonFieldObjects.Array.data[0]
-      value: 
-      objectReference: {fileID: 209437052322853826, guid: 2ff3db8277266b545b520f6cdfa29479, type: 3}
-    - target: {fileID: 1161066045544944736, guid: 44292dffb3dbdf2459e7040ed4ddcb6d, type: 3}
-      propertyPath: dungeonFieldObjects.Array.data[1]
-      value: 
-      objectReference: {fileID: 1033687099178572915, guid: 21f086153390ced46afe13e951c251c6, type: 3}
-    - target: {fileID: 1161066045544944736, guid: 44292dffb3dbdf2459e7040ed4ddcb6d, type: 3}
-      propertyPath: dungeonFieldObjects.Array.data[2]
-      value: 
-      objectReference: {fileID: 2252645328664071541, guid: 8ba6ef2b2d01392419723cb55d2ae770, type: 3}
-    - target: {fileID: 1161066045544944736, guid: 44292dffb3dbdf2459e7040ed4ddcb6d, type: 3}
-      propertyPath: dungeonFieldObjects.Array.data[3]
-      value: 
-      objectReference: {fileID: 2252645328664071541, guid: 8ba6ef2b2d01392419723cb55d2ae770, type: 3}
     - target: {fileID: 1577692912698780128, guid: 44292dffb3dbdf2459e7040ed4ddcb6d, type: 3}
       propertyPath: m_Name
       value: Dungeon
-      objectReference: {fileID: 0}
-    - target: {fileID: 3125681043809724703, guid: 44292dffb3dbdf2459e7040ed4ddcb6d, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 54394448, guid: 765f936c8ab4a87448767c232b677f43, type: 3}
-    - target: {fileID: 3125681043809724703, guid: 44292dffb3dbdf2459e7040ed4ddcb6d, type: 3}
-      propertyPath: m_SortingOrder
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 6096125965823433494, guid: 44292dffb3dbdf2459e7040ed4ddcb6d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8857794901613253306, guid: 44292dffb3dbdf2459e7040ed4ddcb6d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9007626458729701978, guid: 44292dffb3dbdf2459e7040ed4ddcb6d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -531,10 +495,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5633449937957893009, guid: 44292dffb3dbdf2459e7040ed4ddcb6d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1667348233}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44292dffb3dbdf2459e7040ed4ddcb6d, type: 3}
 --- !u!1001 &691689184
 PrefabInstance:
@@ -846,32 +807,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4379667080185459408, guid: 6a455716eee144c7ebd243ea5c7a0033, type: 3}
   m_PrefabInstance: {fileID: 691689184}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1667348230 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5633449937957893009, guid: 44292dffb3dbdf2459e7040ed4ddcb6d, type: 3}
-  m_PrefabInstance: {fileID: 629042413}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &1667348233
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1667348230}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 759fe5a60e3d4804b8e448dbcabffd3f, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1918374529
 PrefabInstance:
   m_ObjectHideFlags: 0

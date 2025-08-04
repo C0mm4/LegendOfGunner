@@ -53,6 +53,8 @@ MonoBehaviour:
   - {fileID: 209437052322853826, guid: 2ff3db8277266b545b520f6cdfa29479, type: 3}
   - {fileID: 1033687099178572915, guid: 21f086153390ced46afe13e951c251c6, type: 3}
   - {fileID: 2252645328664071541, guid: 8ba6ef2b2d01392419723cb55d2ae770, type: 3}
+  dungeonBossMapPrefs:
+  - {fileID: 9016087893604029034, guid: b3f006c5661b12244bf99baaf5be8c37, type: 3}
   waveUIText: {fileID: 0}
   spawnCirclePref: {fileID: 5192481374132709821, guid: 0762bf247fa65c343b8793d40fbbcfcc, type: 3}
   spawnRects:
@@ -74,6 +76,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5514267698771930304}
   - component: {fileID: 3125681043809724703}
+  - component: {fileID: 4756995842747278274}
   m_Layer: 0
   m_Name: ProtalImage
   m_TagString: Untagged
@@ -136,8 +139,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 157fabf627db96445a00cfe98b9f9b94, type: 3}
+  m_SortingOrder: 200
+  m_Sprite: {fileID: 54394448, guid: 765f936c8ab4a87448767c232b677f43, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -148,6 +151,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &4756995842747278274
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5633449937957893009}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 759fe5a60e3d4804b8e448dbcabffd3f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6096125965823433494
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,7 +273,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8676943082620673199
 Transform:
   m_ObjectHideFlags: 0
