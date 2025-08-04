@@ -42,6 +42,14 @@ public class LevelUpView : MonoBehaviour
                 infoText[2].text = "없습니다";
             }
         }
+        else
+        {
+            nameText[1].text = "없습니다";
+            infoText[1].text = "없습니다";
+
+            nameText[2].text = "없습니다";
+            infoText[2].text = "없습니다";
+        }
 
     }
 }
