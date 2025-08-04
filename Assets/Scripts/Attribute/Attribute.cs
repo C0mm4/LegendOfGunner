@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Attribute", menuName = "Attribute/new Attribute")]
+
+[CreateAssetMenu(fileName = "HGAttribute", menuName = "Attribute/new Attribute")]
 public class Attribute : ScriptableObject
 {
     [SerializeField]
@@ -34,6 +35,18 @@ public class Attribute : ScriptableObject
     {
         HG, AR, SG, SR
     }
+
+    [SerializeField]
+    private float IncreaseDMG;
+
+    [SerializeField]
+    private float DecreaseDelay;
+
+    [SerializeField]
+    private int IncreaseBullet;
+
+    [SerializeField]
+    private GameObject ReplaceBulletPref;
 
     [SerializeField]
     private WeaponType weaponType;
@@ -79,7 +92,15 @@ public class Attribute : ScriptableObject
         return null;
     }
 
-    protected virtual void AddStatus() { }
+    protected virtual void AddStatus() 
+    {
+        RangeWeaponData data = applyTargetWeapon.data as RangeWeaponData;
+
+        data.Power += IncreaseDMG;
+        data.Delay -= DecreaseDelay;
+        data.NumProjectilePerShot += IncreaseBullet;
+
+    }
     protected virtual void ChangeBullet() { }
     protected virtual void AddAction() { }
     protected virtual void AddBullet() { }

@@ -26,7 +26,7 @@ public class RangeWeaponData : WeaponData
 
     [SerializeField]
     private int numProjectilePerShot;
-    public int NumProjectilePerShot { get { return numProjectilePerShot; } }
+    public int NumProjectilePerShot { get { return numProjectilePerShot; } set { numProjectilePerShot = value; } }
 
     [SerializeField]
     private float multiProjectileAngle;
@@ -35,4 +35,5 @@ public class RangeWeaponData : WeaponData
     [SerializeField]
     private Color projectileColor;
     public Color ProjectileColor { get { return projectileColor; } }
+
 }
