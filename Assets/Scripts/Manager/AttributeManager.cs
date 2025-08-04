@@ -37,10 +37,10 @@ public class AttributeManager : MonoSingleton<AttributeManager>
 
     public void ShuffleAttributes()
     {
-        _HandGunAttributes.Shuffle();
+/*        _HandGunAttributes.Shuffle();
         _RifleAttributes.Shuffle();
         _ShotgunAttributes.Shuffle();
-        _SniperAttributes.Shuffle();
+        _SniperAttributes.Shuffle();*/
     }
 
     public List<Attribute> Get3Attributes()

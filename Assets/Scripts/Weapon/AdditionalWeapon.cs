@@ -19,9 +19,14 @@ public class AdditionalWeapon : RangeWeaponHandler
         baseWeapon.rotateCallback += RotateCallback;
         data = weapon.data;
         rangeData = data as RangeWeaponData;
+        weapon.subWeapon = this;
 
         projectileSpawn = GameObject.Find("BulletPivot").transform;
         target = weapon.target;
+        Controller = GetComponentInParent<BaseController>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        animator = GetComponentInChildren<Animator>();
+        projectileSpawn = transform.Find("BulletPivot");
 
         // Remove Origin WeaponHandler
         Destroy(GetComponent<RangeWeaponHandler>());
@@ -30,13 +35,13 @@ public class AdditionalWeapon : RangeWeaponHandler
     public void ActiveAdditionalAttack()
     {
         Debug.Log(Controller);
-        Invoke("Attack", baseWeapon.data.Delay / 2); // ¿øº» ¹ß»ç Áß°£¿¡ ¹ß»ç
+        Invoke("Attack", baseWeapon.data.Delay / 2); // ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ ï¿½ß°ï¿½ï¿½ï¿½ ï¿½ß»ï¿½
     }
 
     public void Update()
     {
         if (baseWeapon == null) return;
-        
+
     }
 
     public void RotateCallback(bool isLeft)

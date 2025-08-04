@@ -25,11 +25,12 @@ public class BaseWeaponHandler : MonoBehaviour
     private static readonly int IsAttack = Animator.StringToHash("IsAttack");
 
     [SerializeField]
-    public BaseController Controller {  get; private set; }
+    public BaseController Controller {  get; protected set; }
+    public BaseWeaponHandler subWeapon;
 
-    private Animator animator;
+    protected Animator animator;
     [SerializeField]
-    private SpriteRenderer spriteRenderer;
+    protected SpriteRenderer spriteRenderer;
 
     public Action attackCallback;
 
@@ -40,6 +41,7 @@ public class BaseWeaponHandler : MonoBehaviour
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         animator = GetComponentInChildren<Animator>();
         data = Instantiate(data);
+        Debug.Log("Awake on Weapon");
     }
 
     protected virtual void Start()
@@ -66,12 +68,22 @@ public class BaseWeaponHandler : MonoBehaviour
     public void EquipWeapon()
     {
         CurrentAmmo = MaxAmmo;
+        if(subWeapon != null)
+        {
+            subWeapon.gameObject.SetActive(true);
+        }
     }
 
     public Action<bool> rotateCallback;
 
     public virtual void Rotate(bool isLeft)
     {
+        if(spriteRenderer == null)
+        {
+            Debug.Log(gameObject.name);
+            return;
+        }
+
         spriteRenderer.flipY = isLeft;
         rotateCallback?.Invoke(isLeft);
     }

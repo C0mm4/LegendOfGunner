@@ -46,7 +46,6 @@ public class LevelUpModel : MonoBehaviour
 
     public List<Attribute>[] SetRandomReword()
     {
-        SetRandomQueue();
         randomReword = new List<Attribute>[3] { manager._RifleAttributes, manager._ShotgunAttributes, manager._SniperAttributes };
         
         randomReword = Util.RandomReturn2(shotgunWeight, rifleWeight, sniperWeight, randomReword);
