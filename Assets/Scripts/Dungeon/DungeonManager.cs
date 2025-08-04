@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class DungeonManager : MonoBehaviour
 {
@@ -103,6 +104,8 @@ public class DungeonManager : MonoBehaviour
                     int selectRandomDungeon = Random.Range(0, dungeonFieldObjects.Length);
                     prevDungeonFieldObj = Instantiate(dungeonFields[selectRandomDungeon], Vector3.zero, Quaternion.identity, transform);
                     prevDungoneWallObj = Instantiate(dungeonFieldObjects[selectRandomDungeon], Vector3.zero, Quaternion.identity, transform);
+                    Tilemap tilemap = prevDungoneWallObj.GetComponentInChildren<Tilemap>();
+                    Camera.main.GetComponent<FollowCamera>().SetTilemap(tilemap);
                     isBossStage = false;
                 }
             }
