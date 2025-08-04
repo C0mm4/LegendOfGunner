@@ -29,7 +29,7 @@ public class LevelUpController : MonoBehaviour
 
     private void OnDisable()
     {
-        GameManager.Instance.PauseGame();
+        GameManager.Instance.ResumeGame();
     }
 
     public void SelectReword(int num)

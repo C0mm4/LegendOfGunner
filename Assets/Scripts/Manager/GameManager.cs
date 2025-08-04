@@ -116,8 +116,14 @@ public class GameManager : MonoSingleton<GameManager>
     /// </summary>
     public void PauseGame()
     {
-        isPause = !isPause;
-        Time.timeScale = isPause ? 0f : 1f;
+        isPause = false;
+        Time.timeScale = 0;
+    }
+
+    public void ResumeGame()
+    {
+        isPause = false;
+        Time.timeScale = 1f;
     }
 
     /// <summary>
