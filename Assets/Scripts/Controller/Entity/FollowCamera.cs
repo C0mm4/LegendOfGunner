@@ -18,6 +18,7 @@ public class FollowCamera : MonoBehaviour
         Bounds bounds = tilemap.localBounds;
         minBounds = bounds.min;
         maxBounds = bounds.max;
+
     }
 
 
@@ -35,8 +36,8 @@ public class FollowCamera : MonoBehaviour
     {
         Vector3 targetPos = target.position;
         
-        float clampedX = Mathf.Clamp(targetPos.x, min: minBounds.x + halfWidth, max: maxBounds.x+halfWidth);
-        float clampedY = Mathf.Clamp(targetPos.y, min: minBounds.y + halfHeight, max: maxBounds.y + halfHeight);
+        float clampedX = Mathf.Clamp(targetPos.x, min: minBounds.x + halfWidth, max: maxBounds.x-halfWidth);
+        float clampedY = Mathf.Clamp(targetPos.y, min: minBounds.y + halfHeight, max: maxBounds.y -halfHeight);
 
         targetPos.x = clampedX;
         targetPos.y = clampedY;
