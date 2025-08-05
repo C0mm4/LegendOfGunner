@@ -1,61 +1,50 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 
 public class RangeWeaponHandler : BaseWeaponHandler
 {
-    [Header("Ranged Attack Data")]
+    [Header("Ranged Attack Data")] 
+    protected RangeWeaponData rangeData;
     [SerializeField]
-    private Transform projectileSpawn;
+    protected Transform projectileSpawn;
 
-    [SerializeField]
-    private GameObject bullet;
-    public GameObject Bullet {  get { return bullet; } }
+    public GameObject Bullet {  get { return rangeData.Bullet; } }
 
-    [SerializeField]
-    private float bulletSize = 1f;
-    public float BulletSize {  get { return bulletSize; } }
+    public float BulletSize {  get { return rangeData.BulletSize; } }
 
-    [SerializeField]
-    private float duration;
-    public float Duration { get { return duration; } }
+    public float Duration { get { return rangeData.Duration; } }
 
-    [SerializeField]
-    private float spread;
-    public float Spread { get { return spread; } }
+    public float Spread { get { return rangeData.Spread; } }
 
-    [SerializeField]
-    private int numProjectilePerShot;
-    public int NumProjectilePerShot { get { return numProjectilePerShot; } }
+    public int NumProjectilePerShot { get { return rangeData.NumProjectilePerShot; } }
 
-    [SerializeField]
-    private float multiProjectileAngle;
-    public float MultiProjectileAngle { get { return multiProjectileAngle; } }
+    public float MultiProjectileAngle { get { return rangeData.MultiProjectileAngle; } }
 
-    [SerializeField]
-    private Color projectileColor;
-    public Color ProjectileColor { get { return projectileColor; } }
-
-    protected void Start()
+    public Color ProjectileColor { get { return rangeData.ProjectileColor; } }
+    
+    protected override void Start()
     {
-
+        base.Start();
+        rangeData = data as RangeWeaponData;
     }
 
     public override void Attack()
     {
+        if (!gameObject.activeSelf) return;
+        if (rangeData == null) return;
         base.Attack();
-
-        float projectileAngleSpace = multiProjectileAngle;
-        int numberOfProjectilePerShot = numProjectilePerShot;
+        float projectileAngleSpace = 0;
+        int numberOfProjectilePerShot = rangeData.NumProjectilePerShot;
 
         float minAngle = -(numberOfProjectilePerShot / 2f) * projectileAngleSpace;
 
         for (int i = 0; i < numberOfProjectilePerShot; i++)
         {
             float angle = minAngle + projectileAngleSpace * i;
-            float randomSpread = Random.Range(-spread, spread);
+            float randomSpread = Random.Range(-rangeData.Spread, rangeData.Spread);
             angle += randomSpread;
-
 
             CreateProjectile(Controller.LookDirection, angle);
         }
@@ -69,5 +58,13 @@ public class RangeWeaponHandler : BaseWeaponHandler
     private static Vector2 RotateVector2(Vector2 v, float degree)
     {
         return Quaternion.Euler(0, 0, degree) * v;
+    }
+    public void ChangeBullet(GameObject newBulletPref)
+    {
+        rangeData.Bullet = newBulletPref;
+        if(subWeapon != null)
+        {
+            subWeapon.GetComponent<RangeWeaponHandler>().ChangeBullet(newBulletPref);
+        }
     }
 }

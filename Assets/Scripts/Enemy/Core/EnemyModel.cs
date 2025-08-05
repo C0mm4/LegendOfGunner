@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "Enemy Data", menuName = "Scriptable Object/Enemy Status Data")]
 public class EnemyModel : StatHandler
 {/*
     public class EnemyStatus : StatHandler
@@ -18,10 +19,13 @@ public class EnemyModel : StatHandler
     {
         //        status = new EnemyStatus();
         name = _name;
-        Health = _maxHp;
+        Health = MaxHealth = _maxHp;
         //status.Health = _maxHp;
         Speed = _speed;
     }
+    [SerializeField]
+    private int id;
+    public int ID {  get { return id; } }
     /*
         public void HitEnemy(int dmg)
         {

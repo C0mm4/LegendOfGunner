@@ -19,6 +19,8 @@ public class ProjectileController : MonoBehaviour
 
     public bool fxOnDestroy = true;
 
+    public float Critical;
+    public int piercingLeftEnmey;
 
     ProjectileManager projectileManager;
 
@@ -61,21 +63,11 @@ public class ProjectileController : MonoBehaviour
             if (resource != null)
             {
                 resource.ChangeHealth(-weaponHandler.Power);
-                // ³Ë¹é?
-/*                if (weaponHandler.IsOnKnockBack)
-                {
-                    BaseController baseCon = collision.GetComponent<BaseController>();
 
-                    if (baseCon != null)
-                    {
-                        baseCon.ApplyKnockback(transform, weaponHandler.KnockBackPower, weaponHandler.KnockBackTime);
-                    }
-                }*/
             }
             collision.GetComponent<EnemyController>()?.Damaged();
-
-            Debug.Log("Collision!");
-            DestroyProjectile(collision.ClosestPoint(transform.position), fxOnDestroy);
+            if(--piercingLeftEnmey <= 0)
+                DestroyProjectile(collision.ClosestPoint(transform.position), fxOnDestroy);
         }
     }
 

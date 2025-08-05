@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public class BaseController : MonoBehaviour
@@ -13,6 +14,7 @@ public class BaseController : MonoBehaviour
     protected Vector2 movementDirection = Vector2.zero;
     public Vector2 MovementDirection { get { return movementDirection; } }
 
+    [SerializeField]
     protected Vector2 lookDirection = Vector2.zero;
     public Vector2 LookDirection { get { return lookDirection; } }
 
@@ -24,6 +26,7 @@ public class BaseController : MonoBehaviour
 
     [SerializeField]
     protected List<BaseWeaponHandler> weapons;
+    public BaseWeaponHandler GetWeapon(int index) => weapons[index];
 
     [SerializeField]
     private BaseWeaponHandler currentWeapon;
@@ -31,14 +34,21 @@ public class BaseController : MonoBehaviour
     [SerializeField]
     private BaseWeaponHandler baseWeapon;
 
+    [SerializeField]
     private float lastAttackTime = 0f;
 
     private Vector3 weaponPivotPos;
     protected AnimationHandler animationHandler;
-    protected StatHandler statHandler;
+    [SerializeField]
+    protected Transform targetTrans;
 
-    [SerializeField] private BaseWeaponHandler weapon;
+
+    [Header("Charactor Status")]
+    [SerializeField]
+    public StatHandler statHandler;
+
     protected bool isAttackInput = true;
+
 
     protected virtual void Awake()
     {
@@ -46,7 +56,8 @@ public class BaseController : MonoBehaviour
         weaponPivotPos = weaponPivot.localPosition;
         CreateWeapon();
         animationHandler = GetComponent<AnimationHandler>();
-        statHandler = GetComponent<StatHandler>();
+        statHandler = Instantiate(statHandler);
+        characterRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
     }
 
     protected virtual void CreateWeapon()
@@ -76,18 +87,32 @@ public class BaseController : MonoBehaviour
 
     protected virtual void Update()
     {
-        HandleAction();
-        Rotate(lookDirection);
-        AttackHandler();
-        UpdateCooltime();
+        if(targetTrans == null)
+        {
+            movementDirection = Vector2.zero;
+        }
+        if(GameManager.gameState == GameState.InPlay)
+        {
+            HandleAction();
+            Rotate(lookDirection);
+            AttackHandler();
+            UpdateCooltime();
+        }
     }
 
     protected virtual void FixedUpdate()
     {
-        Movement(movementDirection);
-        if (knockbackDuration > 0.0f)
+        if (GameManager.gameState == GameState.InPlay)
         {
-            knockbackDuration -= Time.deltaTime;
+            Movement(movementDirection);
+            if (knockbackDuration > 0.0f)
+            {
+                knockbackDuration -= Time.deltaTime;
+            }
+        }
+        else
+        {
+            _rigidbody.velocity = Vector2.zero;
         }
     }
 
@@ -100,7 +125,7 @@ public class BaseController : MonoBehaviour
     {
         for (int i = 0; i < weapons.Count; i++)
         {
-            if (weapons[i].isCooltime)
+            if (weapons[i].data.IsCooltime)
             {
                 weapons[i].UpdateCooltime(Time.deltaTime);
             }
@@ -121,41 +146,57 @@ public class BaseController : MonoBehaviour
 
     private void Rotate(Vector2 direction)
     {
-        float radianRotZ = Mathf.Atan2(direction.y, direction.x);
-        float rotZ = radianRotZ * Mathf.Rad2Deg;
-        bool isLeft = Mathf.Abs(rotZ) > 90f;
-
-        characterRenderer.flipX = isLeft;
-
-        if (weaponPivot != null)
+        if (Time.timeScale == 0)
         {
-            weaponPivot.rotation = Quaternion.Euler(0, 0, rotZ);
-            weaponPivot.localPosition = isLeft ?
-                new Vector3(Mathf.Cos(-radianRotZ), Mathf.Sin(radianRotZ)) * weaponPivotPos.magnitude :
-                new Vector3(Mathf.Cos(radianRotZ), Mathf.Sin(radianRotZ)) * weaponPivotPos.magnitude;
+            return;
+        }
+        else
+        {
+            float radianRotZ = Mathf.Atan2(direction.y, direction.x);
+            float rotZ = radianRotZ * Mathf.Rad2Deg;
+            bool isLeft = Mathf.Abs(rotZ) > 90f;
 
-            if(currentWeapon != null)
-                currentWeapon.Rotate(isLeft);
+            characterRenderer.flipX = isLeft;
+
+            if (weaponPivot != null)
+            {
+                weaponPivot.rotation = Quaternion.Euler(0, 0, rotZ);
+                weaponPivot.localPosition = isLeft ?
+                    new Vector3(Mathf.Cos(-radianRotZ), Mathf.Sin(radianRotZ)) * weaponPivotPos.magnitude :
+                    new Vector3(Mathf.Cos(radianRotZ), Mathf.Sin(radianRotZ)) * weaponPivotPos.magnitude;
+
+                if (currentWeapon != null)
+                    currentWeapon.Rotate(isLeft);
+            }
         }
     }
 
     private void AttackHandler()
     {
-        if (currentWeapon == null) return;
-
-        if(lastAttackTime >= currentWeapon.Delay)
+        if (currentWeapon == null)
+        {
+            return;
+        }
+        if (targetTrans == null) 
+        {
+            return; 
+        }
+        if (lookDirection.magnitude <= 0.5f)
+        {
+            return;
+        }
+        if (lastAttackTime >= currentWeapon.Delay && Vector2.Distance(transform.position, targetTrans.position) <= currentWeapon.AttackRange)
         {
             currentWeapon?.Attack();
             lastAttackTime = 0;
             // 현재 무기 탄환 다 쓰면 기본 무기 장착
             // 기본무기는 MaxAmmo -1로 두어 예외처리
-            if(currentWeapon?.MaxAmmo != -1 && currentWeapon?.CurrentAmmo <= 0)
+            if (currentWeapon?.MaxAmmo != -1 && currentWeapon?.CurrentAmmo <= 0)
             {
                 currentWeapon.SetCooltime();
                 GameObject go = Instantiate(currentWeapon.gameObject, currentWeapon.transform.position, currentWeapon.transform.rotation);
                 Destroy(go.GetComponent<BaseWeaponHandler>());
                 go.AddComponent<WeaponDust>();
-
                 EquipBaseWeapon();
             }
         }
@@ -174,15 +215,16 @@ public class BaseController : MonoBehaviour
 
     public virtual void Death()
     {
-        _rigidbody.velocity = Vector3.zero;
-        foreach(SpriteRenderer renderer in transform.GetComponentsInChildren<SpriteRenderer>())
-        {
-            Color color = renderer.color;
-            color.a = 0.3f;
-            renderer.color = color;
-        }
+        _rigidbody.velocity = Vector2.zero;
+        //foreach (SpriteRenderer renderer in transform.GetComponentsInChildren<SpriteRenderer>())
+        //{
+        //    Color color = renderer.color;
+        //    color.a = 0.3f;
+        //    renderer.color = color;
+        //}
+        // 죽는 모션 생겨서 잠시 주석처리 했습니다.
 
-        foreach(Behaviour component in transform.GetComponentsInChildren<Behaviour>())
+        foreach (Behaviour component in transform.GetComponentsInChildren<Behaviour>())
         {
             if (!(component is Animator))
             {
@@ -197,15 +239,21 @@ public class BaseController : MonoBehaviour
     {
         if(weapon != this.currentWeapon)
         {
-            if (weapon.isCooltime) return;
+            if (weapon.data.IsCooltime) return;
+            // 기본 무기 상태가 아닐 때 해당 무기 쿨타임 적용
+            if(currentWeapon != null && currentWeapon != baseWeapon)
+            {
+                currentWeapon.SetCooltime();
+            }
 
             if(this.currentWeapon != null)
                 this.currentWeapon.gameObject.SetActive(false);
             this.currentWeapon = weapon;
             this.currentWeapon.gameObject.SetActive(true);
             this.currentWeapon.EquipWeapon();
+
             // Reset Attack Delay Time
-            lastAttackTime = 99f;
+            lastAttackTime = 1f;    // Set Value 99 to 0, cause if weapon end, double shooting with new weapon
         }
     }
 
@@ -218,4 +266,6 @@ public class BaseController : MonoBehaviour
     {
         EquipWeapon(baseWeapon);
     }
+
+    
 }

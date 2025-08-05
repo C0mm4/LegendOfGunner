@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a0b7348951fff48a5069a26b84e8e6, type: 3}
+  m_Name: Player_SR
+  m_EditorClassIdentifier: 
+  delay: 3
+  power: 15
+  speed: 8
+  attackRange: 10
+  currentAmmo: 1
+  maxAmmo: 2
+  coolTime: 90
+  attackSFX: {fileID: 8300000, guid: 929fd214252d7034d93c9463bf63e091, type: 3}
+  bullet: {fileID: 8353363161459075883, guid: dd55e6e74ef19a84bb2e877b38d83a82, type: 3}
+  bulletSize: 1
+  duration: 4
+  spread: 10
+  numProjectilePerShot: 1
+  multiProjectileAngle: 0
+  piercingEnemyCount: 1
+  criticalPercentage: 0
+  projectileColor: {r: 1, g: 1, b: 1, a: 1}

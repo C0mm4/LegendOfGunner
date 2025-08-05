@@ -5,42 +5,35 @@ using static UnityEngine.GraphicsBuffer;
 
 public class MeleeWeaponHandler : BaseWeaponHandler
 {
-    [Header("Melee Attack Info")]
-    public Vector2 collideBoxSize = Vector2.one;
+    MeleeWeaponData meleeData;
 
-    [SerializeField]
-    TrailRenderer TrailRenderer;
-    protected void Start()
+    private void Start()
     {
-        TrailRenderer.gameObject.SetActive(false);
+        meleeData = data as MeleeWeaponData;
     }
 
     public override void Attack()
     {
         base.Attack();
-        TrailRenderer.gameObject.SetActive(true);
-        Invoke("AttackTrailEnd", 1 / Speed);
-
-        RaycastHit2D hit = Physics2D.BoxCast(transform.position + (Vector3)Controller.LookDirection * collideBoxSize.x,
-            collideBoxSize, 0, Vector2.zero, target);
+        RaycastHit2D hit = Physics2D.BoxCast(transform.position + (Vector3)Controller.LookDirection * meleeData.collideBoxSize.x,
+            meleeData.collideBoxSize, 0, Vector2.zero, 0f, target);
 
         if (hit.collider != null)
         {
-            // Add Hit Action
-            /*
+            Debug.Log("Melee Attack");
             ResourceController resource = hit.collider.GetComponent<ResourceController>();
             if (resource != null)
             {
                 resource.ChangeHealth(-Power);
-                if (IsOnKnockBack)
+/*                if (IsOnKnockBack)
                 {
                     BaseController baseController = hit.collider.GetComponent<BaseController>();
                     if (baseController != null)
                     {
                         baseController.ApplyKnockback(transform, KnockBackPower, KnockBackTime);
                     }
-                }
-            }*/
+                }*/
+            }
         }
     }
 
@@ -56,8 +49,4 @@ public class MeleeWeaponHandler : BaseWeaponHandler
         }
     }
 
-    public void AttackTrailEnd()
-    {
-        TrailRenderer.gameObject.SetActive(false);
-    }
 }

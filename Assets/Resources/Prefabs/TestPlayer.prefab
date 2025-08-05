@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7366239020360313878}
   - component: {fileID: 1903458004812957977}
   - component: {fileID: 8152059826259501272}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MainSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,7 +115,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7917305783173955530}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WeaponPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,12 +149,11 @@ GameObject:
   - component: {fileID: 6148254073026196644}
   - component: {fileID: 6025468895803324048}
   - component: {fileID: 1257065689667460619}
-  - component: {fileID: 138016651849909073}
   - component: {fileID: -3895378429667629893}
   - component: {fileID: -1605746817342339694}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TestPlayer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -252,27 +251,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterRenderer: {fileID: 1903458004812957977}
   weaponPivot: {fileID: 7917305783173955530}
+  movementDirection: {x: 0, y: 0}
+  lookDirection: {x: 0, y: 0}
   weaponPref:
   - {fileID: 6723112918198343287, guid: 3e852ae8ad3cd7f4ebc95a97cdd6569a, type: 3}
   - {fileID: 6723112918198343287, guid: 436044ac0ece1a44ca87c99d278f3e54, type: 3}
+  - {fileID: 6723112918198343287, guid: 05ece38e17207764b864f06462ef569f, type: 3}
+  - {fileID: 6723112918198343287, guid: c82cc1bb8acd9c6448342632ab38a88c, type: 3}
   weapons: []
   currentWeapon: {fileID: 0}
   baseWeapon: {fileID: 0}
-  weapon: {fileID: 0}
---- !u!114 &138016651849909073
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7950050956791840098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a08b6d5489b4a478488c09092333cdc4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 10
-  speed: 3
+  lastAttackTime: 0
+  targetTrans: {fileID: 0}
+  statHandler: {fileID: 11400000, guid: ee79abaae41b21c4f9167c2f0ced804f, type: 2}
 --- !u!114 &-3895378429667629893
 MonoBehaviour:
   m_ObjectHideFlags: 0

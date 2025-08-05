@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Boss1Controller : EnemyController
 {
+    bool isAttack = false;
     protected override void Start()
     {
         base.Start();
@@ -11,25 +12,51 @@ public class Boss1Controller : EnemyController
     public override void Init()
     {
         base.Init();
-        view.SetActiveUI(enemyModel.name);
-        InvokeRepeating("spawnEnemy", 1, 5);
-        Debug.Log("tq");
+        view.SetActiveUI(enemyModel.name, (int)enemyModel.Health, (int)enemyModel.MaxHealth);
+        InvokeRepeating("SpawnEnemyTriger", 1, 5);
+    }
+    void SpawnEnemyTriger()
+    {
+        view.AttackAnimation(1);
+    }
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        //view.DeActiveUI();
     }
 
     // Update is called once per frame
     protected override void Update()
     {
-        base.Update();
     }
 
     public override void Damaged()
     {
-        view.SetHpBar(10, (int)enemyModel.Health);
+        base.Damaged();
+        view.HitAnimaion();
+        view.SetHpBar((int)enemyModel.MaxHealth, (int)enemyModel.Health);
+    }
+    public override void Death()
+    {
+        base.Death();
+        int len = EnemyManager.Instance.GetEnemyListSize();
+        for (int i = 0; i < len; i++)
+        {
+            EnemyManager.Instance.EnemyList[0].GetComponent<EnemyController>().Death();
+        }
+    }
+    protected override void Movement()
+    {
+
+    }
+    public void spawnEnemy()
+    {
+        DungeonManager dungeon = GameManager.Instance.GetDungeon();
+        var map = dungeon.CurrentDungeonMap.GetComponent<Map>();
+        Vector2 pos = map.GetLastUseRectRandomPos();
+
+        for (int i = 0; i < 5; i++)
+            StartCoroutine(dungeon.SpawnEnemy(pos));
     }
 
-    void spawnEnemy()
-    {
-        for (int i = 0; i < 5; i++)
-            EnemyManager.Instance.AddEnemy(EnemyManager.eEnemyType.eTemp, Vector3.zero);
-    }
 }

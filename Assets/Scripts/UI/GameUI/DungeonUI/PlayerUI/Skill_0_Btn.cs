@@ -1,60 +1,41 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using Unity.VisualScripting;
-using System.Net;
-
+using System;
 
 public class Skill_0_Btn : MonoBehaviour
 {
-    public float maxCoolDown; // 쿨타임 받아와야함
+    PlayerController playerController;
     public Image coolDownIcon;
     public TextMeshProUGUI coolDownText;
-    float coolDown;
-    bool isCoolDown = false; // true - 스킬 사용 불가, false - 스킬 사용 가능
 
-    public void Update()
+    private void Awake()
     {
-        if (Input.GetKeyUp(KeyCode.Alpha1))
+        playerController = FindObjectOfType<PlayerController>();
+    }
+
+    void Update()
+    {
+        BaseWeaponHandler weapon = playerController.GetWeapon(1);
+        WeaponData data = weapon.data;
+        if (data.IsCooltime)
         {
-            ClickSkill_0_Btn();
+            float left = data.LeftCoolTime;
+            float max = data.CoolTime;
+
+            coolDownIcon.fillAmount = left / max;
+            coolDownText.text = left.ToString("N1");
+
+            coolDownText.gameObject.SetActive(true);
+            coolDownIcon.gameObject.SetActive(true);
+        }
+        else
+        {
+            coolDownText.gameObject.SetActive(false);
+            coolDownIcon.gameObject.SetActive(false);
         }
     }
-    public void ClickSkill_0_Btn()
-    {
-        //스킬 사용 메서드
-        if (isCoolDown) return;
-        StartCoroutine(CoolDownTime(maxCoolDown));
-    }
+    
 
-    IEnumerator CoolDownTime(float maxCoolDownTime)
-    {
-        coolDown = maxCoolDownTime;
-        SetCoolDown(true);
-        
-        while (coolDown > 0)
-        {
-            if (UIManager.Instance.pauseUI.activeSelf)
-            {
-                yield return null;
-                continue;
-            }
-
-            coolDown -= Time.deltaTime;
-            coolDownIcon.fillAmount = coolDown / maxCoolDown;
-            coolDownText.text = coolDown.ToString("N1");
-            yield return null;
-        }
-
-        SetCoolDown(false);
-    }
-
-    void SetCoolDown(bool boolean)
-    {
-        isCoolDown = boolean;
-        coolDownText.gameObject.SetActive(boolean);
-        coolDownIcon.gameObject.SetActive(boolean);
-    }
 }

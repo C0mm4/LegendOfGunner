@@ -1,93 +1,106 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class BaseWeaponHandler : MonoBehaviour
 {
     [SerializeField]
-    private float delay = 0.2f;
-    public float Delay {  get { return delay; } set { delay = value; } }
+    public WeaponData data;
+    public float Delay {  get { return data.Delay; } set { data.Delay = value; } }
 
-    [SerializeField]
-    private float power = 1f;
-    public float Power { get { return power; } set { power = value; } }
+    public float Power { get { return data.Power; } set { data.Power = value; } }
 
-    [SerializeField]
-    public float speed = 1f;
-    public float Speed {  get { return speed; } set { speed = value; } }
+    public float Speed {  get { return data.Speed; } set { data.Speed = value; } }
 
-    [SerializeField]
-    private float attackRange = 10f;
-    [SerializeField]
-    public float AttackRange {  get { return attackRange; } set { attackRange = value; } }
+    public float AttackRange {  get { return data.AttackRange; } set { data.AttackRange = value; } }
 
-    [SerializeField]
-    private int currentAmmo;
-    public int CurrentAmmo { get { return currentAmmo; } }
+    public int CurrentAmmo { get { return data.CurrentAmmo; } set { data.CurrentAmmo = value; } }
 
-    [SerializeField]
-    private int maxAmmo;
-    [SerializeField]
-    public int MaxAmmo { get { return maxAmmo; } }
-
+    public int MaxAmmo { get { return data.MaxAmmo; } set { data.MaxAmmo = value; } }
 
     public LayerMask target;
 
     private static readonly int IsAttack = Animator.StringToHash("IsAttack");
-    private static readonly int IsReload = Animator.StringToHash("IsReload");
-
-    public BaseController Controller {  get; private set; }
-
-    private Animator animator;
-    [SerializeField]
-    private SpriteRenderer spriteRenderer;
 
     [SerializeField]
-    protected float coolTime = 0f;
-    public bool isCooltime = false;
-    protected float leftCooltime = 0f;
+    public BaseController Controller {  get; protected set; }
+    public BaseWeaponHandler subWeapon;
+
+    protected Animator animator;
+    [SerializeField]
+    protected SpriteRenderer spriteRenderer;
+
+    public Action attackCallback;
+
 
     protected virtual void Awake()
     {
         Controller = GetComponentInParent<BaseController>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        animator = GetComponentInChildren<Animator>();
+        data = Instantiate(data);
+        Debug.Log("Awake on Weapon");
     }
 
-    private void Start()
+    protected virtual void Start()
     {
-        currentAmmo = maxAmmo;
+        CurrentAmmo = MaxAmmo;
     }
 
     public virtual void Attack()
     {
+        if (animator != null)
+            if (animator.runtimeAnimatorController != null)
+                animator.SetTrigger(IsAttack);
+        if(data.attackSFX != null)
+        {
+            SoundManager.Instance.PlaySFX(data.attackSFX);
+        }
         if(MaxAmmo != -1)
         {
-            currentAmmo--;
+            CurrentAmmo--;
         }
+        attackCallback?.Invoke();
     }
 
     public void EquipWeapon()
     {
-        currentAmmo = maxAmmo;
+        CurrentAmmo = MaxAmmo;
+        if(subWeapon != null)
+        {
+            subWeapon.gameObject.SetActive(true);
+        }
     }
+
+    public Action<bool> rotateCallback;
 
     public virtual void Rotate(bool isLeft)
     {
+        if(spriteRenderer == null)
+        {
+            Debug.Log(gameObject.name);
+            return;
+        }
+
         spriteRenderer.flipY = isLeft;
+        rotateCallback?.Invoke(isLeft);
     }
 
     public void SetCooltime()
     {
-        isCooltime = true;
-        leftCooltime = coolTime;
+        data.IsCooltime = true;
+        data.LeftCoolTime = data.CoolTime;
     }
 
     public void UpdateCooltime(float deltaT)
     {
-        leftCooltime -= deltaT;
-        if(leftCooltime <= 0f)
+        data.LeftCoolTime -= deltaT;
+        if(data.LeftCoolTime <= 0f)
         {
-            isCooltime = false;
+            data.IsCooltime = false;
         }
     }
+
 }
