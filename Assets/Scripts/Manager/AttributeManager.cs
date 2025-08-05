@@ -101,7 +101,7 @@ public class AttributeManager : MonoSingleton<AttributeManager>
     {
         List<Attribute> list = GetAttributeListByType(type);
         if (list == null || index < 0 || index >= list.Count)
-            return "[?/?]";
+            return "[0/5]";
 
         Attribute attr = list[index];
         return $"[{attr.CurrentLevel}/{attr.MaxLevvel}]";
