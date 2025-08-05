@@ -15,8 +15,8 @@ public class EnemyFactory : MonoBehaviour
 
         switch (enemyType)
         {
-            case EnemyManager.eEnemyType.eTemp:
-                obj = Instantiate(tempObject, spawnPos, Quaternion.identity);
+            case EnemyManager.eEnemyType.eAlarmbot:
+                obj = Instantiate(EnemyManager.Instance.GetEnemyObj(enemyType), spawnPos, Quaternion.identity);
 //                obj.GetComponent<EnemyModel>().SettingStatus(1, 1, 1);
                 obj.GetComponent<EnemyController>().Init();
                 break;
