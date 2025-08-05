@@ -18,7 +18,6 @@ public class LevelUpModel : MonoBehaviour
     private void Start()
     {
         manager = AttributeManager.Instance;
-        manager.Init();
 
     }
 
