@@ -109,6 +109,7 @@ public class GameManager : MonoSingleton<GameManager>
         SoundManager.Instance.PlayBGM(InGameBGM);
         isPause = true;
         Time.timeScale = 1f;
+        AttributeManager.Instance.Init();
     }
 
     /// <summary>
