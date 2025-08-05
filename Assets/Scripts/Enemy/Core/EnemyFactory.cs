@@ -13,14 +13,8 @@ public class EnemyFactory : MonoBehaviour
     {
         GameObject obj = null;
 
-        switch (enemyType)
-        {
-            case EnemyManager.eEnemyType.eTemp:
-                obj = Instantiate(tempObject, spawnPos, Quaternion.identity);
-//                obj.GetComponent<EnemyModel>().SettingStatus(1, 1, 1);
-                obj.GetComponent<EnemyController>().Init();
-                break;
-        }
+        obj = Instantiate(EnemyManager.Instance.GetEnemyObj(enemyType), spawnPos, Quaternion.identity);
+        obj.GetComponent<EnemyController>().Init();
 
         return obj;
     }

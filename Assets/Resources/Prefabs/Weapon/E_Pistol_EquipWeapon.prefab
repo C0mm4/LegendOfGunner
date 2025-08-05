@@ -187,5 +187,6 @@ MonoBehaviour:
   target:
     serializedVersion: 2
     m_Bits: 256
+  subWeapon: {fileID: 0}
   spriteRenderer: {fileID: 0}
   projectileSpawn: {fileID: 2037861509463839872}

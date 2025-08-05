@@ -180,7 +180,7 @@ public class DungeonManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
 
-        EnemyManager.eEnemyType randomEnemyType = (EnemyManager.eEnemyType)Random.Range((int)EnemyManager.eEnemyType.eTemp, (int)EnemyManager.eEnemyType.eEnd);
+        EnemyManager.eEnemyType randomEnemyType = (EnemyManager.eEnemyType)Random.Range((int)EnemyManager.eEnemyType.eAlarmbot, (int)EnemyManager.eEnemyType.eEnd);
         GameObject go = Instantiate(spawnCirclePref, pos, Quaternion.identity);
         go.GetComponent<SpawnCircle>().SetEnemyData(randomEnemyType);
     }
