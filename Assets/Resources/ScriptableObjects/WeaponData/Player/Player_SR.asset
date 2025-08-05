@@ -17,7 +17,7 @@ MonoBehaviour:
   speed: 8
   attackRange: 10
   currentAmmo: 1
-  maxAmmo: 10
+  maxAmmo: 2
   coolTime: 90
   attackSFX: {fileID: 8300000, guid: 929fd214252d7034d93c9463bf63e091, type: 3}
   bullet: {fileID: 8353363161459075883, guid: dd55e6e74ef19a84bb2e877b38d83a82, type: 3}
@@ -26,4 +26,6 @@ MonoBehaviour:
   spread: 10
   numProjectilePerShot: 1
   multiProjectileAngle: 0
+  piercingEnemyCount: 1
+  criticalPercentage: 0
   projectileColor: {r: 1, g: 1, b: 1, a: 1}

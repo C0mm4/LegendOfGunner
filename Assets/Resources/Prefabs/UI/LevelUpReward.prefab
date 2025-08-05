@@ -2356,6 +2356,15 @@ MonoBehaviour:
   - {fileID: 4193534308699509736}
   - {fileID: 6806261949293982005}
   - {fileID: 1793501242457721143}
+  iconImages:
+  - {fileID: 5205997893195700200}
+  - {fileID: 244675095255254031}
+  - {fileID: 4799710797166629852}
+  sprites:
+  - {fileID: 21300000, guid: b65599095fabbe640b38426a7a00f8e2, type: 3}
+  - {fileID: 21300000, guid: df5877e618bf1b84e86a413e187d0daf, type: 3}
+  - {fileID: 21300000, guid: e4cdcd0e217838d4fa67b7916368c7fb, type: 3}
+  - {fileID: 21300000, guid: 9dc2631159642d04d9ea8ef570c5d18b, type: 3}
 --- !u!114 &3623470884718921233
 MonoBehaviour:
   m_ObjectHideFlags: 0

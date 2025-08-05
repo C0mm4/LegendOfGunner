@@ -240,6 +240,11 @@ public class BaseController : MonoBehaviour
         if(weapon != this.currentWeapon)
         {
             if (weapon.data.IsCooltime) return;
+            // 기본 무기 상태가 아닐 때 해당 무기 쿨타임 적용
+            if(currentWeapon != null && currentWeapon != baseWeapon)
+            {
+                currentWeapon.SetCooltime();
+            }
 
             if(this.currentWeapon != null)
                 this.currentWeapon.gameObject.SetActive(false);
