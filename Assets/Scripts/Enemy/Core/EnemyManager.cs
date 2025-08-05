@@ -11,6 +11,7 @@ public class EnemyManager : MonoSingleton<EnemyManager>
         eHG,
         eAR,
         eSG,
+        eSR,
         eEnd,
     }
     [SerializeField]
