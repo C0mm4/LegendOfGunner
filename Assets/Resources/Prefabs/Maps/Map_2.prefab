@@ -12,7 +12,9 @@ GameObject:
   - component: {fileID: 7948473255792178448}
   - component: {fileID: 743621047538677935}
   - component: {fileID: 1359413324296990120}
-  m_Layer: 0
+  - component: {fileID: 4236363675413454461}
+  - component: {fileID: 6175064594460167712}
+  m_Layer: 6
   m_Name: Collider_wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1900,11 +1902,107 @@ TilemapCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
+--- !u!50 &4236363675413454461
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 295171542801880942}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!66 &6175064594460167712
+CompositeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 295171542801880942}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_GeometryType: 0
+  m_GenerationType: 0
+  m_EdgeRadius: 0
+  m_ColliderPaths:
+  - m_Collider: {fileID: 1359413324296990120}
+    m_ColliderPaths:
+    - - X: 190000000
+        Y: 110000000
+      - X: -190000000
+        Y: 110000000
+      - X: -190000000
+        Y: -110000000
+      - X: 190000000
+        Y: -110000000
+    - - X: -180000000
+        Y: -100000000
+      - X: -180000000
+        Y: 90000000
+      - X: 180000000
+        Y: 90000000
+      - X: 180000000
+        Y: -100000000
+  m_CompositePaths:
+    m_Paths:
+    - - {x: 18.999971, y: -11}
+      - {x: 18.999971, y: 11}
+      - {x: -19, y: 10.99997}
+      - {x: -18.999971, y: -11}
+    - - {x: 18, y: -9.99997}
+      - {x: -18, y: -9.99997}
+      - {x: -17.999971, y: 9}
+      - {x: 18, y: 8.99997}
+  m_VertexDistance: 0.0005
+  m_OffsetDistance: 0.00005
+  m_UseDelaunayMesh: 0
+  m_CompositeGameObject: {fileID: 295171542801880942}
 --- !u!1 &1033687099178572915
 GameObject:
   m_ObjectHideFlags: 0
@@ -1915,7 +2013,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3640360935265453024}
   - component: {fileID: 9008974838592509941}
-  m_Layer: 0
+  - component: {fileID: -3673431989043057057}
+  m_Layer: 6
   m_Name: Map_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1954,6 +2053,44 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
+--- !u!114 &-3673431989043057057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1033687099178572915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d31df92b26a6724e8c4f731efaddd40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnRects:
+  - serializedVersion: 2
+    x: -17.5
+    y: -9.5
+    width: 6
+    height: 18
+  - serializedVersion: 2
+    x: -11.5
+    y: -9.5
+    width: 29
+    height: 4
+  - serializedVersion: 2
+    x: -6.5
+    y: -5.5
+    width: 13
+    height: 11
+  - serializedVersion: 2
+    x: -11.5
+    y: 5.5
+    width: 23
+    height: 3
+  - serializedVersion: 2
+    x: 11.5
+    y: -5.5
+    width: 6
+    height: 14
 --- !u!1 &1979048484486799831
 GameObject:
   m_ObjectHideFlags: 0
@@ -1965,7 +2102,7 @@ GameObject:
   - component: {fileID: 7849593238218874108}
   - component: {fileID: 4571864546980158069}
   - component: {fileID: 4455890267068351532}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3670,7 +3807,9 @@ GameObject:
   - component: {fileID: 5890689771558242839}
   - component: {fileID: 2846189872414461598}
   - component: {fileID: 6109521757243932569}
-  m_Layer: 0
+  - component: {fileID: 5761700771228926758}
+  - component: {fileID: 6891609917381062062}
+  m_Layer: 6
   m_Name: Collider_Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4838,11 +4977,107 @@ TilemapCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
+--- !u!50 &5761700771228926758
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4137865331368973136}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!66 &6891609917381062062
+CompositeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4137865331368973136}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_GeometryType: 0
+  m_GenerationType: 0
+  m_EdgeRadius: 0
+  m_ColliderPaths:
+  - m_Collider: {fileID: 6109521757243932569}
+    m_ColliderPaths:
+    - - X: 110000000
+        Y: 50000000
+      - X: 70000000
+        Y: 50000000
+      - X: 70000000
+        Y: -50000000
+      - X: 110000000
+        Y: -50000000
+    - - X: -70000000
+        Y: 50000000
+      - X: -110000000
+        Y: 50000000
+      - X: -110000000
+        Y: -50000000
+      - X: -70000000
+        Y: -50000000
+  m_CompositePaths:
+    m_Paths:
+    - - {x: 10.99997, y: -5}
+      - {x: 10.99997, y: 5}
+      - {x: 7, y: 4.999971}
+      - {x: 7.0000296, y: -5}
+    - - {x: -7.0000296, y: -5}
+      - {x: -7.0000296, y: 5}
+      - {x: -11, y: 4.999971}
+      - {x: -10.99997, y: -5}
+  m_VertexDistance: 0.0005
+  m_OffsetDistance: 0.00005
+  m_UseDelaunayMesh: 0
+  m_CompositeGameObject: {fileID: 4137865331368973136}
 --- !u!1 &5032685998328872061
 GameObject:
   m_ObjectHideFlags: 0
@@ -4854,7 +5089,7 @@ GameObject:
   - component: {fileID: 4981710529111371896}
   - component: {fileID: 406523778508086628}
   - component: {fileID: 6048600725557254694}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6052,7 +6287,7 @@ GameObject:
   - component: {fileID: 1614375682120992167}
   - component: {fileID: 4947266806308364863}
   - component: {fileID: 8830482029144189589}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
