@@ -11793,7 +11793,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnRects:
   - serializedVersion: 2
-    x: 0
-    y: 0
-    width: 0
-    height: 0
+    x: -17.5
+    y: -0.5
+    width: 9
+    height: 9
+  - serializedVersion: 2
+    x: 8.5
+    y: -0.5
+    width: 9
+    height: 9

@@ -11,11 +11,12 @@ public class DungeonManager : MonoBehaviour
     SpriteRenderer fadeSprite;
     public int wave;
     bool isClear;
-    private int ememySpawnCount = 5;
+    private int ememySpawnCount = 15;
     [SerializeField]
     private GameObject portalObject;
     [SerializeField]
     private GameObject[] dungeonFieldObjects;
+    
     [SerializeField]
     private GameObject[] dungeonBossMapPrefs;
     [SerializeField]
@@ -28,7 +29,7 @@ public class DungeonManager : MonoBehaviour
     private float lastSpawnT = 0;
 
     private GameObject prevDungeonFieldObj;
-
+    public GameObject CurrentDungeonMap { get { return prevDungeonFieldObj; } }
     [SerializeField]
     private List<Rect> spawnRects;
 
@@ -139,7 +140,7 @@ public class DungeonManager : MonoBehaviour
         }
         else
         {
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < ememySpawnCount; i++)
             {
                 StartCoroutine(SpawnEnemy(GetRandomPos()));
             }
@@ -175,7 +176,7 @@ public class DungeonManager : MonoBehaviour
         }
     }
 
-    private IEnumerator SpawnEnemy(Vector2 pos)
+    public IEnumerator SpawnEnemy(Vector2 pos)
     {
         yield return new WaitForSeconds(0.2f);
 
@@ -183,6 +184,7 @@ public class DungeonManager : MonoBehaviour
         GameObject go = Instantiate(spawnCirclePref, pos, Quaternion.identity);
         go.GetComponent<SpawnCircle>().SetEnemyData(randomEnemyType);
     }
+
     private IEnumerator SpawnBoss(Vector2 pos)
     {
         yield return new WaitForSeconds(0.2f);
@@ -194,6 +196,5 @@ public class DungeonManager : MonoBehaviour
     {
         return prevDungeonFieldObj.GetComponent<Map>().GetRandomPos();
     }
-
 
 }

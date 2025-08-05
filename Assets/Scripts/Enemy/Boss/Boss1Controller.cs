@@ -51,8 +51,12 @@ public class Boss1Controller : EnemyController
     }
     public void spawnEnemy()
     {
+        DungeonManager dungeon = GameManager.Instance.GetDungeon();
+        var map = dungeon.CurrentDungeonMap.GetComponent<Map>();
+        Vector2 pos = map.GetLastUseRectRandomPos();
+
         for (int i = 0; i < 5; i++)
-            EnemyManager.Instance.AddEnemy(EnemyManager.eEnemyType.eTemp, Vector3.zero);
+            StartCoroutine(dungeon.SpawnEnemy(pos));
     }
 
 }

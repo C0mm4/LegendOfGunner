@@ -41,6 +41,8 @@ public class GameManager : MonoSingleton<GameManager>
     [SerializeField]
     private AudioClip InGameBGM;
 
+    public DungeonManager dungeon;
+
     protected override void Awake()
     {
         base.Awake();
@@ -157,5 +159,12 @@ public class GameManager : MonoSingleton<GameManager>
         ProjectileManager.Instance.MoveToTitle();
         SceneManager.LoadScene("MainScene");
         SoundManager.Instance.PlayBGM(TitleBGM);
+    }
+
+    public DungeonManager GetDungeon()
+    {
+        if (dungeon == null)
+            dungeon = FindAnyObjectByType<DungeonManager>();
+        return dungeon;
     }
 }
