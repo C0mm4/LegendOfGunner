@@ -19,6 +19,8 @@ public class ProjectileController : MonoBehaviour
 
     public bool fxOnDestroy = true;
 
+    public float Critical;
+    public int piercingLeftEnmey;
 
     ProjectileManager projectileManager;
 
@@ -64,8 +66,8 @@ public class ProjectileController : MonoBehaviour
 
             }
             collision.GetComponent<EnemyController>()?.Damaged();
-
-            DestroyProjectile(collision.ClosestPoint(transform.position), fxOnDestroy);
+            if(--piercingLeftEnmey <= 0)
+                DestroyProjectile(collision.ClosestPoint(transform.position), fxOnDestroy);
         }
     }
 

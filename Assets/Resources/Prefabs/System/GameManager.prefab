@@ -5083,6 +5083,7 @@ MonoBehaviour:
   DebugMode: 0
   TitleBGM: {fileID: 8300000, guid: e4c0e35960639794b97e0a058d76b8e2, type: 3}
   InGameBGM: {fileID: 8300000, guid: f0acdf2da46c31443a59abdfaeb620c5, type: 3}
+  dungeon: {fileID: 0}
 --- !u!1 &6203057363590902750
 GameObject:
   m_ObjectHideFlags: 0
@@ -5310,6 +5311,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1da8462a9d7fac14b8e603f8bb3c828d, type: 2}
   - {fileID: 11400000, guid: 49925f71a9a89eb488fcc6770701bd01, type: 2}
   - {fileID: 11400000, guid: 356b916fc4426734994fbd1cc7149145, type: 2}
+  - {fileID: 11400000, guid: 64d11b31251f3084b8e5a79182dc11cd, type: 2}
   _ShotgunAttributes:
   - {fileID: 11400000, guid: ca2983abd5d0ae84eb8c8241d4eb63ec, type: 2}
   - {fileID: 11400000, guid: fe23081cf9b2c964ab5c96ad7bd74c2d, type: 2}
@@ -5318,3 +5320,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e5dd369ff6f032f4d823b5eb44ba0ff8, type: 2}
   - {fileID: 11400000, guid: 5ed987033b5f6d34694e6f6b6d809b85, type: 2}
   - {fileID: 11400000, guid: b398e5a664904e145922946376ebe0f8, type: 2}
+  - {fileID: 11400000, guid: 7039b2087116e1a44adaa0a94d35e2d5, type: 2}

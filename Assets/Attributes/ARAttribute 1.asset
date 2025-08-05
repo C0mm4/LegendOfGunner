@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9650905c4934db443bb7bc3609b5ec6f, type: 3}
   m_Name: ARAttribute 1
   m_EditorClassIdentifier: 
-  name: Add Rifle Bullet
+  name: More Rifle
   description: Increase Rifle Bullet
   maxLevel: 5
   currentLevel: 0

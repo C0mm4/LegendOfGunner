@@ -52,6 +52,12 @@ public class Attribute : ScriptableObject
     private float DecreaseCooltime;
 
     [SerializeField]
+    private int IncreasePiercingEnemmy;
+
+    [SerializeField]
+    private float IncreaseCriticalP;
+
+    [SerializeField]
     private WeaponType weaponType;
     public WeaponType GetWeaponType { get { return weaponType; } }
 
@@ -101,16 +107,17 @@ public class Attribute : ScriptableObject
         data.Delay -= DecreaseDelay;
         data.MaxAmmo += IncreaseBullet;
         data.CoolTime -= DecreaseCooltime;
+        data.PiercingEnemyCount += IncreasePiercingEnemmy;
+        data.CriticalPercentage += IncreaseCriticalP;
 
-        Debug.Log(data.Power);
-        Debug.Log(data.Delay);
-        Debug.Log(data.NumProjectilePerShot);
-        Debug.Log(data.CoolTime);
     }
     protected virtual void ChangeBullet() 
     {
         if(ReplaceBulletPref == null) return;
+
+        RangeWeaponData data = applyTargetWeapon.data as RangeWeaponData;
         applyTargetWeapon.GetComponent<RangeWeaponHandler>()?.ChangeBullet(ReplaceBulletPref);
+        data.PiercingEnemyCount += 99;
     }
 
     protected virtual void AddAction() { }

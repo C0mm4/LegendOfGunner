@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: ARAttribute 3
   m_EditorClassIdentifier: 
   name: Rifle Speed
-  description: Increase Rifle Speed
+  description: Increase Rifle Attack Speed
   maxLevel: 5
   currentLevel: 0
   attributeType: 0
   IncreaseDMG: 0
-  DecreaseDelay: 0.1
+  DecreaseDelay: 0.3
   IncreaseBullet: 0
   ReplaceBulletPref: {fileID: 0}
   DecreaseCooltime: 0

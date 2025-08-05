@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9650905c4934db443bb7bc3609b5ec6f, type: 3}
   m_Name: SGAttribute 1
   m_EditorClassIdentifier: 
-  name: Add Rifle Bullet
-  description: Increase Rifle Bullet
+  name: DuckBill
+  description: Shotgun bullets more spreads and more bullets
   maxLevel: 5
   currentLevel: 0
   attributeType: 0

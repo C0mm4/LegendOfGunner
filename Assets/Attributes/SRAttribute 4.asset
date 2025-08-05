@@ -10,16 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9650905c4934db443bb7bc3609b5ec6f, type: 3}
-  m_Name: SGAttribute 2
+  m_Name: SRAttribute 4
   m_EditorClassIdentifier: 
-  name: Shotgun Adapter
-  description: Reduce Shotgun Cooltime
-  maxLevel: 1
+  name: Armor Piercer
+  description: Sniper piercing enemies
+  maxLevel: 3
   currentLevel: 0
   attributeType: 0
-  IncreaseDMG: 0
-  DecreaseDelay: 5
+  IncreaseDMG: 3
+  DecreaseDelay: 0
   IncreaseBullet: 0
   ReplaceBulletPref: {fileID: 0}
   DecreaseCooltime: 0
-  weaponType: 2
+  IncreasePiercingEnemmy: 1
+  IncreaseCriticalP: 0
+  weaponType: 3

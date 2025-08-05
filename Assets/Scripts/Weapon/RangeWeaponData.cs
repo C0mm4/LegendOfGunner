@@ -33,6 +33,14 @@ public class RangeWeaponData : WeaponData
     public float MultiProjectileAngle { get { return multiProjectileAngle; } }
 
     [SerializeField]
+    private int piercingEnemyCount = 1;
+    public int PiercingEnemyCount { get { return piercingEnemyCount; } set { piercingEnemyCount = value; } }
+
+    [SerializeField]
+    private float criticalPercentage;
+    public float CriticalPercentage { get { return criticalPercentage; } set { criticalPercentage = value; } }
+
+    [SerializeField]
     private Color projectileColor;
     public Color ProjectileColor { get { return projectileColor; } }
 

@@ -23,6 +23,8 @@ public class ProjectileManager : MonoSingleton<ProjectileManager>
         GameObject projectile = Instantiate(origin, startPos, Quaternion.identity);
 
         ProjectileController controller = projectile.GetComponent<ProjectileController>();
+        controller.piercingLeftEnmey = (weapon.data as RangeWeaponData).PiercingEnemyCount;
+        controller.Critical = (weapon.data as RangeWeaponData).CriticalPercentage;
         controller.Init(dir, weapon, this);
     }
 
